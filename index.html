@@ -23,6 +23,9 @@
         .tab-content.active {
             display: block;
         }
+        .fade-in-section {
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(5px); }
             to { opacity: 1; transform: translateY(0); }
@@ -34,11 +37,19 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
+        /* Blueprint Style for Tab 4 */
+        .blueprint-bg {
+            background-color: #0f172a; /* slate-900 */
+            background-image: 
+                linear-gradient(rgba(56, 189, 248, 0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(56, 189, 248, 0.15) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans antialiased">
 
-    <div class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+    <div class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
         <!-- Header -->
         <header class="text-center mb-8">
             <h1 class="text-3xl sm:text-4xl font-bold text-blue-700 mb-2">Circles and Their Elements</h1>
@@ -47,21 +58,27 @@
 
         <!-- Tab Navigation -->
         <div class="flex border-b border-gray-200 mb-6 overflow-x-auto">
-            <button onclick="openTab('tab1')" id="btn-tab1" class="tab-btn px-6 py-3 text-blue-600 border-b-2 border-blue-600 font-medium whitespace-nowrap focus:outline-none">
-                1. Warm-up & Definitions
+            <button onclick="openTab('tab1')" id="btn-tab1" class="tab-btn px-5 py-3 text-blue-600 border-b-2 border-blue-600 font-medium whitespace-nowrap focus:outline-none">
+                1. Warm-up
             </button>
-            <button onclick="openTab('tab2')" id="btn-tab2" class="tab-btn px-6 py-3 text-gray-500 hover:text-blue-500 border-b-2 border-transparent font-medium whitespace-nowrap focus:outline-none">
+            <button onclick="openTab('tab2')" id="btn-tab2" class="tab-btn px-5 py-3 text-gray-500 hover:text-blue-500 border-b-2 border-transparent font-medium whitespace-nowrap focus:outline-none">
                 2. Discovering Theorems
             </button>
-            <button onclick="openTab('tab3')" id="btn-tab3" class="tab-btn px-6 py-3 text-gray-500 hover:text-blue-500 border-b-2 border-transparent font-medium whitespace-nowrap focus:outline-none">
-                3. Central Angles & Arcs
+            <button onclick="openTab('tab3')" id="btn-tab3" class="tab-btn px-5 py-3 text-gray-500 hover:text-blue-500 border-b-2 border-transparent font-medium whitespace-nowrap focus:outline-none">
+                3. Practice
+            </button>
+            <button onclick="openTab('tab4')" id="btn-tab4" class="tab-btn px-5 py-3 text-gray-500 hover:text-blue-500 border-b-2 border-transparent font-medium whitespace-nowrap focus:outline-none">
+                4. Stage Builder
+            </button>
+            <button onclick="openTab('tab5')" id="btn-tab5" class="tab-btn px-5 py-3 text-gray-500 hover:text-blue-500 border-b-2 border-transparent font-medium whitespace-nowrap focus:outline-none">
+                5. Central Angles & Arcs
             </button>
         </div>
 
         <!-- TAB 1: Warm-up & Definitions -->
         <div id="tab1" class="tab-content active bg-white rounded-xl shadow-sm p-6 sm:p-8 border border-gray-100">
             <h2 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
-                <svg class="w-6 h-6 mr-2 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                <svg class="w-6 h-6 mr-2 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                 Warm-up: Archery Challenge
             </h2>
             <p class="mb-4 text-gray-700">Drag and release the bowstring backwards to shoot the arrow at the target! Pay attention to the curved trajectory to aim perfectly.</p>
@@ -79,192 +96,519 @@
                 </div>
             </div>
 
-            <h3 class="text-xl font-semibold text-blue-800 mb-4 mt-10 flex items-center border-b-2 border-blue-100 pb-2">
-                <svg class="w-6 h-6 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                </svg>
-                Historical Footprint: From the Bow to Geometry
-            </h3>
-            <div class="flex flex-col md:flex-row gap-6 items-center mb-8 bg-gradient-to-br from-slate-50 to-blue-50 p-6 rounded-xl border border-blue-200 shadow-sm relative overflow-hidden">
-                <!-- Decorative Compass SVG -->
-                <svg class="absolute -right-6 -top-6 w-32 h-32 text-blue-200 opacity-40 transform rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
-                </svg>
+            <!-- Transition 1 -->
+            <div id="transition-1" class="text-center mt-6 mb-8">
+                <p class="text-lg text-gray-700 mb-4">Great shooting! 🎯 Did you know the bow and arrow have a fascinating connection to Geometry?</p>
+                <button onclick="revealHistory()" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-bold shadow-md transition transform hover:scale-105 flex items-center justify-center mx-auto">
+                    Discover History
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </button>
+            </div>
 
-                <div class="flex-1 text-gray-800 leading-relaxed z-10 relative">
-                    <p class="mb-3">
-                        <span class="font-semibold text-indigo-700">Did you know?</span> Thousands of years ago, ancient Greek mathematicians observed familiar everyday objects to build the first building blocks of Geometry.
-                    </p>
-                    <ul class="space-y-3 mb-4 pl-4 border-l-4 border-indigo-300">
-                        <li>🏹 The word <strong>"Arc"</strong> comes from the Latin word <em>"arcus"</em>, which literally means a bow used for shooting arrows.</li>
-                        <li>🧶 The word <strong>"Chord"</strong> comes from the Latin word <em>"chorda"</em>, referring to the string used for bows or ancient lutes.</li>
-                    </ul>
-                    <p>
-                        In modern mathematical language, if we consider the curved wooden body as a part of a <strong>circle</strong>, then the straight string connecting its two ends is the perfect image of a <strong>chord</strong>!
-                    </p>
+            <!-- HISTORY SECTION -->
+            <div id="history-section" class="hidden fade-in-section">
+                <h3 class="text-xl font-semibold text-blue-800 mb-4 mt-10 flex items-center border-b-2 border-blue-100 pb-2">
+                    <svg class="w-6 h-6 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    Historical Footprint: From the Bow to Geometry
+                </h3>
+                
+                <div class="flex flex-col md:flex-row gap-6 items-center mb-8 bg-gradient-to-br from-slate-50 to-blue-50 p-6 rounded-xl border border-blue-200 shadow-sm relative overflow-hidden">
+                    <svg class="absolute -right-6 -top-6 w-32 h-32 text-blue-200 opacity-40 transform rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+
+                    <div class="flex-1 text-gray-800 leading-relaxed z-10 relative">
+                        <p class="mb-3">
+                            <span class="font-semibold text-indigo-700">Did you know?</span> Thousands of years ago, ancient Greek mathematicians observed familiar everyday objects to build the first building blocks of Geometry.
+                        </p>
+                        <ul class="space-y-3 mb-4 pl-4 border-l-4 border-indigo-300">
+                            <li>🏹 The word <strong>"Arc"</strong> comes from the Latin word <em>"arcus"</em>, which literally means a bow used for shooting arrows.</li>
+                            <li>🧶 The word <strong>"Chord"</strong> comes from the Latin word <em>"chorda"</em>, referring to the string used for bows or ancient lutes.</li>
+                        </ul>
+                        <p>
+                            In modern mathematical language, if we consider the curved wooden body as a part of a <strong>circle</strong>, then the straight string connecting its two ends is the perfect image of a <strong>chord</strong>!
+                        </p>
+                    </div>
+                    <div class="w-48 h-48 flex-shrink-0 bg-white rounded-full p-2 shadow-md border-2 border-indigo-100 relative overflow-hidden group flex items-center justify-center z-10">
+                        <svg viewBox="0 0 100 100" class="w-full h-full transform transition-transform duration-700 group-hover:scale-110">
+                            <circle cx="50" cy="50" r="40" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="3,3" />
+                            <path d="M 50 10 A 40 40 0 0 0 50 90" fill="none" stroke="#b45309" stroke-width="5" stroke-linecap="round" />
+                            <line x1="50" y1="10" x2="50" y2="90" stroke="#2563eb" stroke-width="2" />
+                            <line x1="20" y1="50" x2="50" y2="50" stroke="#94a3b8" stroke-width="2" />
+                            <polygon points="50,47 55,50 50,53" fill="#94a3b8" />
+                            <text x="54" y="52" font-size="7" fill="#2563eb" font-weight="bold">Chord</text>
+                            <text x="25" y="30" font-size="7" fill="#b45309" font-weight="bold">Arc</text>
+                        </svg>
+                    </div>
                 </div>
-                <!-- SVG Zoom Bow -> Circle -->
-                <div class="w-48 h-48 flex-shrink-0 bg-white rounded-full p-2 shadow-md border-2 border-indigo-100 relative overflow-hidden group flex items-center justify-center z-10">
-                    <svg viewBox="0 0 100 100" class="w-full h-full transform transition-transform duration-700 group-hover:scale-110">
-                        <!-- Faint circle (becomes clearer when zoomed) -->
-                        <circle cx="50" cy="50" r="40" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="3,3" />
-                        <!-- Arc (Bow body) -->
-                        <path d="M 50 10 A 40 40 0 0 0 50 90" fill="none" stroke="#b45309" stroke-width="5" stroke-linecap="round" />
-                        <!-- Chord (Bowstring) -->
-                        <line x1="50" y1="10" x2="50" y2="90" stroke="#2563eb" stroke-width="2" />
-                        <!-- Arrow (faint) -->
-                        <line x1="20" y1="50" x2="50" y2="50" stroke="#94a3b8" stroke-width="2" />
-                        <polygon points="50,47 55,50 50,53" fill="#94a3b8" />
-                        
-                        <!-- Labels -->
-                        <text x="54" y="52" font-size="7" fill="#2563eb" font-weight="bold">Chord</text>
-                        <text x="25" y="30" font-size="7" fill="#b45309" font-weight="bold">Arc</text>
-                    </svg>
+
+                <div id="transition-2" class="text-center mt-6 mb-8">
+                    <p class="text-lg text-gray-700 mb-4">Now that we know the history, let's explore the formal mathematical concepts!</p>
+                    <button onclick="revealConcepts()" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold shadow-md transition transform hover:scale-105 flex items-center justify-center mx-auto">
+                        View Definitions
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                    </button>
                 </div>
             </div>
 
-            <h2 class="text-2xl font-semibold text-gray-800 mb-4 mt-8 flex items-center">
-                <svg class="w-6 h-6 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                Concepts of Chord and Diameter
+            <!-- CONCEPTS & CLIL SECTION -->
+            <div id="concepts-section" class="hidden fade-in-section">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4 mt-8 flex items-center">
+                    <svg class="w-6 h-6 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Concepts of Chord and Diameter
+                </h2>
+                
+                <div class="flex flex-col md:flex-row gap-8 items-center mb-8">
+                    <div class="flex-1">
+                        <ul class="space-y-4">
+                            <li class="bg-blue-50 p-4 rounded-lg">
+                                <strong class="text-blue-700">Chord:</strong> A line segment connecting two distinct points on the circle. <br>
+                                <em>Example:</em> Line segment $AB$ is a chord of circle $(O)$.
+                            </li>
+                            <li class="bg-indigo-50 p-4 rounded-lg">
+                                <strong class="text-indigo-700">Diameter:</strong> A chord that passes through the centre of the circle. It is a special type of chord. <br>
+                                <em>Example:</em> Line segment $CD$ passing through the centre $O$ is a diameter.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="w-64 h-64 flex-shrink-0 relative bg-gray-50 rounded-full border border-gray-200 shadow-inner flex items-center justify-center">
+                        <svg viewBox="0 0 100 100" class="w-full h-full p-2">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="#cbd5e1" stroke-width="2" />
+                            <line x1="50" y1="5" x2="50" y2="95" stroke="#4f46e5" stroke-width="3" />
+                            <line x1="18.18" y1="81.82" x2="18.18" y2="18.18" stroke="#2563eb" stroke-width="3" />
+                            <circle cx="50" cy="50" r="2" fill="#1f2937" />
+                            <text x="54" y="52" font-size="6" font-family="sans-serif">O</text>
+                            <circle cx="18.18" cy="18.18" r="2" fill="#ef4444" />
+                            <text x="10" y="16" font-size="6" font-family="sans-serif">A</text>
+                            <circle cx="18.18" cy="81.82" r="2" fill="#ef4444" />
+                            <text x="10" y="88" font-size="6" font-family="sans-serif">B</text>
+                            <circle cx="50" cy="5" r="2" fill="#ef4444" />
+                            <text x="53" y="6" font-size="6" font-family="sans-serif">C</text>
+                            <circle cx="50" cy="95" r="2" fill="#ef4444" />
+                            <text x="53" y="98" font-size="6" font-family="sans-serif">D</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- KNOWLEDGE CHECK -->
+                <div class="mt-12 bg-white rounded-xl shadow-md border-2 border-slate-200 overflow-hidden">
+                    <div class="bg-slate-800 text-white p-4 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+                        <h3 class="text-xl font-bold">Knowledge Check</h3>
+                    </div>
+                    
+                    <div class="p-6 space-y-8" id="quiz-container">
+                        <div class="quiz-q border-b pb-6" id="q1-container">
+                            <p class="font-semibold text-gray-800 mb-4">1. Observe circle $(O)$ with various line segments. Line segment $EF$ passes through centre $O$.</p>
+                            <div class="flex flex-col md:flex-row gap-6 items-start">
+                                <div class="w-48 h-48 flex-shrink-0 relative bg-slate-50 rounded-full border border-gray-200 shadow-inner mx-auto md:mx-0">
+                                    <svg viewBox="0 0 100 100" class="w-full h-full p-2">
+                                        <circle cx="50" cy="50" r="45" fill="none" stroke="#94a3b8" stroke-width="2" />
+                                        <line x1="5" y1="50" x2="95" y2="50" stroke="#ef4444" stroke-width="2" />
+                                        <line x1="18" y1="18" x2="82" y2="18" stroke="#3b82f6" stroke-width="2" />
+                                        <line x1="50" y1="50" x2="50" y2="95" stroke="#10b981" stroke-width="2" />
+                                        <circle cx="50" cy="50" r="2" fill="#000" /><text x="52" y="47" font-size="5">O</text>
+                                        <circle cx="5" cy="50" r="2" fill="#ef4444" /><text x="2" y="47" font-size="5">E</text>
+                                        <circle cx="95" cy="50" r="2" fill="#ef4444" /><text x="95" y="47" font-size="5">F</text>
+                                        <circle cx="18" cy="18" r="2" fill="#3b82f6" /><text x="12" y="18" font-size="5">G</text>
+                                        <circle cx="82" cy="18" r="2" fill="#3b82f6" /><text x="85" y="18" font-size="5">H</text>
+                                        <circle cx="50" cy="95" r="2" fill="#10b981" /><text x="52" y="98" font-size="5">K</text>
+                                    </svg>
+                                </div>
+                                <div class="flex-1 space-y-4">
+                                    <div class="bg-gray-50 p-3 rounded border">
+                                        <p class="mb-2 font-medium">a) Which of the following are chords? (Select all that apply)</p>
+                                        <label class="inline-flex items-center mr-4"><input type="checkbox" id="q1a-ef" class="form-checkbox text-blue-600"><span class="ml-2">Segment $EF$</span></label>
+                                        <label class="inline-flex items-center mr-4"><input type="checkbox" id="q1a-gh" class="form-checkbox text-blue-600"><span class="ml-2">Segment $GH$</span></label>
+                                        <label class="inline-flex items-center"><input type="checkbox" id="q1a-ok" class="form-checkbox text-blue-600"><span class="ml-2">Segment $OK$</span></label>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded border">
+                                        <p class="mb-2 font-medium">b) Which specific line segment represents the diameter?</p>
+                                        <label class="inline-flex items-center mr-4"><input type="radio" name="q1b" value="EF" class="form-radio text-blue-600"><span class="ml-2">$EF$</span></label>
+                                        <label class="inline-flex items-center mr-4"><input type="radio" name="q1b" value="GH" class="form-radio text-blue-600"><span class="ml-2">$GH$</span></label>
+                                        <label class="inline-flex items-center"><input type="radio" name="q1b" value="OK" class="form-radio text-blue-600"><span class="ml-2">$OK$</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-q border-b pb-6" id="q2-container">
+                            <p class="font-semibold text-gray-800 mb-4">2.</p>
+                            <div class="flex flex-col sm:flex-row gap-6 items-center bg-indigo-50 p-4 rounded-xl">
+                                <div class="relative flex-shrink-0 text-center">
+                                    <canvas id="drawingCanvas" width="200" height="200" class="bg-white rounded-full border-2 border-indigo-200 cursor-crosshair shadow-sm"></canvas>
+                                    <button onclick="clearCanvas()" class="mt-2 text-sm text-indigo-600 hover:text-indigo-800 font-medium">↺ Clear drawing</button>
+                                </div>
+                                <div class="flex-1 w-full space-y-4">
+                                    <div class="text-gray-700 bg-white p-3 rounded border border-indigo-100">
+                                        <strong>Task:</strong> Translate these instructions into a drawing by clicking on the circle's edge:
+                                        <ul class="list-decimal ml-5 mt-1 text-sm space-y-1 font-medium">
+                                            <li>Draw a chord that is very short.</li>
+                                            <li>Draw a chord that does <strong>not</strong> pass through the centre.</li>
+                                            <li>Draw a chord that passes <strong>straight through the centre</strong> (aim for the black dot!).</li>
+                                        </ul>
+                                    </div>
+                                    <div class="pt-2">
+                                        <p class="font-medium text-gray-800 mb-2">Think about it: To make your chord as LONG as possible, where should you place it?</p>
+                                        <div class="space-y-2">
+                                            <label class="flex items-start"><input type="radio" name="q2" value="Edge" class="form-radio text-indigo-600 mt-1"><span class="ml-2">Near the edge of the circle.</span></label>
+                                            <label class="flex items-start"><input type="radio" name="q2" value="Center" class="form-radio text-indigo-600 mt-1"><span class="ml-2">Passing straight through the centre.</span></label>
+                                            <label class="flex items-start"><input type="radio" name="q2" value="Any" class="form-radio text-indigo-600 mt-1"><span class="ml-2">It doesn't matter.</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-q" id="q3-container">
+                            <p class="font-semibold text-gray-800 mb-3">3. Critical Thinking</p>
+                            <div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded">
+                                <p class="italic text-gray-700 mb-4">"Every diameter is a chord, but not every chord is a diameter."</p>
+                                <p class="font-medium mb-2">Do you agree or disagree?</p>
+                                <div class="mb-4">
+                                    <label class="inline-flex items-center mr-6"><input type="radio" name="q3" value="Agree" class="form-radio text-amber-600"><span class="ml-2">Agree</span></label>
+                                    <label class="inline-flex items-center"><input type="radio" name="q3" value="Disagree" class="form-radio text-amber-600"><span class="ml-2">Disagree</span></label>
+                                </div>
+                                <div id="q3-feedback" class="hidden mt-3 p-3 bg-white border border-amber-200 rounded text-sm text-gray-700">
+                                    <strong>Explanation:</strong> A chord is a segment connecting two points on the circle. Since a diameter does this, it <em>is</em> a chord. However, many chords do not pass through the centre, so they are not diameters. The statement is correct!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-slate-50 p-4 border-t border-slate-200 flex flex-col items-center">
+                        <div id="quiz-result" class="mb-4 text-lg font-bold text-center hidden"></div>
+                        <button onclick="checkQuiz()" class="px-8 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold shadow-md transition transform hover:scale-105">
+                            Submit Answers
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Key Vocabulary Tab 1 -->
+                <div class="mt-10 border-t border-gray-200 pt-6">
+                    <h3 class="text-xl font-bold text-green-600 mb-4 flex items-center">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                        Key Vocabulary (CLIL)
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                            <div class="text-lg font-bold text-green-800">Circle</div>
+                            <div class="text-sm text-gray-500 font-mono mb-1">/ˈsɜː.kəl/</div>
+                            <div class="text-gray-700 text-sm"><strong>Definition:</strong> Tập hợp các điểm cách đều một điểm cho trước (gọi là tâm).</div>
+                        </div>
+                        <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                            <div class="text-lg font-bold text-green-800">Chord</div>
+                            <div class="text-sm text-gray-500 font-mono mb-1">/kɔːd/</div>
+                            <div class="text-gray-700 text-sm"><strong>Definition:</strong> Đoạn thẳng nối hai điểm phân biệt nằm trên đường tròn.</div>
+                        </div>
+                        <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                            <div class="text-lg font-bold text-green-800">Diameter</div>
+                            <div class="text-sm text-gray-500 font-mono mb-1">/daɪˈæm.ɪ.tə/</div>
+                            <div class="text-gray-700 text-sm"><strong>Definition:</strong> Dây cung đi qua tâm của đường tròn. Đây là dây cung lớn nhất.</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center border-t border-gray-200 pt-8">
+                    <button onclick="openTab('tab2')" class="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-full font-bold shadow-lg transition transform hover:scale-105 flex items-center justify-center mx-auto text-lg">
+                        Next: Discovering Theorems
+                        <svg class="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </div> 
+        </div>
+
+        <!-- TAB 2: Discovering Theorems -->
+        <div id="tab2" class="tab-content bg-white rounded-xl shadow-sm p-6 sm:p-8 border border-gray-100">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 flex items-center border-b-2 border-purple-100 pb-3">
+                <svg class="w-6 h-6 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                Discovering Theorems
             </h2>
-            <div class="flex flex-col md:flex-row gap-8 items-center mb-8">
-                <div class="flex-1">
-                    <ul class="space-y-4">
-                        <li class="bg-blue-50 p-4 rounded-lg">
-                            <strong class="text-blue-700">Chord:</strong> A line segment connecting two distinct points on the circle. <br>
-                            <em>Example:</em> Line segment $AB$ is a chord of circle $(O)$.
-                        </li>
-                        <li class="bg-indigo-50 p-4 rounded-lg">
-                            <strong class="text-indigo-700">Diameter:</strong> A chord that passes through the center of the circle. It is the longest chord of a circle. <br>
-                            <em>Example:</em> Line segment $CD$ passing through the center $O$ is a diameter.
-                        </li>
-                    </ul>
+            
+            <div class="flex flex-col lg:flex-row gap-8 items-start mb-8">
+                <div class="w-full lg:w-1/2 flex flex-col items-center bg-slate-50 p-4 rounded-2xl border-2 border-slate-200 shadow-inner">
+                    <p class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-2">Dynamic Simulation</p>
+                    <p class="text-xs text-slate-400 mb-4 text-center">Drag the blue chord up and down to observe changes.</p>
+                    <div class="relative w-full max-w-[320px] aspect-square bg-white rounded-full border-4 border-slate-100 shadow-sm overflow-hidden touch-none">
+                        <canvas id="chordSimCanvas" width="400" height="400" class="w-full h-full cursor-ns-resize"></canvas>
+                    </div>
+                    <div class="mt-6 w-full bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+                        <div class="text-center">
+                            <p class="text-xs text-slate-500 uppercase font-bold">Distance to Centre</p>
+                            <p class="text-xl font-mono font-bold text-amber-600" id="sim-distance">--</p>
+                        </div>
+                        <div class="h-10 w-px bg-slate-200"></div>
+                        <div class="text-center">
+                            <p class="text-xs text-slate-500 uppercase font-bold">Chord Length ($AB$)</p>
+                            <p class="text-2xl font-mono font-bold text-blue-600" id="sim-length">--</p>
+                        </div>
+                    </div>
                 </div>
-                <!-- SVG Illustration -->
-                <div class="w-64 h-64 flex-shrink-0 relative bg-gray-50 rounded-full border border-gray-200 shadow-inner flex items-center justify-center">
-                    <svg viewBox="0 0 100 100" class="w-full h-full p-2">
-                        <!-- Circle -->
-                        <circle cx="50" cy="50" r="45" fill="none" stroke="#cbd5e1" stroke-width="2" />
-                        <!-- Diameter CD (indigo) -->
-                        <line x1="50" y1="5" x2="50" y2="95" stroke="#4f46e5" stroke-width="3" />
-                        <!-- Chord AB (blue) -->
-                        <line x1="18.18" y1="81.82" x2="18.18" y2="18.18" stroke="#2563eb" stroke-width="3" />
-                        <!-- Center O -->
-                        <circle cx="50" cy="50" r="2" fill="#1f2937" />
-                        <text x="54" y="52" font-size="6" font-family="sans-serif">O</text>
-                        <!-- Points A, B -->
-                        <circle cx="18.18" cy="18.18" r="2" fill="#ef4444" />
-                        <text x="10" y="16" font-size="6" font-family="sans-serif">A</text>
-                        <circle cx="18.18" cy="81.82" r="2" fill="#ef4444" />
-                        <text x="10" y="88" font-size="6" font-family="sans-serif">B</text>
-                        <!-- Points C, D for Diameter -->
-                        <circle cx="50" cy="5" r="2" fill="#ef4444" />
-                        <text x="53" y="6" font-size="6" font-family="sans-serif">C</text>
-                        <circle cx="50" cy="95" r="2" fill="#ef4444" />
-                        <text x="53" y="98" font-size="6" font-family="sans-serif">D</text>
-                    </svg>
+
+                <div class="w-full lg:w-1/2 space-y-6">
+                    <div class="bg-blue-50 rounded-xl p-5 border-l-4 border-blue-500 shadow-sm">
+                        <h3 class="text-lg font-bold text-blue-800 mb-2 flex items-center">
+                            <span class="bg-blue-200 text-blue-800 rounded-full w-6 h-6 inline-flex items-center justify-center mr-2 text-sm">1</span>
+                            Task 1: Experience and Predict
+                        </h3>
+                        <div class="bg-white bg-opacity-60 p-3 rounded text-sm text-gray-800">
+                            <strong>Discussion:</strong> As you drag the chord closer to the centre, what happens to its length? Based on this observation, what is your prediction about the longest possible chord in a circle?
+                        </div>
+                    </div>
+                    <div class="bg-indigo-50 rounded-xl p-5 border-l-4 border-indigo-500 shadow-sm">
+                        <h3 class="text-lg font-bold text-indigo-800 mb-2 flex items-center">
+                            <span class="bg-indigo-200 text-indigo-800 rounded-full w-6 h-6 inline-flex items-center justify-center mr-2 text-sm">2</span>
+                            Task 2: Validate and Prove
+                        </h3>
+                        <div class="bg-white bg-opacity-60 p-3 rounded text-sm text-gray-800">
+                            Look at the dashed lines connecting the centre $O$ to the endpoints $A$ and $B$. They form $\triangle OAB$. <br><br>
+                            Recall the triangle inequality theorem. How does the length of $AB$ compare to the sum of $OA$ and $OB$?
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Key Vocabulary Tab 1 -->
-            <div class="mt-8 border-t border-gray-200 pt-6">
+            <!-- Secret Reveal Area -->
+            <div id="theorem-lock-screen" class="mt-8 bg-slate-800 text-white p-6 rounded-xl text-center shadow-md relative overflow-hidden transition-all duration-500">
+                <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 20px 20px;"></div>
+                <div class="relative z-10 flex flex-col items-center justify-center py-4">
+                    <button class="mb-4 p-4 bg-slate-700 rounded-full cursor-default">
+                        <svg class="w-10 h-10 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    </button>
+                    <h4 class="text-xl font-bold mb-2">The Theorem is Locked</h4>
+                    <p class="text-slate-300 text-sm max-w-md mx-auto">Your teacher will unlock the formal theorem after the class has successfully proven the hypothesis on the board.</p>
+                </div>
+            </div>
+
+            <!-- Formal Theorem -->
+            <div id="theorem-content" class="hidden mt-8 bg-white rounded-xl shadow-lg border-2 border-purple-500 overflow-hidden transform scale-95 opacity-0 transition-all duration-500">
+                <div class="bg-gradient-to-r from-purple-600 to-indigo-600 p-4 flex items-center justify-between">
+                    <h3 class="text-xl font-bold text-white flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-yellow-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Formal Theorem Unlocked
+                    </h3>
+                </div>
+                <div class="p-6 md:p-8">
+                    <div class="bg-purple-50 p-5 rounded-lg border-l-4 border-purple-500 mb-6">
+                        <p class="text-2xl font-bold text-purple-900 text-center leading-relaxed">
+                            Theorem: In a circle, the diameter is the longest chord.
+                        </p>
+                    </div>
+                    <h4 class="font-bold text-gray-800 mb-3 border-b pb-2">Mathematical Proof Summary:</h4>
+                    <ul class="space-y-3 text-gray-700">
+                        <li>Let $AB$ be any chord in circle $(O, R)$.</li>
+                        <li>Consider $\triangle OAB$. According to the triangle inequality theorem: <br>
+                            <span class="block text-center text-lg font-bold text-indigo-700 my-2">$$AB \le OA + OB$$</span>
+                        </li>
+                        <li>Since $OA$ and $OB$ are radii, $OA = R$ and $OB = R$. Therefore: <br>
+                            <span class="block text-center text-lg font-bold text-indigo-700 my-2">$$AB \le R + R = 2R$$</span>
+                        </li>
+                        <li>The equality $AB = 2R$ holds true <em>only if</em> points $A, O, B$ are collinear, which means chord $AB$ passes through the centre $O$ (making it a diameter).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-10 border-t border-gray-200 pt-6">
                 <h3 class="text-xl font-bold text-green-600 mb-4 flex items-center">
-                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
                     Key Vocabulary (CLIL)
                 </h3>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
                         <div class="text-lg font-bold text-green-800">Circle</div>
-                        <div class="text-sm text-gray-500 font-mono mb-1">/ˈsɜːr.kəl/</div>
-                        <div class="text-gray-700 text-sm"><strong>Đường tròn:</strong> Tập hợp các điểm cách đều một điểm cho trước (gọi là tâm).</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/ˈsɜː.kəl/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Tập hợp các điểm cách đều một điểm cho trước (gọi là tâm).</div>
                     </div>
                     <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
                         <div class="text-lg font-bold text-green-800">Chord</div>
-                        <div class="text-sm text-gray-500 font-mono mb-1">/kɔːrd/</div>
-                        <div class="text-gray-700 text-sm"><strong>Dây cung:</strong> Đoạn thẳng nối hai điểm phân biệt nằm trên đường tròn.</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/kɔːd/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Đoạn thẳng nối hai điểm phân biệt nằm trên đường tròn.</div>
                     </div>
                     <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
-                        <div class="text-lg font-bold text-green-800">Arc</div>
-                        <div class="text-sm text-gray-500 font-mono mb-1">/ɑːrk/</div>
-                        <div class="text-gray-700 text-sm"><strong>Cung tròn:</strong> Một phần của đường tròn bị giới hạn bởi hai điểm.</div>
+                        <div class="text-lg font-bold text-green-800">Diameter</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/daɪˈæm.ɪ.tə/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Dây cung đi qua tâm của đường tròn. Đây là dây cung lớn nhất.</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 2: Discovering Theorems -->
-        <div id="tab2" class="tab-content bg-white rounded-xl shadow-sm p-6 sm:p-8 border border-gray-100">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
-                <svg class="w-6 h-6 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                Discovering Theorems
+        <!-- TAB 3: PRACTICE -->
+        <div id="tab3" class="tab-content bg-white rounded-xl shadow-sm p-6 sm:p-8 border border-gray-100">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <span class="bg-indigo-100 text-indigo-700 p-2 rounded-lg mr-3">✍️</span>
+                Practice
             </h2>
-            <p class="mb-4 leading-relaxed">
-                The diameter is a special chord because it passes through the center of the circle. The diameter is the longest chord in any circle.
-            </p>
-            
-            <div class="flex flex-col md:flex-row gap-8 items-center mb-8">
-                <div class="flex-1 space-y-4">
-                    <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
-                        <h4 class="font-bold text-purple-800 mb-2">Theorem (Perpendicular relationship between diameter and chord):</h4>
-                        <p class="text-gray-700">In a circle, a diameter perpendicular to a chord bisects that chord (passes through its midpoint).</p>
-                        <p class="mt-2 text-sm text-gray-600">
-                            If diameter $CD \perp$ chord $AB$ at $H$, then $HA = HB$.
-                        </p>
-                    </div>
-                </div>
-                <!-- SVG Illustration -->
-                <div class="w-64 h-64 flex-shrink-0 relative bg-gray-50 rounded-full border border-gray-200 shadow-inner flex items-center justify-center">
-                    <svg viewBox="0 0 100 100" class="w-full h-full p-2">
-                        <circle cx="50" cy="50" r="45" fill="none" stroke="#cbd5e1" stroke-width="2" />
-                        <!-- Diameter CD -->
-                        <line x1="50" y1="5" x2="50" y2="95" stroke="#9333ea" stroke-width="2" stroke-dasharray="4" />
-                        <!-- Chord AB -->
-                        <line x1="15" y1="65" x2="85" y2="65" stroke="#2563eb" stroke-width="3" />
-                        <!-- Right angle symbol -->
-                        <polyline points="50,60 55,60 55,65" fill="none" stroke="#ef4444" stroke-width="1.5" />
-                        <!-- Equality tick marks -->
-                        <line x1="30" y1="63" x2="30" y2="67" stroke="#1f2937" stroke-width="1.5" />
-                        <line x1="32" y1="63" x2="32" y2="67" stroke="#1f2937" stroke-width="1.5" />
-                        <line x1="68" y1="63" x2="68" y2="67" stroke="#1f2937" stroke-width="1.5" />
-                        <line x1="70" y1="63" x2="70" y2="67" stroke="#1f2937" stroke-width="1.5" />
 
-                        <!-- Points -->
-                        <circle cx="50" cy="50" r="2" fill="#1f2937" />
-                        <text x="53" y="48" font-size="6">O</text>
-                        <circle cx="15" cy="65" r="2" fill="#ef4444" />
-                        <text x="8" y="67" font-size="6">A</text>
-                        <circle cx="85" cy="65" r="2" fill="#ef4444" />
-                        <text x="88" y="67" font-size="6">B</text>
-                        <circle cx="50" cy="5" r="2" fill="#9333ea" />
-                        <text x="48" y="13" font-size="6">C</text>
-                        <circle cx="50" cy="95" r="2" fill="#9333ea" />
-                        <text x="48" y="93" font-size="6">D</text>
-                        <circle cx="50" cy="65" r="2" fill="#1f2937" />
-                        <text x="53" y="71" font-size="6">H</text>
-                    </svg>
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-6 md:p-8 rounded-lg shadow-sm mb-6">
+                <h3 class="text-base font-bold text-blue-800 mb-4 inline-block bg-blue-200 px-4 py-1.5 rounded-full uppercase tracking-wider">Practice 1</h3>
+                <p class="text-gray-800 text-lg md:text-xl leading-relaxed">
+                    Given a circle with diameter $BC$. Prove that for any point $A$ (distinct from $B$ and $C$) on the circle, we always have: 
+                </p>
+                <div class="mt-6 mb-2 flex justify-center">
+                    <div class="bg-white px-8 py-4 rounded-xl shadow-sm border border-blue-100">
+                        <span class="font-bold text-2xl md:text-3xl text-indigo-700">$$BC &lt; AB + AC &lt; 2BC$$</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Key Vocabulary Tab 2 -->
-            <div class="mt-8 border-t border-gray-200 pt-6">
+            <div class="flex items-start md:items-center p-5 bg-amber-50 border border-amber-200 rounded-lg shadow-sm">
+                <svg class="w-6 h-6 text-amber-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                <p class="text-amber-800 font-medium text-lg">
+                    <strong>Instruction:</strong> Apply the theorems you have just learned to think through and write the solution to this exercise in your notebook!
+                </p>
+            </div>
+
+            <!-- Secret Lock Screen for Solution -->
+            <div id="practice-lock-screen" class="mt-8 bg-slate-800 text-white p-6 rounded-xl text-center shadow-md relative overflow-hidden transition-all duration-500">
+                <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 20px 20px;"></div>
+                <div class="relative z-10 flex flex-col items-center justify-center py-4">
+                    <button class="mb-4 p-4 bg-slate-700 rounded-full cursor-default">
+                        <svg class="w-10 h-10 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    </button>
+                    <h4 class="text-xl font-bold mb-2">The Solution is Locked</h4>
+                    <p class="text-slate-300 text-sm max-w-md mx-auto">Your teacher will unlock the detailed solution and illustration after you have tried it yourself.</p>
+                </div>
+            </div>
+
+            <!-- Formal Solution -->
+            <div id="practice-solution" class="hidden mt-8 bg-white rounded-xl shadow-lg border-2 border-indigo-500 overflow-hidden transform scale-95 opacity-0 transition-all duration-500">
+                <div class="bg-gradient-to-r from-indigo-600 to-blue-600 p-4 flex items-center justify-between">
+                    <h3 class="text-xl font-bold text-white flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Detailed Solution Unlocked
+                    </h3>
+                </div>
+                <div class="p-6 md:p-8 flex flex-col md:flex-row gap-8 items-center">
+                    <div class="w-full md:w-1/3 flex justify-center">
+                        <svg viewBox="0 0 200 200" class="w-48 h-48 drop-shadow-md">
+                            <circle cx="100" cy="100" r="80" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+                            <circle cx="100" cy="100" r="3" fill="#000"/>
+                            <text x="100" y="115" text-anchor="middle" font-size="12">O</text>
+                            <line x1="20" y1="100" x2="180" y2="100" stroke="#ef4444" stroke-width="3"/>
+                            <circle cx="20" cy="100" r="4" fill="#ef4444"/>
+                            <text x="10" y="105" text-anchor="middle" font-weight="bold" fill="#ef4444">B</text>
+                            <circle cx="180" cy="100" r="4" fill="#ef4444"/>
+                            <text x="190" y="105" text-anchor="middle" font-weight="bold" fill="#ef4444">C</text>
+                            <circle cx="140" cy="30.7" r="4" fill="#3b82f6"/>
+                            <text x="145" y="25" text-anchor="middle" font-weight="bold" fill="#3b82f6">A</text>
+                            <line x1="20" y1="100" x2="140" y2="30.7" stroke="#3b82f6" stroke-width="2"/>
+                            <line x1="180" y1="100" x2="140" y2="30.7" stroke="#3b82f6" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="w-full md:w-2/3 space-y-4 text-gray-700">
+                        <h4 class="font-bold text-gray-800 text-lg border-b pb-2">Step-by-step Proof:</h4>
+                        <div class="space-y-3">
+                            <p><strong>1. Prove $BC &lt; AB + AC$:</strong></p>
+                            <ul class="list-disc ml-5 space-y-1">
+                                <li>Consider $\triangle ABC$. Since $A$ is a point on the circle distinct from $B$ and $C$, they form a valid triangle.</li>
+                                <li>According to the <strong>Triangle Inequality Theorem</strong>, the sum of any two sides is always greater than the third side.</li>
+                                <li>Therefore, $AB + AC &gt; BC$ (which means $BC &lt; AB + AC$).</li>
+                            </ul>
+                            <p class="mt-4"><strong>2. Prove $AB + AC &lt; 2BC$:</strong></p>
+                            <ul class="list-disc ml-5 space-y-1">
+                                <li>The diameter $BC$ is the <strong>longest chord</strong> in the circle.</li>
+                                <li>Since $A$ is distinct from $B$ and $C$, chords $AB$ and $AC$ are not diameters.</li>
+                                <li>Thus, $AB &lt; BC$ and $AC &lt; BC$.</li>
+                                <li>Adding these inequalities together: $AB + AC &lt; BC + BC = 2BC$.</li>
+                            </ul>
+                            <div class="mt-4 p-3 bg-indigo-50 border-l-4 border-indigo-500 rounded font-semibold text-indigo-800">
+                                Conclusion: Combining both parts, we get $BC &lt; AB + AC &lt; 2BC$.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: STAGE BUILDER SIMULATION -->
+        <div id="tab4" class="tab-content bg-white rounded-xl shadow-sm p-6 sm:p-8 border border-gray-100">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <span class="bg-blue-100 text-blue-700 p-2 rounded-lg mr-3">🏗️</span>
+                Stage Builder Simulation
+            </h2>
+            <p class="text-gray-700 mb-8">
+                Welcome to the construction site! We need to install a lighting truss across the circular stage. Test different truss lengths to see if they fit safely inside the stage area without sticking out.
+            </p>
+
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- Blueprint Canvas -->
+                <div class="flex-1 rounded-xl shadow-xl overflow-hidden blueprint-bg relative border border-slate-700 h-[400px] flex items-center justify-center">
+                    <!-- Flashing red overlay when error occurs -->
+                    <div id="stage-error-overlay" class="absolute inset-0 bg-red-600 opacity-0 transition-opacity duration-300 pointer-events-none z-0"></div>
+                    <canvas id="stageBuilderCanvas" width="400" height="400" class="z-10 relative"></canvas>
+                </div>
+
+                <!-- Contractor's Control Panel -->
+                <div class="w-full md:w-80 bg-slate-800 rounded-xl shadow-lg border border-slate-700 flex flex-col overflow-hidden">
+                    <div class="bg-slate-900 p-4 border-b border-slate-700 flex items-center">
+                        <svg class="w-5 h-5 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                        <h3 class="text-slate-200 font-bold tracking-wide">Contractor's Panel</h3>
+                    </div>
+                    
+                    <div class="p-6 space-y-6 flex-1">
+                        <div>
+                            <label class="block text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Stage Radius (m)</label>
+                            <div class="flex items-center">
+                                <input id="stage-radius" type="number" value="6" min="1" max="12" class="w-20 bg-slate-700 text-white border border-slate-600 rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all font-mono text-lg text-center"/>
+                                <span class="ml-3 text-slate-400 font-medium">meters</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Truss Length (m)</label>
+                            <div class="flex items-center">
+                                <input id="truss-length" type="number" value="13" min="1" class="w-20 bg-slate-700 text-white border border-slate-600 rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all font-mono text-lg text-center"/>
+                                <span class="ml-3 text-slate-400 font-medium">meters</span>
+                            </div>
+                        </div>
+
+                        <button id="btn-test-install" class="w-full mt-4 bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded shadow-lg transition-colors flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                            Test Installation
+                        </button>
+                    </div>
+
+                    <!-- Proof Section -->
+                    <div class="p-4 bg-slate-900 border-t border-slate-700">
+                        <button id="btn-show-proof" class="w-full hidden text-sm text-blue-400 hover:text-blue-300 font-medium transition-colors p-2 rounded hover:bg-slate-800">
+                            View Mathematical Proof
+                        </button>
+                        <div id="proof-content" class="hidden mt-3 p-3 bg-slate-800 rounded border border-slate-600 text-slate-200 text-center font-mono text-sm leading-relaxed overflow-x-auto">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Vocabulary Tab 4 (Shares definitions from previous parts) -->
+            <div class="mt-10 border-t border-gray-200 pt-6">
                 <h3 class="text-xl font-bold text-green-600 mb-4 flex items-center">
-                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
                     Key Vocabulary (CLIL)
                 </h3>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Circle</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/ˈsɜː.kəl/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Tập hợp các điểm cách đều một điểm cho trước (gọi là tâm).</div>
+                    </div>
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Chord</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/kɔːd/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Đoạn thẳng nối hai điểm phân biệt nằm trên đường tròn.</div>
+                    </div>
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
                         <div class="text-lg font-bold text-green-800">Diameter</div>
-                        <div class="text-sm text-gray-500 font-mono mb-1">/daɪˈæm.ɪ.tər/</div>
-                        <div class="text-gray-700 text-sm"><strong>Đường kính:</strong> Dây cung đi qua tâm của đường tròn. Đây là dây cung lớn nhất.</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/daɪˈæm.ɪ.tə/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Dây cung đi qua tâm của đường tròn. Đây là dây cung lớn nhất.</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 3: Central Angles & Arc Measures -->
-        <div id="tab3" class="tab-content bg-white rounded-xl shadow-sm p-6 sm:p-8 border border-gray-100">
+        <!-- TAB 5: Central Angles & Arcs -->
+        <div id="tab5" class="tab-content bg-white rounded-xl shadow-sm p-6 sm:p-8 border border-gray-100">
             <h2 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
-                <svg class="w-6 h-6 mr-2 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
+                <svg class="w-6 h-6 mr-2 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
                 Central Angles & Arc Measures
             </h2>
             
@@ -272,7 +616,7 @@
                 <div class="flex-1 space-y-4">
                     <div class="bg-rose-50 p-4 rounded-lg">
                         <strong class="text-rose-700 text-lg">Central Angle:</strong>
-                        <p class="mt-1 text-gray-700">An angle whose vertex is the center of the circle. <br>
+                        <p class="mt-1 text-gray-700">An angle whose vertex is the centre of the circle. <br>
                         <em>Example:</em> $\angle AOB$ is a central angle subtending arc $AB$.</p>
                     </div>
                     <div class="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-500">
@@ -284,25 +628,14 @@
                         </ul>
                     </div>
                 </div>
-                <!-- SVG Illustration -->
                 <div class="w-64 h-64 flex-shrink-0 relative bg-gray-50 rounded-full border border-gray-200 shadow-inner flex items-center justify-center">
                     <svg viewBox="0 0 100 100" class="w-full h-full p-2">
-                        <!-- Circle -->
                         <circle cx="50" cy="50" r="45" fill="none" stroke="#cbd5e1" stroke-width="2" />
-                        
-                        <!-- Intercepted arc (orange) -->
-                        <!-- Angle 60 degrees: from (95,50) to (72.5, 11.02) -->
                         <path d="M 95 50 A 45 45 0 0 0 72.5 11.02" fill="none" stroke="#f97316" stroke-width="4" />
-                        
-                        <!-- Radii -->
                         <line x1="50" y1="50" x2="95" y2="50" stroke="#475569" stroke-width="2" />
                         <line x1="50" y1="50" x2="72.5" y2="11.02" stroke="#475569" stroke-width="2" />
-                        
-                        <!-- Central angle symbol -->
                         <path d="M 60 50 A 10 10 0 0 0 55 41.34" fill="none" stroke="#e11d48" stroke-width="2" />
                         <text x="62" y="46" font-size="5" fill="#e11d48" font-family="sans-serif">α</text>
-                        
-                        <!-- Points -->
                         <circle cx="50" cy="50" r="2" fill="#1f2937" />
                         <text x="45" y="55" font-size="6">O</text>
                         <circle cx="95" cy="50" r="2" fill="#ef4444" />
@@ -313,22 +646,42 @@
                 </div>
             </div>
 
-            <!-- Key Vocabulary Tab 3 -->
+            <!-- Key Vocabulary Tab 5 -->
             <div class="mt-8 border-t border-gray-200 pt-6">
                 <h3 class="text-xl font-bold text-green-600 mb-4 flex items-center">
-                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
                     Key Vocabulary (CLIL)
                 </h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Circle</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/ˈsɜː.kəl/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Tập hợp các điểm cách đều một điểm cho trước (gọi là tâm).</div>
+                    </div>
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Chord</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/kɔːd/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Đoạn thẳng nối hai điểm phân biệt nằm trên đường tròn.</div>
+                    </div>
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Diameter</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/daɪˈæm.ɪ.tə/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Dây cung đi qua tâm của đường tròn. Đây là dây cung lớn nhất.</div>
+                    </div>
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Arc</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/ɑːk/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Một phần của đường tròn bị giới hạn bởi hai điểm.</div>
+                    </div>
                     <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
                         <div class="text-lg font-bold text-green-800">Central angle</div>
                         <div class="text-sm text-gray-500 font-mono mb-1">/ˈsen.trəl ˈæŋ.ɡəl/</div>
-                        <div class="text-gray-700 text-sm"><strong>Góc ở tâm:</strong> Góc có đỉnh trùng với tâm của đường tròn.</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Góc có đỉnh trùng với tâm của đường tròn.</div>
                     </div>
                     <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
                         <div class="text-lg font-bold text-green-800">Arc measure</div>
-                        <div class="text-sm text-gray-500 font-mono mb-1">/ɑːrk ˈmeʒ.ər/</div>
-                        <div class="text-gray-700 text-sm"><strong>Số đo cung:</strong> Tính bằng độ, bằng số đo của góc ở tâm chắn cung đó.</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/ɑːk ˈmeʒ.ə/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Tính bằng độ, bằng số đo của góc ở tâm chắn cung đó.</div>
                     </div>
                 </div>
             </div>
@@ -336,198 +689,241 @@
 
     </div>
 
-    <!-- Tab Control Script -->
+    <!-- MAIN SCRIPT -->
     <script>
+        // ==========================================
+        // TAB CONTROL
+        // ==========================================
         function openTab(tabId) {
-            // Hide all tab contents
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-
-            // Reset all buttons' styles
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('text-blue-600', 'border-blue-600');
                 btn.classList.add('text-gray-500', 'border-transparent');
             });
 
-            // Show selected tab content
             document.getElementById(tabId).classList.add('active');
-
-            // Highlight selected button
             const activeBtn = document.getElementById('btn-' + tabId);
             activeBtn.classList.remove('text-gray-500', 'border-transparent');
             activeBtn.classList.add('text-blue-600', 'border-blue-600');
             
-            // Re-render math formulas on tab change (MathJax)
-            if (window.MathJax) {
-                MathJax.typesetPromise();
+            if (window.MathJax) MathJax.typesetPromise();
+            if (tabId === 'tab2') initChordSimulation();
+            if (tabId === 'tab4') initStageBuilder();
+        }
+
+        // ==========================================
+        // TAB 1: LOGIC (Warm-up, Reveal, Archery)
+        // ==========================================
+        function revealHistory() {
+            document.getElementById('transition-1').style.display = 'none';
+            document.getElementById('history-section').classList.remove('hidden');
+        }
+
+        function revealConcepts() {
+            document.getElementById('transition-2').style.display = 'none';
+            document.getElementById('concepts-section').classList.remove('hidden');
+            initDrawingCanvas(); 
+        }
+
+        let drawnPoints = [];
+        let isDrawingCanvasAttached = false; 
+
+        function initDrawingCanvas() {
+            const canvas = document.getElementById('drawingCanvas');
+            const ctx = canvas.getContext('2d');
+            const center = {x: 100, y: 100};
+            const radius = 80;
+
+            function redraw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.beginPath(); ctx.arc(center.x, center.y, radius, 0, Math.PI * 2);
+                ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 2; ctx.stroke();
+                
+                ctx.fillStyle = '#1f2937';
+                ctx.beginPath(); ctx.arc(center.x, center.y, 3, 0, Math.PI*2); ctx.fill();
+
+                if (drawnPoints.length > 0) {
+                    ctx.fillStyle = '#3b82f6';
+                    drawnPoints.forEach(p => {
+                        ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI*2); ctx.fill();
+                    });
+                }
+                
+                ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 3;
+                for (let i = 0; i < drawnPoints.length - 1; i += 2) {
+                    ctx.beginPath(); ctx.moveTo(drawnPoints[i].x, drawnPoints[i].y);
+                    ctx.lineTo(drawnPoints[i+1].x, drawnPoints[i+1].y); ctx.stroke();
+                }
+            }
+
+            if (!isDrawingCanvasAttached) {
+                const addPoint = (x, y) => {
+                    const angle = Math.atan2(y - center.y, x - center.x);
+                    drawnPoints.push({
+                        x: center.x + radius * Math.cos(angle),
+                        y: center.y + radius * Math.sin(angle)
+                    });
+                    redraw();
+                };
+
+                canvas.addEventListener('mousedown', function(e) {
+                    const rect = canvas.getBoundingClientRect();
+                    addPoint(e.clientX - rect.left, e.clientY - rect.top);
+                });
+                
+                canvas.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    const rect = canvas.getBoundingClientRect();
+                    addPoint(e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top);
+                }, {passive: false});
+
+                isDrawingCanvasAttached = true;
+            }
+            redraw();
+        }
+
+        window.clearCanvas = function() {
+            drawnPoints = [];
+            initDrawingCanvas(); 
+        }
+
+        window.checkQuiz = function() {
+            let allCorrect = true;
+            let resultMsg = document.getElementById('quiz-result');
+            resultMsg.classList.remove('hidden', 'text-green-600', 'text-red-600');
+            document.querySelectorAll('.quiz-q').forEach(el => el.classList.remove('bg-red-50', 'border-red-300'));
+
+            if (!(document.getElementById('q1a-ef').checked && document.getElementById('q1a-gh').checked && !document.getElementById('q1a-ok').checked)) {
+                document.getElementById('q1-container').classList.add('bg-red-50', 'border-red-300');
+                allCorrect = false;
+            }
+
+            const q1b = document.querySelector('input[name="q1b"]:checked');
+            if (!q1b || q1b.value !== "EF") {
+                document.getElementById('q1-container').classList.add('bg-red-50', 'border-red-300');
+                allCorrect = false;
+            }
+
+            const q2 = document.querySelector('input[name="q2"]:checked');
+            if (drawnPoints.length < 6 || !q2 || q2.value !== "Center") {
+                document.getElementById('q2-container').classList.add('bg-red-50', 'border-red-300');
+                allCorrect = false;
+            }
+
+            const q3 = document.querySelector('input[name="q3"]:checked');
+            if (!q3 || q3.value !== "Agree") {
+                document.getElementById('q3-container').classList.add('bg-red-50', 'border-red-300');
+                allCorrect = false;
+            }
+            document.getElementById('q3-feedback').classList.remove('hidden');
+
+            if (allCorrect) {
+                resultMsg.innerText = "🎉 Excellent! All answers are correct!";
+                resultMsg.classList.add('text-green-600');
+            } else {
+                resultMsg.innerText = "Some answers are incorrect. Please check and try again!";
+                resultMsg.classList.add('text-red-600');
             }
         }
 
-        // --- GAME LOGIC (CANVAS) ---
-        const canvas = document.getElementById('archeryCanvas');
-        const ctx = canvas.getContext('2d');
-        let gameScore = 0;
-        let arrowsLeft = 5;
-        let isDragging = false;
-        let isFlying = false;
-
+        // ARCHERY GAME
+        const archeryCanvas = document.getElementById('archeryCanvas');
+        const archeryCtx = archeryCanvas.getContext('2d');
+        let gameScore = 0, arrowsLeft = 5, isDraggingBow = false, isFlying = false;
         const bow = { x: 150, y: 200, pullX: 150, pullY: 200 };
         let arrow = { x: 150, y: 200, vx: 0, vy: 0, angle: 0 };
         const target = { x: 700, y: 200 };
         let hitMsg = { text: '', alpha: 0, x: 0, y: 0, color: '#eab308' };
 
         function drawTarget() {
-            ctx.save();
-            ctx.translate(target.x, target.y);
-            // Stand post
-            ctx.fillStyle = '#8B4513';
-            ctx.fillRect(-5, 60, 10, 140);
-            
-            // Target circles (drawn as ellipses for perspective)
+            archeryCtx.save();
+            archeryCtx.translate(target.x, target.y);
+            archeryCtx.fillStyle = '#8B4513'; archeryCtx.fillRect(-5, 60, 10, 140);
             const colors = ['#ffffff', '#000000', '#3b82f6', '#ef4444', '#eab308'];
             const sizes = [60, 48, 36, 24, 12];
-            
             for (let i = 0; i < 5; i++) {
-                ctx.beginPath();
-                ctx.ellipse(0, 0, 8, sizes[i], 0, 0, Math.PI * 2);
-                ctx.fillStyle = colors[i];
-                ctx.fill();
-                ctx.strokeStyle = '#d1d5db';
-                ctx.stroke();
+                archeryCtx.beginPath(); archeryCtx.ellipse(0, 0, 8, sizes[i], 0, 0, Math.PI * 2);
+                archeryCtx.fillStyle = colors[i]; archeryCtx.fill();
+                archeryCtx.strokeStyle = '#d1d5db'; archeryCtx.stroke();
             }
-            ctx.restore();
+            archeryCtx.restore();
         }
 
         function drawBow() {
-            ctx.save();
-            ctx.strokeStyle = '#b45309'; 
-            ctx.lineWidth = 6;
-            ctx.lineCap = 'round';
-            
-            // Draw bow body
-            ctx.beginPath();
-            ctx.moveTo(bow.x, bow.y - 80);
-            ctx.quadraticCurveTo(bow.x + 40, bow.y, bow.x, bow.y + 80);
-            ctx.stroke();
-
-            // Draw stretched bowstring
-            ctx.strokeStyle = '#94a3b8';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(bow.x, bow.y - 80);
-            ctx.lineTo(bow.pullX, bow.pullY);
-            ctx.lineTo(bow.x, bow.y + 80);
-            ctx.stroke();
-            ctx.restore();
+            archeryCtx.save();
+            archeryCtx.strokeStyle = '#b45309'; archeryCtx.lineWidth = 6; archeryCtx.lineCap = 'round';
+            archeryCtx.beginPath(); archeryCtx.moveTo(bow.x, bow.y - 80);
+            archeryCtx.quadraticCurveTo(bow.x + 40, bow.y, bow.x, bow.y + 80); archeryCtx.stroke();
+            archeryCtx.strokeStyle = '#94a3b8'; archeryCtx.lineWidth = 2;
+            archeryCtx.beginPath(); archeryCtx.moveTo(bow.x, bow.y - 80);
+            archeryCtx.lineTo(bow.pullX, bow.pullY); archeryCtx.lineTo(bow.x, bow.y + 80); archeryCtx.stroke();
+            archeryCtx.restore();
         }
 
         function drawArrow() {
             if (arrowsLeft <= 0 && !isFlying) return;
-            ctx.save();
-            ctx.translate(arrow.x, arrow.y);
-            ctx.rotate(arrow.angle);
-            
-            // Arrow shaft
-            ctx.strokeStyle = '#475569';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            ctx.moveTo(-40, 0);
-            ctx.lineTo(20, 0);
-            ctx.stroke();
-            
-            // Fletching (feathers)
-            ctx.fillStyle = '#ef4444';
-            ctx.beginPath();
-            ctx.moveTo(-40, 0);
-            ctx.lineTo(-45, -5);
-            ctx.lineTo(-35, 0);
-            ctx.lineTo(-45, 5);
-            ctx.fill();
-
-            // Arrowhead
-            ctx.fillStyle = '#1f2937';
-            ctx.beginPath();
-            ctx.moveTo(20, -4);
-            ctx.lineTo(30, 0);
-            ctx.lineTo(20, 4);
-            ctx.fill();
-            
-            ctx.restore();
+            archeryCtx.save();
+            archeryCtx.translate(arrow.x, arrow.y); archeryCtx.rotate(arrow.angle);
+            archeryCtx.strokeStyle = '#475569'; archeryCtx.lineWidth = 3;
+            archeryCtx.beginPath(); archeryCtx.moveTo(-40, 0); archeryCtx.lineTo(20, 0); archeryCtx.stroke();
+            archeryCtx.fillStyle = '#ef4444';
+            archeryCtx.beginPath(); archeryCtx.moveTo(-40, 0); archeryCtx.lineTo(-45, -5);
+            archeryCtx.lineTo(-35, 0); archeryCtx.lineTo(-45, 5); archeryCtx.fill();
+            archeryCtx.fillStyle = '#1f2937';
+            archeryCtx.beginPath(); archeryCtx.moveTo(20, -4); archeryCtx.lineTo(30, 0);
+            archeryCtx.lineTo(20, 4); archeryCtx.fill();
+            archeryCtx.restore();
         }
 
-        function getMousePos(evt) {
-            const rect = canvas.getBoundingClientRect();
+        function getArcheryMousePos(evt) {
+            const rect = archeryCanvas.getBoundingClientRect();
             const clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
             const clientY = evt.touches ? evt.touches[0].clientY : evt.clientY;
             return {
-                x: (clientX - rect.left) / (rect.right - rect.left) * canvas.width,
-                y: (clientY - rect.top) / (rect.bottom - rect.top) * canvas.height
+                x: (clientX - rect.left) / (rect.right - rect.left) * archeryCanvas.width,
+                y: (clientY - rect.top) / (rect.bottom - rect.top) * archeryCanvas.height
             };
         }
 
-        function handleStart(e) {
+        function handleStartArchery(e) {
             if (arrowsLeft <= 0 || isFlying) return;
-            const pos = getMousePos(e);
-            // Drag area around the bow
+            const pos = getArcheryMousePos(e);
             if (Math.hypot(pos.x - bow.x, pos.y - bow.y) < 100) {
-                isDragging = true;
-                e.preventDefault();
+                isDraggingBow = true; if(e.cancelable) e.preventDefault();
             }
         }
 
-        function handleMove(e) {
-            if (!isDragging) return;
-            e.preventDefault();
-            const pos = getMousePos(e);
-            
-            let dx = pos.x - bow.x;
-            let dy = pos.y - bow.y;
-            if (dx > 0) dx = 0; // Prevent pushing the string forward
-            
-            // Limit pull length (max 100px)
+        function handleMoveArchery(e) {
+            if (!isDraggingBow) return;
+            if(e.cancelable) e.preventDefault();
+            const pos = getArcheryMousePos(e);
+            let dx = pos.x - bow.x, dy = pos.y - bow.y;
+            if (dx > 0) dx = 0; 
             const dist = Math.hypot(dx, dy);
-            if (dist > 100) {
-                dx = (dx / dist) * 100;
-                dy = (dy / dist) * 100;
-            }
-            
-            bow.pullX = bow.x + dx;
-            bow.pullY = bow.y + dy;
-            
-            arrow.x = bow.pullX;
-            arrow.y = bow.pullY;
-            arrow.angle = Math.atan2(-dy, -dx);
+            if (dist > 100) { dx = (dx / dist) * 100; dy = (dy / dist) * 100; }
+            bow.pullX = bow.x + dx; bow.pullY = bow.y + dy;
+            arrow.x = bow.pullX; arrow.y = bow.pullY; arrow.angle = Math.atan2(-dy, -dx);
         }
 
-        function handleEnd(e) {
-            if (!isDragging) return;
-            isDragging = false;
-            
-            const dx = bow.x - bow.pullX;
-            const dy = bow.y - bow.pullY;
+        function handleEndArchery(e) {
+            if (!isDraggingBow) return;
+            isDraggingBow = false;
+            const dx = bow.x - bow.pullX, dy = bow.y - bow.pullY;
             const pullDist = Math.hypot(dx, dy);
-            
-            if (pullDist > 20) { // Enough force to shoot
-                isFlying = true;
-                arrow.vx = dx * 0.35; // Shooting force
-                arrow.vy = dy * 0.35;
-            } else {
-                resetArrow(); // Release gently, return arrow
-            }
+            if (pullDist > 20) {
+                isFlying = true; arrow.vx = dx * 0.7; arrow.vy = dy * 0.7;
+            } else resetArrow();
         }
 
         function resetArrow() {
             if (arrowsLeft > 0) {
-                bow.pullX = bow.x;
-                bow.pullY = bow.y;
+                bow.pullX = bow.x; bow.pullY = bow.y;
                 arrow = { x: bow.x, y: bow.y, vx: 0, vy: 0, angle: 0 };
             }
         }
 
         window.resetGame = function() {
-            gameScore = 0;
-            arrowsLeft = 5;
+            gameScore = 0; arrowsLeft = 5;
             document.getElementById('game-score').innerText = gameScore;
             document.getElementById('game-arrows').innerText = arrowsLeft;
             document.getElementById('game-over').classList.add('hidden');
@@ -535,96 +931,370 @@
             resetArrow();
         }
 
-        function showGameOver() {
-            document.getElementById('final-score').innerText = gameScore;
-            document.getElementById('game-over').classList.remove('hidden');
-            document.getElementById('game-over').classList.add('flex');
-        }
-
         function gameLoop() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
+            archeryCtx.clearRect(0, 0, archeryCanvas.width, archeryCanvas.height);
             drawTarget();
-            
             if (isFlying) {
-                arrow.vy += 0.25; // Gravity
-                arrow.x += arrow.vx;
-                arrow.y += arrow.vy;
+                arrow.vy += 0.5; arrow.x += arrow.vx; arrow.y += arrow.vy;
                 arrow.angle = Math.atan2(arrow.vy, arrow.vx);
-                
-                // Target collision (Fix for high velocity pass-through)
                 if (arrow.x + 30 >= target.x - 10 && (arrow.x + 30 - arrow.vx) < target.x + 10) {
-                    isFlying = false;
-                    arrow.x = target.x - 30; // Pin the arrow on the target surface
-                    
-                    let dist = Math.abs(arrow.y - target.y);
-                    let pts = 0;
+                    isFlying = false; arrow.x = target.x - 30;
+                    let dist = Math.abs(arrow.y - target.y), pts = 0;
                     if (dist <= 12) { pts = 10; hitMsg.color = '#eab308'; }
                     else if (dist <= 24) { pts = 8; hitMsg.color = '#ef4444'; }
                     else if (dist <= 36) { pts = 5; hitMsg.color = '#3b82f6'; }
                     else if (dist <= 48) { pts = 3; hitMsg.color = '#000000'; }
                     else if (dist <= 60) { pts = 1; hitMsg.color = '#6b7280'; }
-                    
                     if (pts > 0) {
-                        gameScore += pts;
-                        document.getElementById('game-score').innerText = gameScore;
+                        gameScore += pts; document.getElementById('game-score').innerText = gameScore;
                         hitMsg = { text: '+' + pts, alpha: 1, x: target.x - 30, y: arrow.y - 30, color: hitMsg.color };
-                    } else {
-                        hitMsg = { text: 'Missed!', alpha: 1, x: target.x - 30, y: arrow.y - 30, color: '#ef4444' };
-                    }
-                    
-                    arrowsLeft--;
-                    document.getElementById('game-arrows').innerText = arrowsLeft;
-                    
-                    setTimeout(() => {
-                        resetArrow();
-                        if (arrowsLeft <= 0) showGameOver();
-                    }, 1000);
+                    } else hitMsg = { text: 'Missed!', alpha: 1, x: target.x - 30, y: arrow.y - 30, color: '#ef4444' };
+                    arrowsLeft--; document.getElementById('game-arrows').innerText = arrowsLeft;
+                    setTimeout(() => { resetArrow(); if (arrowsLeft <= 0) document.getElementById('final-score').innerText = gameScore, document.getElementById('game-over').classList.remove('hidden'), document.getElementById('game-over').classList.add('flex'); }, 1000);
                 }
-                
-                // Out of bounds (Miss)
-                if (arrow.y > canvas.height || arrow.x > canvas.width) {
-                    isFlying = false;
-                    hitMsg = { text: 'Missed!', alpha: 1, x: arrow.x > canvas.width ? canvas.width - 60 : arrow.x, y: arrow.y > canvas.height ? canvas.height - 40 : arrow.y, color: '#ef4444' };
-                    arrowsLeft--;
-                    document.getElementById('game-arrows').innerText = arrowsLeft;
-                    setTimeout(() => {
-                        resetArrow();
-                        if (arrowsLeft <= 0) showGameOver();
-                    }, 1000);
+                if (arrow.y > archeryCanvas.height || arrow.x > archeryCanvas.width) {
+                    isFlying = false; hitMsg = { text: 'Missed!', alpha: 1, x: arrow.x > archeryCanvas.width ? archeryCanvas.width - 60 : arrow.x, y: arrow.y > archeryCanvas.height ? archeryCanvas.height - 40 : arrow.y, color: '#ef4444' };
+                    arrowsLeft--; document.getElementById('game-arrows').innerText = arrowsLeft;
+                    setTimeout(() => { resetArrow(); if (arrowsLeft <= 0) document.getElementById('final-score').innerText = gameScore, document.getElementById('game-over').classList.remove('hidden'), document.getElementById('game-over').classList.add('flex'); }, 1000);
                 }
             }
-            
-            drawBow();
-            drawArrow();
-            
-            // Draw floating hit points
+            drawBow(); drawArrow();
             if (hitMsg.alpha > 0) {
-                ctx.save();
-                ctx.globalAlpha = hitMsg.alpha;
-                ctx.fillStyle = hitMsg.color;
-                ctx.font = 'bold 30px sans-serif';
-                ctx.shadowColor = 'rgba(0,0,0,0.5)';
-                ctx.shadowBlur = 4;
-                ctx.fillText(hitMsg.text, hitMsg.x, hitMsg.y);
-                hitMsg.y -= 1;
-                hitMsg.alpha -= 0.02;
-                ctx.restore();
+                archeryCtx.save(); archeryCtx.globalAlpha = hitMsg.alpha; archeryCtx.fillStyle = hitMsg.color;
+                archeryCtx.font = 'bold 30px sans-serif'; archeryCtx.shadowColor = 'rgba(0,0,0,0.5)'; archeryCtx.shadowBlur = 4;
+                archeryCtx.fillText(hitMsg.text, hitMsg.x, hitMsg.y); hitMsg.y -= 1; hitMsg.alpha -= 0.02; archeryCtx.restore();
             }
-            
             requestAnimationFrame(gameLoop);
         }
-
-        // Event listeners for dragging (mouse & touch)
-        canvas.addEventListener('mousedown', handleStart);
-        canvas.addEventListener('mousemove', handleMove);
-        window.addEventListener('mouseup', handleEnd);
-        canvas.addEventListener('touchstart', handleStart, {passive: false});
-        canvas.addEventListener('touchmove', handleMove, {passive: false});
-        window.addEventListener('touchend', handleEnd);
-
-        // Run game loop
+        
+        archeryCanvas.addEventListener('mousedown', handleStartArchery);
+        archeryCanvas.addEventListener('mousemove', handleMoveArchery);
+        window.addEventListener('mouseup', handleEndArchery);
+        archeryCanvas.addEventListener('touchstart', handleStartArchery, {passive: false});
+        archeryCanvas.addEventListener('touchmove', handleMoveArchery, {passive: false});
+        window.addEventListener('touchend', handleEndArchery);
         gameLoop();
+
+        // ==========================================
+        // TAB 2: DYNAMIC CHORD SIMULATION
+        // ==========================================
+        let isSimCanvasInitialized = false;
+
+        function initChordSimulation() {
+            if(isSimCanvasInitialized) return;
+            isSimCanvasInitialized = true;
+
+            const canvas = document.getElementById('chordSimCanvas');
+            const ctx = canvas.getContext('2d');
+            const distDisplay = document.getElementById('sim-distance');
+            const lenDisplay = document.getElementById('sim-length');
+
+            const centre = {x: 200, y: 200};
+            const radius = 160;
+            const realRadius = 10; 
+            let chordY = 300; 
+            let isDragging = false;
+
+            function drawSim() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.strokeStyle = '#f1f5f9'; ctx.lineWidth = 1;
+                for(let i=0; i<400; i+=20) {
+                    ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, 400); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(400, i); ctx.stroke();
+                }
+
+                ctx.beginPath(); ctx.arc(centre.x, centre.y, radius, 0, Math.PI * 2);
+                ctx.fillStyle = '#f8fafc'; ctx.fill(); ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 3; ctx.stroke();
+
+                ctx.fillStyle = '#0f172a';
+                ctx.beginPath(); ctx.arc(centre.x, centre.y, 4, 0, Math.PI*2); ctx.fill();
+                ctx.font = '16px sans-serif'; ctx.fillText('O', centre.x - 20, centre.y - 10);
+
+                const distY = Math.abs(centre.y - chordY);
+                let halfChord = 0;
+                if(distY <= radius) halfChord = Math.sqrt(radius*radius - distY*distY);
+
+                const A = {x: centre.x - halfChord, y: chordY}, B = {x: centre.x + halfChord, y: chordY};
+
+                ctx.save(); ctx.setLineDash([5, 5]); ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 2;
+                ctx.beginPath(); ctx.moveTo(centre.x, centre.y); ctx.lineTo(A.x, A.y); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(centre.x, centre.y); ctx.lineTo(B.x, B.y); ctx.stroke();
+                ctx.restore();
+
+                ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 4;
+                ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.stroke();
+
+                ctx.fillStyle = '#ef4444';
+                ctx.beginPath(); ctx.arc(A.x, A.y, 6, 0, Math.PI*2); ctx.fill();
+                ctx.beginPath(); ctx.arc(B.x, B.y, 6, 0, Math.PI*2); ctx.fill();
+                ctx.fillStyle = '#0f172a'; ctx.fillText('A', A.x - 20, A.y + 5); ctx.fillText('B', B.x + 10, B.y + 5);
+
+                ctx.fillStyle = '#3b82f6';
+                ctx.beginPath(); ctx.roundRect(centre.x - 20, chordY - 8, 40, 16, 8); ctx.fill();
+                ctx.fillStyle = '#fff'; ctx.font = 'bold 10px sans-serif'; ctx.fillText('DRAG', centre.x - 14, chordY + 3);
+
+                distDisplay.innerText = ((distY / radius) * realRadius).toFixed(1) + ' cm';
+                lenDisplay.innerText = ((halfChord / radius) * realRadius * 2).toFixed(1) + ' cm';
+            }
+
+            function getMousePos(evt) {
+                const rect = canvas.getBoundingClientRect();
+                const scaleY = canvas.height / rect.height;
+                const clientY = evt.touches ? evt.touches[0].clientY : evt.clientY;
+                return (clientY - rect.top) * scaleY;
+            }
+
+            function startDrag(e) {
+                const y = getMousePos(e);
+                if(Math.abs(y - chordY) < 30) { isDragging = true; if(e.cancelable) e.preventDefault(); }
+            }
+
+            function doDrag(e) {
+                if(!isDragging) return;
+                let y = getMousePos(e);
+                if (y < centre.y - radius) y = centre.y - radius;
+                if (y > centre.y + radius) y = centre.y + radius;
+                chordY = y; drawSim();
+                if(e.cancelable) e.preventDefault();
+            }
+
+            canvas.addEventListener('mousedown', startDrag); canvas.addEventListener('mousemove', doDrag);
+            window.addEventListener('mouseup', () => isDragging = false);
+            canvas.addEventListener('touchstart', startDrag, {passive: false});
+            canvas.addEventListener('touchmove', doDrag, {passive: false});
+            window.addEventListener('touchend', () => isDragging = false);
+
+            drawSim();
+        }
+
+        // ==========================================
+        // TAB 4: STAGE BUILDER SIMULATION
+        // ==========================================
+        let isStageBuilderInitialized = false;
+        let stageAnimId;
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+
+        function playAudioFeedback(isError) {
+            if (!AudioContext) return;
+            const ctx = new AudioContext();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            
+            if (isError) {
+                // Harsh Buzzer
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(100, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(50, ctx.currentTime + 0.5);
+                gain.gain.setValueAtTime(0.3, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
+                osc.connect(gain); gain.connect(ctx.destination);
+                osc.start(); osc.stop(ctx.currentTime + 0.5);
+            } else {
+                // Success Chime
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(400, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.3);
+                gain.gain.setValueAtTime(0.2, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+                osc.connect(gain); gain.connect(ctx.destination);
+                osc.start(); osc.stop(ctx.currentTime + 0.3);
+            }
+        }
+
+        function initStageBuilder() {
+            if (isStageBuilderInitialized) return;
+            isStageBuilderInitialized = true;
+
+            const canvas = document.getElementById('stageBuilderCanvas');
+            const ctx = canvas.getContext('2d');
+            const btnTest = document.getElementById('btn-test-install');
+            const btnProof = document.getElementById('btn-show-proof');
+            const proofContent = document.getElementById('proof-content');
+            const errorOverlay = document.getElementById('stage-error-overlay');
+            
+            let cx = 200, cy = 200;
+            let currentTrussY = -30;
+            let isAnimating = false;
+            let flashState = false;
+            let flashInterval;
+            let scalePx = 14; // 1m = 14px to fit inside safely
+            
+            function drawScene(r, trussL) {
+                ctx.clearRect(0, 0, 400, 400);
+
+                // 1. Draw Circular Stage (Blueprint style)
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(cx, cy, r * scalePx, 0, Math.PI * 2);
+                let grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r * scalePx);
+                grad.addColorStop(0, 'rgba(56, 189, 248, 0.3)'); // Inner bright glow
+                grad.addColorStop(1, 'rgba(15, 23, 42, 0)'); // Fade out to edges
+                ctx.fillStyle = grad;
+                ctx.fill();
+                ctx.strokeStyle = '#38bdf8'; // sky-400
+                ctx.lineWidth = 3;
+                ctx.stroke();
+                
+                // Center point
+                ctx.fillStyle = '#fff';
+                ctx.beginPath(); ctx.arc(cx, cy, 3, 0, Math.PI*2); ctx.fill();
+                ctx.font = '12px monospace'; ctx.fillText('CENTER', cx - 20, cy - 10);
+                
+                // Draw Diameter line reference (faint)
+                ctx.setLineDash([5, 5]);
+                ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+                ctx.beginPath(); ctx.moveTo(cx - r * scalePx, cy); ctx.lineTo(cx + r * scalePx, cy); ctx.stroke();
+                ctx.restore();
+
+                // 2. Draw Truss
+                let tWidth = trussL * scalePx;
+                let tHeight = 12;
+                let tx = cx - tWidth / 2;
+                let ty = currentTrussY - tHeight / 2;
+
+                // Base Iron
+                ctx.fillStyle = '#9ca3af'; 
+                ctx.fillRect(tx, ty, tWidth, tHeight);
+                // Pattern
+                ctx.strokeStyle = '#374151'; 
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                for (let x = tx; x < tx + tWidth; x += 8) {
+                    ctx.moveTo(x, ty); ctx.lineTo(x + 8, ty + tHeight);
+                    ctx.moveTo(x + 8, ty); ctx.lineTo(x, ty + tHeight);
+                }
+                ctx.stroke();
+
+                // 3. Draw Flashing Errors if applicable
+                if (!isAnimating && currentTrussY >= cy && trussL > r * 2) {
+                    let overlapWidth = (trussL - r * 2) * scalePx / 2;
+                    if (flashState) {
+                        ctx.fillStyle = 'rgba(239, 68, 68, 0.8)'; // Red warning
+                        ctx.fillRect(tx, ty - 4, overlapWidth, tHeight + 8);
+                        ctx.fillRect(tx + tWidth - overlapWidth, ty - 4, overlapWidth, tHeight + 8);
+                    }
+                }
+            }
+
+            // Initial static draw
+            drawScene(6, 13);
+
+            btnTest.addEventListener('click', () => {
+                if (isAnimating) return;
+                
+                let r = parseFloat(document.getElementById('stage-radius').value) || 6;
+                let trussL = parseFloat(document.getElementById('truss-length').value) || 13;
+                
+                // Reset states
+                clearInterval(flashInterval);
+                errorOverlay.style.opacity = '0';
+                proofContent.classList.add('hidden');
+                btnProof.classList.add('hidden');
+                
+                currentTrussY = -30;
+                isAnimating = true;
+                
+                function animate() {
+                    currentTrussY += 3; // speed of drop
+                    if (currentTrussY >= cy) {
+                        currentTrussY = cy;
+                        isAnimating = false;
+                        drawScene(r, trussL);
+                        
+                        // Finish Animation Logic
+                        btnProof.classList.remove('hidden');
+                        
+                        if (trussL > r * 2) {
+                            // Technical Error!
+                            playAudioFeedback(true);
+                            errorOverlay.style.opacity = '0.3';
+                            flashInterval = setInterval(() => {
+                                flashState = !flashState;
+                                drawScene(r, trussL);
+                            }, 250);
+                        } else {
+                            // Success!
+                            playAudioFeedback(false);
+                        }
+                        return;
+                    }
+                    drawScene(r, trussL);
+                    stageAnimId = requestAnimationFrame(animate);
+                }
+                animate();
+            });
+
+            btnProof.addEventListener('click', () => {
+                let r = parseFloat(document.getElementById('stage-radius').value) || 6;
+                let trussL = parseFloat(document.getElementById('truss-length').value) || 13;
+                let diameter = r * 2;
+                
+                let texCode = "";
+                if (trussL > diameter) {
+                    texCode = `
+                        \\text{Truss Length} > 2 \\times \\text{Stage Radius} \\\\[10pt]
+                        ${trussL} > 2 \\times ${r} \\\\[5pt]
+                        ${trussL} > ${diameter} \\quad \\text{❌ Error: Too long!}
+                    `;
+                    proofContent.className = "mt-3 p-3 bg-red-900/30 rounded border border-red-700 text-red-200 text-center font-mono text-sm leading-relaxed overflow-x-auto block";
+                } else {
+                    texCode = `
+                        \\text{Truss Length} \\le 2 \\times \\text{Stage Radius} \\\\[10pt]
+                        ${trussL} \\le 2 \\times ${r} \\\\[5pt]
+                        ${trussL} \\le ${diameter} \\quad \\text{✅ Safe: Fits perfectly!}
+                    `;
+                    proofContent.className = "mt-3 p-3 bg-green-900/30 rounded border border-green-700 text-green-200 text-center font-mono text-sm leading-relaxed overflow-x-auto block";
+                }
+                
+                proofContent.innerHTML = `$$${texCode}$$`;
+                proofContent.classList.remove('hidden');
+                if (window.MathJax) MathJax.typesetPromise([proofContent]);
+            });
+        }
+
+        // ==========================================
+        // UNLOCK SHORTCUTS
+        // ==========================================
+        function unlockTheorem() {
+            const lockScreen = document.getElementById('theorem-lock-screen');
+            const theoremContent = document.getElementById('theorem-content');
+            if(lockScreen.classList.contains('hidden')) return; // Already unlocked
+            lockScreen.style.opacity = '0'; lockScreen.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                lockScreen.classList.add('hidden'); theoremContent.classList.remove('hidden');
+                void theoremContent.offsetWidth;
+                theoremContent.classList.remove('opacity-0', 'scale-95');
+                theoremContent.classList.add('opacity-100', 'scale-100');
+            }, 500);
+        }
+
+        function unlockPractice() {
+            const lockScreen = document.getElementById('practice-lock-screen');
+            const solutionContent = document.getElementById('practice-solution');
+            if(lockScreen.classList.contains('hidden')) return; // Already unlocked
+            lockScreen.style.opacity = '0'; lockScreen.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                lockScreen.classList.add('hidden'); solutionContent.classList.remove('hidden');
+                void solutionContent.offsetWidth;
+                solutionContent.classList.remove('opacity-0', 'scale-95');
+                solutionContent.classList.add('opacity-100', 'scale-100');
+            }, 500);
+        }
+
+        // Keyboard Shortcut Listeners
+        document.addEventListener('keydown', function(e) {
+            // Ctrl + Shift + L -> Unlocks Theorem (Tab 2)
+            if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'l') { 
+                e.preventDefault(); 
+                unlockTheorem(); 
+            }
+            // Ctrl + Shift + K -> Unlocks Practice Solution (Tab 3)
+            if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'k') { 
+                e.preventDefault(); 
+                unlockPractice(); 
+            }
+        });
+
     </script>
 </body>
 </html>
