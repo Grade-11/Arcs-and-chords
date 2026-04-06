@@ -37,13 +37,43 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
-        /* Blueprint Style for Tab 4 */
-        .blueprint-bg {
-            background-color: #0f172a; /* slate-900 */
-            background-image: 
-                linear-gradient(rgba(56, 189, 248, 0.15) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(56, 189, 248, 0.15) 1px, transparent 1px);
-            background-size: 20px 20px;
+
+        /* Bento Minigame Styles */
+        .kitchen-bg {
+            background-color: #d4a373;
+            background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 2px, transparent 2px, transparent 10px);
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.2);
+        }
+        .bento-lid-bounce {
+            animation: lidClatter 0.4s infinite alternate;
+        }
+        @keyframes lidClatter {
+            0% { transform: scale(1.05) translateY(-20px) rotateX(25deg); opacity: 0.9; }
+            100% { transform: scale(1.05) translateY(-5px) rotateX(10deg); opacity: 0.9; }
+        }
+        .bento-lid-closed {
+            transform: scale(1.05) translateY(0) rotateX(0);
+            opacity: 1;
+        }
+        @keyframes chopKnife {
+            0% { transform: translateY(-100px) rotate(-30deg); opacity: 0; }
+            40% { transform: translateY(-50px) rotate(-10deg); opacity: 1; }
+            50% { transform: translateY(20px) rotate(10deg); opacity: 1; }
+            100% { transform: translateY(20px) rotate(10deg); opacity: 0; }
+        }
+        .animate-chop {
+            animation: chopKnife 0.6s ease-in forwards;
+        }
+        
+        /* Drag items */
+        .food-item {
+            position: absolute;
+            cursor: grab;
+            transition: width 0.4s ease-out; /* For chopping */
+            transform-origin: center;
+        }
+        .food-item:active {
+            cursor: grabbing;
         }
     </style>
 </head>
@@ -68,10 +98,10 @@
                 3. Practice
             </button>
             <button onclick="openTab('tab4')" id="btn-tab4" class="tab-btn px-5 py-3 text-gray-500 hover:text-blue-500 border-b-2 border-transparent font-medium whitespace-nowrap focus:outline-none">
-                4. Stage Builder
+                4. My Bento Box
             </button>
             <button onclick="openTab('tab5')" id="btn-tab5" class="tab-btn px-5 py-3 text-gray-500 hover:text-blue-500 border-b-2 border-transparent font-medium whitespace-nowrap focus:outline-none">
-                5. Central Angles & Arcs
+                5. Radar Scanner
             </button>
         </div>
 
@@ -191,7 +221,7 @@
                 <!-- KNOWLEDGE CHECK -->
                 <div class="mt-12 bg-white rounded-xl shadow-md border-2 border-slate-200 overflow-hidden">
                     <div class="bg-slate-800 text-white p-4 flex items-center">
-                        <svg class="w-6 h-6 mr-2 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+                        <svg class="w-6 h-6 mr-2 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
                         <h3 class="text-xl font-bold">Knowledge Check</h3>
                     </div>
                     
@@ -406,6 +436,7 @@
                 </div>
             </div>
 
+            <!-- Key Vocabulary Tab 2 -->
             <div class="mt-10 border-t border-gray-200 pt-6">
                 <h3 class="text-xl font-bold text-green-600 mb-4 flex items-center">
                     <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
@@ -519,67 +550,96 @@
             </div>
         </div>
 
-        <!-- TAB 4: STAGE BUILDER SIMULATION -->
+        <!-- TAB 4: MY BENTO BOX (CHEF CHALLENGE) -->
         <div id="tab4" class="tab-content bg-white rounded-xl shadow-sm p-6 sm:p-8 border border-gray-100">
             <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-                <span class="bg-blue-100 text-blue-700 p-2 rounded-lg mr-3">🏗️</span>
-                Stage Builder Simulation
+                <span class="bg-amber-100 text-amber-700 p-2 rounded-lg mr-3">🍱</span>
+                My Bento Box
             </h2>
             <p class="text-gray-700 mb-8">
-                Welcome to the construction site! We need to install a lighting truss across the circular stage. Test different truss lengths to see if they fit safely inside the stage area without sticking out.
+                Time to prep your lunch! Drag and drop your favorite foods into the Bento Box (Diameter = 14 cm). Let's see what fits perfectly and what needs a little adjusting!
             </p>
 
-            <div class="flex flex-col md:flex-row gap-8">
-                <!-- Blueprint Canvas -->
-                <div class="flex-1 rounded-xl shadow-xl overflow-hidden blueprint-bg relative border border-slate-700 h-[400px] flex items-center justify-center">
-                    <!-- Flashing red overlay when error occurs -->
-                    <div id="stage-error-overlay" class="absolute inset-0 bg-red-600 opacity-0 transition-opacity duration-300 pointer-events-none z-0"></div>
-                    <canvas id="stageBuilderCanvas" width="400" height="400" class="z-10 relative"></canvas>
+            <div class="relative w-full max-w-4xl mx-auto kitchen-bg rounded-2xl border-8 border-amber-800 overflow-hidden shadow-2xl h-[550px] flex flex-col md:flex-row select-none" id="kitchen-area" style="touch-action: none;">
+                
+                <!-- Feedback Panel (Top absolute) -->
+                <div id="bento-feedback" class="absolute top-4 left-1/2 transform -translate-x-1/2 bg-white/95 px-6 py-3 rounded-full shadow-lg font-bold text-center transition-all duration-300 opacity-0 z-20 whitespace-nowrap text-sm sm:text-base border-2">
+                    Message
                 </div>
 
-                <!-- Contractor's Control Panel -->
-                <div class="w-full md:w-80 bg-slate-800 rounded-xl shadow-lg border border-slate-700 flex flex-col overflow-hidden">
-                    <div class="bg-slate-900 p-4 border-b border-slate-700 flex items-center">
-                        <svg class="w-5 h-5 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
-                        <h3 class="text-slate-200 font-bold tracking-wide">Contractor's Panel</h3>
-                    </div>
-                    
-                    <div class="p-6 space-y-6 flex-1">
-                        <div>
-                            <label class="block text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Stage Radius (m)</label>
-                            <div class="flex items-center">
-                                <input id="stage-radius" type="number" value="6" min="1" max="12" class="w-20 bg-slate-700 text-white border border-slate-600 rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all font-mono text-lg text-center"/>
-                                <span class="ml-3 text-slate-400 font-medium">meters</span>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Truss Length (m)</label>
-                            <div class="flex items-center">
-                                <input id="truss-length" type="number" value="13" min="1" class="w-20 bg-slate-700 text-white border border-slate-600 rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all font-mono text-lg text-center"/>
-                                <span class="ml-3 text-slate-400 font-medium">meters</span>
-                            </div>
-                        </div>
-
-                        <button id="btn-test-install" class="w-full mt-4 bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded shadow-lg transition-colors flex items-center justify-center">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-                            Test Installation
-                        </button>
-                    </div>
-
-                    <!-- Proof Section -->
-                    <div class="p-4 bg-slate-900 border-t border-slate-700">
-                        <button id="btn-show-proof" class="w-full hidden text-sm text-blue-400 hover:text-blue-300 font-medium transition-colors p-2 rounded hover:bg-slate-800">
-                            View Mathematical Proof
-                        </button>
-                        <div id="proof-content" class="hidden mt-3 p-3 bg-slate-800 rounded border border-slate-600 text-slate-200 text-center font-mono text-sm leading-relaxed overflow-x-auto">
-                            <!-- Injected by JS -->
+                <!-- Bento Box Area (Left) -->
+                <div class="w-full md:w-1/2 h-[300px] md:h-full flex items-center justify-center relative border-b-4 md:border-b-0 md:border-r-4 border-amber-900/30">
+                    <!-- The Box -->
+                    <div id="bento-box" class="w-[280px] h-[280px] rounded-full bg-slate-800 border-[12px] border-red-600 shadow-inner relative flex items-center justify-center">
+                        <span class="text-slate-600 font-bold uppercase tracking-widest opacity-50">14 cm</span>
+                        <!-- The Lid -->
+                        <div id="bento-lid" class="absolute inset-[-12px] rounded-full bg-red-500 shadow-xl border-4 border-red-700 hidden z-10 flex items-center justify-center">
+                            <span class="text-white/80 font-bold text-2xl tracking-widest">BENTO</span>
                         </div>
                     </div>
                 </div>
+
+                <!-- Food Board Area (Right) -->
+                <div class="w-full md:w-1/2 h-[250px] md:h-full relative flex flex-col items-center justify-center space-y-6 bg-amber-100/20 backdrop-blur-sm">
+                    <p class="absolute top-4 text-amber-900/50 font-bold uppercase tracking-widest">Cutting Board</p>
+
+                    <!-- Trim UI (Hidden initially) -->
+                    <div id="trim-ui" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-xl shadow-2xl border-4 border-amber-500 hidden z-30 w-64 text-center">
+                        <p class="font-bold text-amber-800 mb-2">Fish is too long!</p>
+                        <div class="flex items-center justify-center gap-2 mb-3">
+                            <span>Trim off:</span>
+                            <input id="trim-input" type="number" class="w-16 border-2 border-gray-300 rounded px-2 py-1 text-center font-bold" placeholder="0">
+                            <span>cm</span>
+                        </div>
+                        <button id="btn-chop" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 rounded shadow transition transform hover:scale-105">
+                            Chop! 🔪
+                        </button>
+                    </div>
+
+                    <!-- Items Container -->
+                    <div id="food-container" class="relative w-full h-full">
+                        <!-- Spring Roll (10cm = 200px) -->
+                        <div id="food-roll" class="food-item flex items-center justify-center drop-shadow-lg" style="width: 200px; height: 40px; top: 30px; left: 50%; margin-left: -100px;">
+                            <svg viewBox="0 0 200 40" class="w-full h-full pointer-events-none">
+                                <rect x="0" y="0" width="200" height="40" rx="20" fill="#f59e0b" stroke="#b45309" stroke-width="3"/>
+                                <path d="M 30 10 Q 100 30 170 10" fill="none" stroke="#d97706" stroke-width="2" opacity="0.5"/>
+                            </svg>
+                            <span class="absolute text-xs font-bold text-amber-900 pointer-events-none">Spring Roll (10 cm)</span>
+                        </div>
+
+                        <!-- Skewer (14cm = 280px) -->
+                        <div id="food-skewer" class="food-item flex items-center justify-center drop-shadow-lg" style="width: 280px; height: 30px; top: 100px; left: 50%; margin-left: -140px;">
+                            <svg viewBox="0 0 280 30" class="w-full h-full pointer-events-none">
+                                <line x1="0" y1="15" x2="280" y2="15" stroke="#78350f" stroke-width="6" stroke-linecap="round"/>
+                                <rect x="40" y="5" width="45" height="20" rx="4" fill="#991b1b"/>
+                                <rect x="95" y="5" width="45" height="20" rx="4" fill="#7f1d1d"/>
+                                <rect x="150" y="5" width="45" height="20" rx="4" fill="#991b1b"/>
+                                <rect x="205" y="5" width="45" height="20" rx="4" fill="#7f1d1d"/>
+                            </svg>
+                            <span class="absolute text-xs font-bold text-white pointer-events-none drop-shadow">Skewer (14 cm)</span>
+                        </div>
+
+                        <!-- Fish (17cm = 340px) -->
+                        <div id="food-fish-wrapper" class="food-item drop-shadow-xl overflow-hidden" style="width: 340px; height: 70px; top: 160px; left: 50%; margin-left: -170px;">
+                            <div class="relative w-[340px] h-[70px] flex items-center justify-center">
+                                <svg viewBox="0 0 340 70" class="w-full h-full pointer-events-none absolute inset-0">
+                                    <polygon points="330,15 330,55 280,35" fill="#475569" stroke="#1f2937" stroke-width="2"/>
+                                    <ellipse cx="150" cy="35" rx="140" ry="30" fill="#94a3b8" stroke="#334155" stroke-width="3"/>
+                                    <circle cx="40" cy="25" r="5" fill="#fff"/>
+                                    <circle cx="40" cy="25" r="2.5" fill="#000"/>
+                                    <path d="M 60 45 Q 80 55 100 45" fill="none" stroke="#334155" stroke-width="2"/>
+                                </svg>
+                                <span id="fish-label" class="absolute text-xs font-bold text-slate-900 pointer-events-none bg-white/50 px-2 rounded">Fried Fish (17 cm)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chop Animation Element (Hidden initially) -->
+                <div id="chop-knife" class="absolute w-16 h-24 hidden z-40 pointer-events-none" style="background: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 96%22><path d=%22M50,10 L50,60 Q50,80 30,90 L30,20 Z%22 fill=%22%23cbd5e1%22 stroke=%22%2364748b%22 stroke-width=%222%22/><rect x=%2226%22 y=%220%22 width=%228%22 height=%2230%22 fill=%22%2378350f%22/></svg>') no-repeat center; background-size: contain;"></div>
             </div>
 
-            <!-- Key Vocabulary Tab 4 (Shares definitions from previous parts) -->
+            <!-- Key Vocabulary Tab 4 -->
             <div class="mt-10 border-t border-gray-200 pt-6">
                 <h3 class="text-xl font-bold text-green-600 mb-4 flex items-center">
                     <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
@@ -605,44 +665,45 @@
             </div>
         </div>
 
-        <!-- TAB 5: Central Angles & Arcs -->
+        <!-- TAB 5: RADAR SCANNER (Central Angles & Arcs) -->
         <div id="tab5" class="tab-content bg-white rounded-xl shadow-sm p-6 sm:p-8 border border-gray-100">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
-                <svg class="w-6 h-6 mr-2 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
-                Central Angles & Arc Measures
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <span class="bg-emerald-100 text-emerald-700 p-2 rounded-lg mr-3">📡</span>
+                Radar Scanner
             </h2>
-            
+            <p class="text-gray-700 mb-8">
+                Alert! An unidentified anomaly has been detected on the perimeter. Drag the scanning ray to match the red flashing alarm zone to lock onto the target.
+            </p>
+
             <div class="flex flex-col md:flex-row gap-8 items-center mb-8">
-                <div class="flex-1 space-y-4">
-                    <div class="bg-rose-50 p-4 rounded-lg">
-                        <strong class="text-rose-700 text-lg">Central Angle:</strong>
-                        <p class="mt-1 text-gray-700">An angle whose vertex is the centre of the circle. <br>
-                        <em>Example:</em> $\angle AOB$ is a central angle subtending arc $AB$.</p>
-                    </div>
-                    <div class="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-500">
-                        <strong class="text-orange-700 text-lg">Arc Measure:</strong>
-                        <ul class="list-disc ml-5 mt-2 text-gray-700 space-y-1">
-                            <li>The measure of a minor arc is equal to the measure of its corresponding central angle: $m\overparen{AB} = \angle AOB$</li>
-                            <li>The measure of a major arc is $360^\circ$ minus the measure of the minor arc.</li>
-                            <li>The measure of a semicircle is $180^\circ$.</li>
-                        </ul>
+                <!-- Radar Canvas -->
+                <div class="w-full md:w-1/2 flex justify-center">
+                    <div class="relative w-[320px] h-[320px] rounded-full bg-slate-900 border-8 border-slate-800 shadow-2xl overflow-hidden shadow-emerald-900/50">
+                        <canvas id="radarCanvas" width="400" height="400" class="w-full h-full cursor-crosshair touch-none"></canvas>
+                        <!-- Success Feedback -->
+                        <div id="radar-feedback" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-emerald-400 font-mono font-bold text-xl text-center hidden pointer-events-none drop-shadow-[0_0_8px_rgba(52,211,153,0.8)]">
+                            TARGET<br>LOCKED
+                        </div>
                     </div>
                 </div>
-                <div class="w-64 h-64 flex-shrink-0 relative bg-gray-50 rounded-full border border-gray-200 shadow-inner flex items-center justify-center">
-                    <svg viewBox="0 0 100 100" class="w-full h-full p-2">
-                        <circle cx="50" cy="50" r="45" fill="none" stroke="#cbd5e1" stroke-width="2" />
-                        <path d="M 95 50 A 45 45 0 0 0 72.5 11.02" fill="none" stroke="#f97316" stroke-width="4" />
-                        <line x1="50" y1="50" x2="95" y2="50" stroke="#475569" stroke-width="2" />
-                        <line x1="50" y1="50" x2="72.5" y2="11.02" stroke="#475569" stroke-width="2" />
-                        <path d="M 60 50 A 10 10 0 0 0 55 41.34" fill="none" stroke="#e11d48" stroke-width="2" />
-                        <text x="62" y="46" font-size="5" fill="#e11d48" font-family="sans-serif">α</text>
-                        <circle cx="50" cy="50" r="2" fill="#1f2937" />
-                        <text x="45" y="55" font-size="6">O</text>
-                        <circle cx="95" cy="50" r="2" fill="#ef4444" />
-                        <text x="96" y="56" font-size="6">A</text>
-                        <circle cx="72.5" cy="11.02" r="2" fill="#ef4444" />
-                        <text x="73" y="9" font-size="6">B</text>
-                    </svg>
+
+                <!-- Discussion / Warm-up Ideas -->
+                <div class="w-full md:w-1/2 space-y-6">
+                    <div class="bg-emerald-50 rounded-xl p-6 border-l-4 border-emerald-500 shadow-sm">
+                        <h3 class="text-xl font-bold text-emerald-800 mb-4 flex items-center">
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Think About It...
+                        </h3>
+                        <div class="text-gray-700 space-y-4 text-lg">
+                            <ul class="list-disc ml-5 space-y-2 font-medium">
+                                <li>Where is the <strong>vertex</strong> of the angle you just made with the radar scanner?</li>
+                                <li>What shape does the highlighted <strong>target zone</strong> on the edge have?</li>
+                            </ul>
+                            <div class="mt-6 p-4 bg-white rounded-lg border border-emerald-200 shadow-sm italic text-emerald-800">
+                                "The angle at the centre and the curve it creates on the edge are fundamental geometric pairs. Today, we will give them their proper mathematical names."
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -652,7 +713,7 @@
                     <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
                     Key Vocabulary (CLIL)
                 </h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
                         <div class="text-lg font-bold text-green-800">Circle</div>
                         <div class="text-sm text-gray-500 font-mono mb-1">/ˈsɜː.kəl/</div>
@@ -667,21 +728,6 @@
                         <div class="text-lg font-bold text-green-800">Diameter</div>
                         <div class="text-sm text-gray-500 font-mono mb-1">/daɪˈæm.ɪ.tə/</div>
                         <div class="text-gray-700 text-sm"><strong>Definition:</strong> Dây cung đi qua tâm của đường tròn. Đây là dây cung lớn nhất.</div>
-                    </div>
-                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
-                        <div class="text-lg font-bold text-green-800">Arc</div>
-                        <div class="text-sm text-gray-500 font-mono mb-1">/ɑːk/</div>
-                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Một phần của đường tròn bị giới hạn bởi hai điểm.</div>
-                    </div>
-                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
-                        <div class="text-lg font-bold text-green-800">Central angle</div>
-                        <div class="text-sm text-gray-500 font-mono mb-1">/ˈsen.trəl ˈæŋ.ɡəl/</div>
-                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Góc có đỉnh trùng với tâm của đường tròn.</div>
-                    </div>
-                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
-                        <div class="text-lg font-bold text-green-800">Arc measure</div>
-                        <div class="text-sm text-gray-500 font-mono mb-1">/ɑːk ˈmeʒ.ə/</div>
-                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Tính bằng độ, bằng số đo của góc ở tâm chắn cung đó.</div>
                     </div>
                 </div>
             </div>
@@ -708,7 +754,8 @@
             
             if (window.MathJax) MathJax.typesetPromise();
             if (tabId === 'tab2') initChordSimulation();
-            if (tabId === 'tab4') initStageBuilder();
+            if (tabId === 'tab4') initBentoGame();
+            if (tabId === 'tab5') initRadarScanner();
         }
 
         // ==========================================
@@ -1068,188 +1115,408 @@
         }
 
         // ==========================================
-        // TAB 4: STAGE BUILDER SIMULATION
+        // TAB 4: BENTO BOX MINIGAME (DRAG & DROP)
         // ==========================================
-        let isStageBuilderInitialized = false;
-        let stageAnimId;
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        let isBentoGameInitialized = false;
 
-        function playAudioFeedback(isError) {
-            if (!AudioContext) return;
-            const ctx = new AudioContext();
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            
-            if (isError) {
-                // Harsh Buzzer
-                osc.type = 'sawtooth';
-                osc.frequency.setValueAtTime(100, ctx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(50, ctx.currentTime + 0.5);
-                gain.gain.setValueAtTime(0.3, ctx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
-                osc.connect(gain); gain.connect(ctx.destination);
-                osc.start(); osc.stop(ctx.currentTime + 0.5);
-            } else {
-                // Success Chime
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(400, ctx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.3);
-                gain.gain.setValueAtTime(0.2, ctx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
-                osc.connect(gain); gain.connect(ctx.destination);
-                osc.start(); osc.stop(ctx.currentTime + 0.3);
+        function initBentoGame() {
+            if (isBentoGameInitialized) return;
+            isBentoGameInitialized = true;
+
+            const kitchenArea = document.getElementById('kitchen-area');
+            const bentoBox = document.getElementById('bento-box');
+            const lid = document.getElementById('bento-lid');
+            const feedback = document.getElementById('bento-feedback');
+            const trimUI = document.getElementById('trim-ui');
+            const chopBtn = document.getElementById('btn-chop');
+            const chopKnife = document.getElementById('chop-knife');
+
+            const items = [
+                { id: 'food-roll', length: 10, type: 'roll', origLeft: '50%', origTop: '30px', inBox: false },
+                { id: 'food-skewer', length: 14, type: 'skewer', origLeft: '50%', origTop: '100px', inBox: false },
+                { id: 'food-fish-wrapper', length: 17, type: 'fish', origLeft: '50%', origTop: '160px', inBox: false }
+            ];
+
+            let draggedItem = null;
+            let offsetX = 0;
+            let offsetY = 0;
+
+            function showFeedback(msg, type) {
+                feedback.innerHTML = msg;
+                feedback.className = `absolute top-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-full shadow-lg font-bold text-center transition-all duration-300 z-20 whitespace-nowrap text-sm sm:text-base border-2 opacity-100 ${
+                    type === 'success' ? 'bg-green-100 text-green-800 border-green-400' :
+                    type === 'error' ? 'bg-red-100 text-red-800 border-red-400' :
+                    'bg-blue-100 text-blue-800 border-blue-400'
+                }`;
             }
+
+            function hideFeedback() {
+                feedback.classList.remove('opacity-100');
+                feedback.classList.add('opacity-0');
+            }
+
+            function getClientCoords(e) {
+                if (e.touches && e.touches.length > 0) {
+                    return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+                }
+                return { x: e.clientX, y: e.clientY };
+            }
+
+            function handleStart(e) {
+                const target = e.target.closest('.food-item');
+                if (!target) return;
+                
+                draggedItem = target;
+                const coords = getClientCoords(e);
+                const rect = draggedItem.getBoundingClientRect();
+                
+                // Determine layout positioning based on robust offsetParent rect
+                const parentRect = draggedItem.offsetParent.getBoundingClientRect();
+                
+                offsetX = coords.x - rect.left;
+                offsetY = coords.y - rect.top;
+                
+                // Lock element exactly under the mouse avoiding any jumps!
+                draggedItem.style.left = (rect.left - parentRect.left) + 'px';
+                draggedItem.style.top = (rect.top - parentRect.top) + 'px';
+                draggedItem.style.marginLeft = '0';
+                
+                draggedItem.style.zIndex = '50';
+                hideFeedback();
+                lid.className = 'absolute inset-[-12px] rounded-full bg-red-500 shadow-xl border-4 border-red-700 hidden z-10 flex items-center justify-center'; // hide lid
+                trimUI.classList.add('hidden');
+            }
+
+            function handleMove(e) {
+                if (!draggedItem) return;
+                e.preventDefault(); // prevent scrolling
+                
+                const coords = getClientCoords(e);
+                const parentRect = draggedItem.offsetParent.getBoundingClientRect();
+                
+                let newLeft = coords.x - parentRect.left - offsetX;
+                let newTop = coords.y - parentRect.top - offsetY;
+                
+                draggedItem.style.left = newLeft + 'px';
+                draggedItem.style.top = newTop + 'px';
+                draggedItem.style.transform = 'rotate(0deg)'; // reset rotation while dragging
+            }
+
+            function handleEnd(e) {
+                if (!draggedItem) return;
+                
+                const itemData = items.find(i => i.id === draggedItem.id);
+                const bentoRect = bentoBox.getBoundingClientRect();
+                const itemRect = draggedItem.getBoundingClientRect();
+                const parentRect = draggedItem.offsetParent.getBoundingClientRect();
+                
+                const bentoCX = bentoRect.left + bentoRect.width / 2;
+                const bentoCY = bentoRect.top + bentoRect.height / 2;
+                
+                const itemCX = itemRect.left + itemRect.width / 2;
+                const itemCY = itemRect.top + itemRect.height / 2;
+                
+                const dist = Math.hypot(bentoCX - itemCX, bentoCY - itemCY);
+
+                if (dist < 100) { // Dropped near Bento
+                    // Calculate center position
+                    const targetLeft = (bentoCX - parentRect.left) - itemRect.width / 2;
+                    const targetTop = (bentoCY - parentRect.top) - itemRect.height / 2;
+
+                    draggedItem.style.left = targetLeft + 'px';
+                    
+                    if (itemData.type === 'roll') {
+                        // Offset Y to act as a chord (not diameter)
+                        draggedItem.style.top = (targetTop - 60) + 'px'; 
+                        itemData.inBox = true;
+                    } 
+                    else if (itemData.type === 'skewer') {
+                        draggedItem.style.top = targetTop + 'px';
+                        draggedItem.style.transform = 'rotate(15deg)'; // slight angle looks nice
+                        itemData.inBox = true;
+                    }
+                    else if (itemData.type === 'fish') {
+                        draggedItem.style.top = (targetTop + 30) + 'px'; // Offset so it doesn't overlap skewer
+                        
+                        if (itemData.length <= 14) {
+                            // Success after user chopped it correctly
+                            draggedItem.style.transform = 'rotate(-10deg)';
+                            itemData.inBox = true;
+                        } else {
+                            // Error!
+                            itemData.inBox = false;
+                            lid.classList.remove('hidden');
+                            lid.classList.add('bento-lid-bounce');
+                            showFeedback('CANNOT CLOSE LID! The fish is too long. We need to trim it!', 'error');
+                            trimUI.classList.remove('hidden');
+                            // Ensure chop input is empty so they can try again if they fail twice
+                            document.getElementById('trim-input').value = '';
+                            draggedItem.style.zIndex = '10';
+                            draggedItem = null;
+                            return; // Stop here, wait for trim
+                        }
+                    }
+
+                    // Check if ALL items are in the box
+                    let allInBox = items.every(i => i.inBox);
+
+                    if (allInBox) {
+                        lid.classList.remove('hidden', 'bento-lid-bounce');
+                        lid.classList.add('bento-lid-closed');
+                        showFeedback('PROBLEM SOLVED! All items fit perfectly! 🎉', 'success');
+                    } else {
+                        // Not all in, just provide specific feedback
+                        if (itemData.type === 'roll') {
+                            showFeedback('FITS EASILY!', 'success');
+                        } else if (itemData.type === 'skewer') {
+                            showFeedback('PERFECT FIT!', 'success');
+                        } else if (itemData.type === 'fish') {
+                            showFeedback('NICE TRIM! Fish fits now.', 'success');
+                        }
+                    }
+
+                } else {
+                    // Snap back to origin
+                    draggedItem.style.left = itemData.origLeft;
+                    draggedItem.style.top = itemData.origTop;
+                    draggedItem.style.marginLeft = -(draggedItem.offsetWidth/2) + 'px';
+                    trimUI.classList.add('hidden');
+                    itemData.inBox = false; // Reset box state
+                }
+                
+                draggedItem.style.zIndex = '10';
+                draggedItem = null;
+            }
+
+            kitchenArea.addEventListener('mousedown', handleStart);
+            document.addEventListener('mousemove', handleMove);
+            document.addEventListener('mouseup', handleEnd);
+            
+            kitchenArea.addEventListener('touchstart', handleStart, {passive: false});
+            document.addEventListener('touchmove', handleMove, {passive: false});
+            document.addEventListener('touchend', handleEnd);
+
+            // Chop Logic
+            chopBtn.addEventListener('click', () => {
+                const trimVal = parseFloat(document.getElementById('trim-input').value) || 0;
+                
+                if (trimVal > 0) {
+                    const fishItemDOM = document.getElementById('food-fish-wrapper');
+                    const fishRect = fishItemDOM.getBoundingClientRect();
+                    const containerRect = kitchenArea.getBoundingClientRect(); // kitchen-area is the offsetParent of the knife
+                    
+                    // Show knife hitting the right end of the fish
+                    chopKnife.style.left = (fishRect.right - containerRect.left - 50) + 'px';
+                    chopKnife.style.top = (fishRect.top - containerRect.top - 50) + 'px';
+                    chopKnife.classList.remove('hidden');
+                    chopKnife.classList.add('animate-chop');
+
+                    setTimeout(() => {
+                        // Math: Update new length
+                        let fishData = items.find(i => i.id === 'food-fish-wrapper');
+                        fishData.length -= trimVal;
+                        if(fishData.length < 1) fishData.length = 1; // Safety boundary
+                        
+                        // Cut the visual fish!
+                        fishItemDOM.style.width = (fishData.length * 20) + 'px';
+                        document.getElementById('fish-label').innerText = 'Fried Fish (' + fishData.length + ' cm)';
+                        
+                        // Hide UI elements
+                        trimUI.classList.add('hidden');
+                        chopKnife.classList.add('hidden');
+                        chopKnife.classList.remove('animate-chop');
+                        lid.classList.add('hidden');
+                        lid.classList.remove('bento-lid-bounce');
+                        hideFeedback();
+                        
+                        // Snap back to board to force student to drag again
+                        fishItemDOM.style.transition = 'all 0.5s ease-out';
+                        fishItemDOM.style.left = fishData.origLeft;
+                        fishItemDOM.style.top = fishData.origTop;
+                        fishItemDOM.style.transform = 'rotate(0deg)';
+                        fishItemDOM.style.marginLeft = -(fishData.length * 20 / 2) + 'px';
+                        
+                        setTimeout(() => {
+                            fishItemDOM.style.transition = 'width 0.4s ease-out'; // reset transition to only width for future cuts
+                        }, 500);
+
+                    }, 400); // sync with knife hit timeframe
+
+                } else {
+                    alert("Please enter a valid amount to trim!");
+                }
+            });
         }
 
-        function initStageBuilder() {
-            if (isStageBuilderInitialized) return;
-            isStageBuilderInitialized = true;
+        // ==========================================
+        // TAB 5: RADAR SCANNER
+        // ==========================================
+        let isRadarInitialized = false;
+        let radarAnimId;
 
-            const canvas = document.getElementById('stageBuilderCanvas');
+        function initRadarScanner() {
+            if (isRadarInitialized) return;
+            isRadarInitialized = true;
+
+            const canvas = document.getElementById('radarCanvas');
             const ctx = canvas.getContext('2d');
-            const btnTest = document.getElementById('btn-test-install');
-            const btnProof = document.getElementById('btn-show-proof');
-            const proofContent = document.getElementById('proof-content');
-            const errorOverlay = document.getElementById('stage-error-overlay');
-            
-            let cx = 200, cy = 200;
-            let currentTrussY = -30;
-            let isAnimating = false;
-            let flashState = false;
-            let flashInterval;
-            let scalePx = 14; // 1m = 14px to fit inside safely
-            
-            function drawScene(r, trussL) {
+            const feedback = document.getElementById('radar-feedback');
+
+            let cx = 200, cy = 200, R = 140;
+            let targetAngle = 72; // degrees
+            let currentAngle = 15; // degrees
+            let isDragging = false;
+            let isLocked = false;
+
+            function getAngle(x, y) {
+                let dx = x - cx;
+                let dy = y - cy;
+                let ang = Math.atan2(dy, dx) * 180 / Math.PI;
+                if (ang < 0) ang += 360;
+                return ang;
+            }
+
+            function drawRadar() {
                 ctx.clearRect(0, 0, 400, 400);
 
-                // 1. Draw Circular Stage (Blueprint style)
-                ctx.save();
-                ctx.beginPath();
-                ctx.arc(cx, cy, r * scalePx, 0, Math.PI * 2);
-                let grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r * scalePx);
-                grad.addColorStop(0, 'rgba(56, 189, 248, 0.3)'); // Inner bright glow
-                grad.addColorStop(1, 'rgba(15, 23, 42, 0)'); // Fade out to edges
-                ctx.fillStyle = grad;
-                ctx.fill();
-                ctx.strokeStyle = '#38bdf8'; // sky-400
-                ctx.lineWidth = 3;
-                ctx.stroke();
-                
-                // Center point
-                ctx.fillStyle = '#fff';
-                ctx.beginPath(); ctx.arc(cx, cy, 3, 0, Math.PI*2); ctx.fill();
-                ctx.font = '12px monospace'; ctx.fillText('CENTER', cx - 20, cy - 10);
-                
-                // Draw Diameter line reference (faint)
-                ctx.setLineDash([5, 5]);
-                ctx.strokeStyle = 'rgba(255,255,255,0.3)';
-                ctx.beginPath(); ctx.moveTo(cx - r * scalePx, cy); ctx.lineTo(cx + r * scalePx, cy); ctx.stroke();
-                ctx.restore();
-
-                // 2. Draw Truss
-                let tWidth = trussL * scalePx;
-                let tHeight = 12;
-                let tx = cx - tWidth / 2;
-                let ty = currentTrussY - tHeight / 2;
-
-                // Base Iron
-                ctx.fillStyle = '#9ca3af'; 
-                ctx.fillRect(tx, ty, tWidth, tHeight);
-                // Pattern
-                ctx.strokeStyle = '#374151'; 
+                // Background Grid
+                ctx.strokeStyle = 'rgba(16, 185, 129, 0.2)';
                 ctx.lineWidth = 1;
                 ctx.beginPath();
-                for (let x = tx; x < tx + tWidth; x += 8) {
-                    ctx.moveTo(x, ty); ctx.lineTo(x + 8, ty + tHeight);
-                    ctx.moveTo(x + 8, ty); ctx.lineTo(x, ty + tHeight);
-                }
+                ctx.arc(cx, cy, R * 0.33, 0, Math.PI * 2);
+                ctx.arc(cx, cy, R * 0.66, 0, Math.PI * 2);
+                ctx.arc(cx, cy, R, 0, Math.PI * 2);
                 ctx.stroke();
 
-                // 3. Draw Flashing Errors if applicable
-                if (!isAnimating && currentTrussY >= cy && trussL > r * 2) {
-                    let overlapWidth = (trussL - r * 2) * scalePx / 2;
-                    if (flashState) {
-                        ctx.fillStyle = 'rgba(239, 68, 68, 0.8)'; // Red warning
-                        ctx.fillRect(tx, ty - 4, overlapWidth, tHeight + 8);
-                        ctx.fillRect(tx + tWidth - overlapWidth, ty - 4, overlapWidth, tHeight + 8);
+                ctx.beginPath();
+                ctx.moveTo(cx - R, cy); ctx.lineTo(cx + R, cy);
+                ctx.moveTo(cx, cy - R); ctx.lineTo(cx, cy + R);
+                ctx.stroke();
+
+                // Target Arc (Flashing Red)
+                if (!isLocked) {
+                    let flash = Math.sin(Date.now() / 150) * 0.5 + 0.5; // 0 to 1
+                    ctx.strokeStyle = `rgba(239, 68, 68, ${0.4 + flash * 0.6})`;
+                    ctx.lineWidth = 8;
+                    ctx.setLineDash([10, 10]);
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, R, 0, targetAngle * Math.PI / 180);
+                    ctx.stroke();
+                    ctx.setLineDash([]);
+                }
+
+                // Radar Sweep Area
+                ctx.fillStyle = isLocked ? 'rgba(52, 211, 153, 0.5)' : 'rgba(52, 211, 153, 0.2)';
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.arc(cx, cy, R, 0, currentAngle * Math.PI / 180);
+                ctx.closePath();
+                ctx.fill();
+
+                // Perimeter Highlight
+                ctx.strokeStyle = isLocked ? '#34d399' : '#10b981';
+                ctx.lineWidth = 6;
+                ctx.beginPath();
+                ctx.arc(cx, cy, R, 0, currentAngle * Math.PI / 180);
+                ctx.stroke();
+
+                // Fixed Base Ray
+                ctx.strokeStyle = '#34d399';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(cx + R, cy);
+                ctx.stroke();
+
+                // Scanning Ray
+                let scanX = cx + R * Math.cos(currentAngle * Math.PI / 180);
+                let scanY = cy + R * Math.sin(currentAngle * Math.PI / 180);
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(scanX, scanY);
+                ctx.stroke();
+
+                // Handle
+                ctx.fillStyle = isLocked ? '#10b981' : '#fff';
+                ctx.beginPath();
+                ctx.arc(scanX, scanY, 8, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.strokeStyle = '#047857';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Center Point
+                ctx.fillStyle = '#fff';
+                ctx.beginPath();
+                ctx.arc(cx, cy, 4, 0, Math.PI * 2);
+                ctx.fill();
+
+                radarAnimId = requestAnimationFrame(drawRadar);
+            }
+
+            function getMousePos(e) {
+                const rect = canvas.getBoundingClientRect();
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                return {
+                    x: (clientX - rect.left) * (canvas.width / rect.width),
+                    y: (clientY - rect.top) * (canvas.height / rect.height)
+                };
+            }
+
+            function handleStart(e) {
+                if (isLocked) return;
+                const pos = getMousePos(e);
+                let scanX = cx + R * Math.cos(currentAngle * Math.PI / 180);
+                let scanY = cy + R * Math.sin(currentAngle * Math.PI / 180);
+                if (Math.hypot(pos.x - scanX, pos.y - scanY) < 30 || Math.hypot(pos.x - cx, pos.y - cy) < R) {
+                    isDragging = true;
+                    if(e.cancelable) e.preventDefault();
+                }
+            }
+
+            function handleMove(e) {
+                if (!isDragging || isLocked) return;
+                if(e.cancelable) e.preventDefault();
+                const pos = getMousePos(e);
+                currentAngle = getAngle(pos.x, pos.y);
+                
+                // Check win condition
+                if (Math.abs(currentAngle - targetAngle) < 3) {
+                    currentAngle = targetAngle;
+                    isLocked = true;
+                    isDragging = false;
+                    feedback.classList.remove('hidden');
+                    
+                    // Play sound (optional)
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    if(AudioContext) {
+                        const ctx = new AudioContext();
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(800, ctx.currentTime);
+                        osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.2);
+                        gain.gain.setValueAtTime(0.1, ctx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+                        osc.connect(gain); gain.connect(ctx.destination);
+                        osc.start(); osc.stop(ctx.currentTime + 0.2);
                     }
                 }
             }
 
-            // Initial static draw
-            drawScene(6, 13);
+            function handleEnd() {
+                isDragging = false;
+            }
 
-            btnTest.addEventListener('click', () => {
-                if (isAnimating) return;
-                
-                let r = parseFloat(document.getElementById('stage-radius').value) || 6;
-                let trussL = parseFloat(document.getElementById('truss-length').value) || 13;
-                
-                // Reset states
-                clearInterval(flashInterval);
-                errorOverlay.style.opacity = '0';
-                proofContent.classList.add('hidden');
-                btnProof.classList.add('hidden');
-                
-                currentTrussY = -30;
-                isAnimating = true;
-                
-                function animate() {
-                    currentTrussY += 3; // speed of drop
-                    if (currentTrussY >= cy) {
-                        currentTrussY = cy;
-                        isAnimating = false;
-                        drawScene(r, trussL);
-                        
-                        // Finish Animation Logic
-                        btnProof.classList.remove('hidden');
-                        
-                        if (trussL > r * 2) {
-                            // Technical Error!
-                            playAudioFeedback(true);
-                            errorOverlay.style.opacity = '0.3';
-                            flashInterval = setInterval(() => {
-                                flashState = !flashState;
-                                drawScene(r, trussL);
-                            }, 250);
-                        } else {
-                            // Success!
-                            playAudioFeedback(false);
-                        }
-                        return;
-                    }
-                    drawScene(r, trussL);
-                    stageAnimId = requestAnimationFrame(animate);
-                }
-                animate();
-            });
+            canvas.addEventListener('mousedown', handleStart);
+            document.addEventListener('mousemove', handleMove);
+            document.addEventListener('mouseup', handleEnd);
+            canvas.addEventListener('touchstart', handleStart, {passive: false});
+            document.addEventListener('touchmove', handleMove, {passive: false});
+            document.addEventListener('touchend', handleEnd);
 
-            btnProof.addEventListener('click', () => {
-                let r = parseFloat(document.getElementById('stage-radius').value) || 6;
-                let trussL = parseFloat(document.getElementById('truss-length').value) || 13;
-                let diameter = r * 2;
-                
-                let texCode = "";
-                if (trussL > diameter) {
-                    texCode = `
-                        \\text{Truss Length} > 2 \\times \\text{Stage Radius} \\\\[10pt]
-                        ${trussL} > 2 \\times ${r} \\\\[5pt]
-                        ${trussL} > ${diameter} \\quad \\text{❌ Error: Too long!}
-                    `;
-                    proofContent.className = "mt-3 p-3 bg-red-900/30 rounded border border-red-700 text-red-200 text-center font-mono text-sm leading-relaxed overflow-x-auto block";
-                } else {
-                    texCode = `
-                        \\text{Truss Length} \\le 2 \\times \\text{Stage Radius} \\\\[10pt]
-                        ${trussL} \\le 2 \\times ${r} \\\\[5pt]
-                        ${trussL} \\le ${diameter} \\quad \\text{✅ Safe: Fits perfectly!}
-                    `;
-                    proofContent.className = "mt-3 p-3 bg-green-900/30 rounded border border-green-700 text-green-200 text-center font-mono text-sm leading-relaxed overflow-x-auto block";
-                }
-                
-                proofContent.innerHTML = `$$${texCode}$$`;
-                proofContent.classList.remove('hidden');
-                if (window.MathJax) MathJax.typesetPromise([proofContent]);
-            });
+            drawRadar();
         }
 
         // ==========================================
