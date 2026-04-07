@@ -103,6 +103,18 @@
             <button onclick="openTab('tab5')" id="btn-tab5" class="tab-btn px-5 py-3 text-gray-500 hover:text-blue-500 border-b-2 border-transparent font-medium whitespace-nowrap focus:outline-none">
                 5. Radar Scanner
             </button>
+            <button onclick="openTab('tab6')" id="btn-tab6" class="tab-btn px-5 py-3 text-gray-500 hover:text-blue-500 border-b-2 border-transparent font-medium whitespace-nowrap focus:outline-none">
+                6. The Arc Splitter
+            </button>
+            <button onclick="openTab('tab7')" id="btn-tab7" class="tab-btn px-5 py-3 text-gray-500 hover:text-blue-500 border-b-2 border-transparent font-medium whitespace-nowrap focus:outline-none">
+                7. Dynamic Protractor
+            </button>
+            <button onclick="openTab('tab8')" id="btn-tab8" class="tab-btn px-5 py-3 text-gray-500 hover:text-blue-500 border-b-2 border-transparent font-medium whitespace-nowrap focus:outline-none">
+                8. CLIL Quick-Match
+            </button>
+            <button onclick="openTab('tab9')" id="btn-tab9" class="tab-btn px-5 py-3 text-gray-500 hover:text-blue-500 border-b-2 border-transparent font-medium whitespace-nowrap focus:outline-none">
+                9. Architect's Blueprint
+            </button>
         </div>
 
         <!-- TAB 1: Warm-up & Definitions -->
@@ -476,7 +488,7 @@
                 </p>
                 <div class="mt-6 mb-2 flex justify-center">
                     <div class="bg-white px-8 py-4 rounded-xl shadow-sm border border-blue-100">
-                        <span class="font-bold text-2xl md:text-3xl text-indigo-700">$$BC &lt; AB + AC &lt; 2BC$$</span>
+                        <span class="font-bold text-2xl md:text-3xl text-indigo-700">$$BC < AB + AC < 2BC$$</span>
                     </div>
                 </div>
             </div>
@@ -528,21 +540,21 @@
                     <div class="w-full md:w-2/3 space-y-4 text-gray-700">
                         <h4 class="font-bold text-gray-800 text-lg border-b pb-2">Step-by-step Proof:</h4>
                         <div class="space-y-3">
-                            <p><strong>1. Prove $BC &lt; AB + AC$:</strong></p>
+                            <p><strong>1. Prove $BC < AB + AC$:</strong></p>
                             <ul class="list-disc ml-5 space-y-1">
                                 <li>Consider $\triangle ABC$. Since $A$ is a point on the circle distinct from $B$ and $C$, they form a valid triangle.</li>
                                 <li>According to the <strong>Triangle Inequality Theorem</strong>, the sum of any two sides is always greater than the third side.</li>
-                                <li>Therefore, $AB + AC &gt; BC$ (which means $BC &lt; AB + AC$).</li>
+                                <li>Therefore, $AB + AC > BC$ (which means $BC < AB + AC$).</li>
                             </ul>
-                            <p class="mt-4"><strong>2. Prove $AB + AC &lt; 2BC$:</strong></p>
+                            <p class="mt-4"><strong>2. Prove $AB + AC < 2BC$:</strong></p>
                             <ul class="list-disc ml-5 space-y-1">
                                 <li>The diameter $BC$ is the <strong>longest chord</strong> in the circle.</li>
                                 <li>Since $A$ is distinct from $B$ and $C$, chords $AB$ and $AC$ are not diameters.</li>
-                                <li>Thus, $AB &lt; BC$ and $AC &lt; BC$.</li>
-                                <li>Adding these inequalities together: $AB + AC &lt; BC + BC = 2BC$.</li>
+                                <li>Thus, $AB < BC$ and $AC < BC$.</li>
+                                <li>Adding these inequalities together: $AB + AC < BC + BC = 2BC$.</li>
                             </ul>
                             <div class="mt-4 p-3 bg-indigo-50 border-l-4 border-indigo-500 rounded font-semibold text-indigo-800">
-                                Conclusion: Combining both parts, we get $BC &lt; AB + AC &lt; 2BC$.
+                                Conclusion: Combining both parts, we get $BC < AB + AC < 2BC$.
                             </div>
                         </div>
                     </div>
@@ -733,6 +745,168 @@
             </div>
         </div>
 
+        <!-- TAB 6: THE ARC SPLITTER -->
+        <div id="tab6" class="tab-content bg-white rounded-xl shadow-sm p-6 sm:p-8 border border-gray-100">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <span class="bg-indigo-100 text-indigo-700 p-2 rounded-lg mr-3">✂️</span>
+                The Arc Splitter
+            </h2>
+            <p class="text-gray-700 mb-6">
+                Kéo thả các điểm <strong class="text-blue-600">A</strong> và <strong class="text-blue-600">B</strong> trên đường tròn để thay đổi góc ở tâm $\angle AOB$. Hãy quan sát sự thay đổi màu sắc và tên gọi của các cung tròn nhé!
+            </p>
+
+            <div class="flex flex-col items-center mb-8">
+                <div class="relative w-[400px] h-[400px] bg-slate-50 rounded-xl shadow-inner border border-slate-200 flex justify-center items-center touch-none">
+                    <canvas id="arcSplitterCanvas" width="400" height="400" class="cursor-crosshair absolute inset-0"></canvas>
+                </div>
+                
+                <div class="mt-6 flex flex-wrap justify-center gap-6">
+                    <div class="flex items-center"><span class="w-4 h-4 bg-emerald-500 rounded-full mr-2"></span> Minor Arc (Cung nhỏ)</div>
+                    <div class="flex items-center"><span class="w-4 h-4 bg-orange-500 rounded-full mr-2"></span> Major Arc (Cung lớn)</div>
+                    <div class="flex items-center"><span class="w-4 h-4 bg-purple-500 rounded-full mr-2"></span> Semicircle (Nửa đường tròn)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 7: DYNAMIC PROTRACTOR -->
+        <div id="tab7" class="tab-content bg-white rounded-xl shadow-sm p-6 sm:p-8 border border-gray-100">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <span class="bg-cyan-100 text-cyan-700 p-2 rounded-lg mr-3">📐</span>
+                Dynamic Protractor
+            </h2>
+            
+            <div class="flex flex-col md:flex-row gap-8 items-center mb-8">
+                <!-- Canvas Protractor -->
+                <div class="w-full md:w-1/2 flex justify-center">
+                    <div class="relative w-[360px] h-[360px] bg-slate-50 rounded-full shadow-inner border border-slate-200 flex justify-center items-center touch-none">
+                        <canvas id="protractorCanvas" width="360" height="360" class="cursor-crosshair absolute inset-0"></canvas>
+                    </div>
+                </div>
+
+                <!-- Live Data Panel -->
+                <div class="w-full md:w-1/2 space-y-4">
+                    <div class="bg-slate-800 text-white rounded-xl p-6 shadow-lg border-b-4 border-cyan-500">
+                        <h3 class="text-xl font-bold mb-4 flex items-center text-cyan-300">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                            Real-time Measurements
+                        </h3>
+                        
+                        <div class="space-y-4 font-mono text-lg">
+                            <div class="flex justify-between items-center bg-slate-700 p-3 rounded">
+                                <span>Central Angle $\angle AOB$</span>
+                                <span id="pt-angle" class="font-bold text-cyan-400">90°</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center bg-slate-700 p-3 rounded border-l-4 border-emerald-500">
+                                <span>Measure of Minor Arc $AB$</span>
+                                <span id="pt-minor" class="font-bold text-emerald-400">90°</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center bg-slate-700 p-3 rounded border-l-4 border-orange-500">
+                                <span class="text-sm sm:text-base">Measure of Major Arc $AB$<br><span class="text-xs text-slate-400">360° - <span id="pt-sub">90°</span></span></span>
+                                <span id="pt-major" class="font-bold text-orange-400">270°</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-4 bg-cyan-50 rounded-lg text-cyan-800 text-sm italic border border-cyan-200">
+                        * Nhận xét: Số đo của cung nhỏ luôn bằng số đo của góc ở tâm chắn cung đó!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 8: CLIL QUICK-MATCH -->
+        <div id="tab8" class="tab-content bg-white rounded-xl shadow-sm p-6 sm:p-8 border border-gray-100">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                <span class="bg-rose-100 text-rose-700 p-2 rounded-lg mr-3">🎧</span>
+                CLIL Quick-Match
+            </h2>
+            <p class="text-gray-700 mb-8 text-center">
+                Hãy click chọn một thẻ từ vựng bên dưới, sau đó click vào ô trống tương ứng trên hình vẽ. <br>Hệ thống sẽ phát âm từ vựng đó bằng giọng chuẩn Anh để giúp bạn luyện nghe!
+            </p>
+
+            <!-- Draggable/Clickable Cards -->
+            <div id="clil-cards" class="flex flex-wrap gap-4 mb-8 justify-center">
+                <button class="clil-card px-6 py-3 bg-white border-2 border-slate-300 rounded-xl font-bold shadow-sm transition hover:border-blue-500 hover:bg-blue-50 focus:outline-none" data-word="Central Angle">Central Angle</button>
+                <button class="clil-card px-6 py-3 bg-white border-2 border-slate-300 rounded-xl font-bold shadow-sm transition hover:border-emerald-500 hover:bg-emerald-50 focus:outline-none" data-word="Minor Arc">Minor Arc</button>
+                <button class="clil-card px-6 py-3 bg-white border-2 border-slate-300 rounded-xl font-bold shadow-sm transition hover:border-orange-500 hover:bg-orange-50 focus:outline-none" data-word="Major Arc">Major Arc</button>
+                <button class="clil-card px-6 py-3 bg-white border-2 border-slate-300 rounded-xl font-bold shadow-sm transition hover:border-purple-500 hover:bg-purple-50 focus:outline-none" data-word="Semicircle">Semicircle</button>
+            </div>
+
+            <!-- Target SVG Diagram -->
+            <div class="relative w-full max-w-[400px] h-[400px] mx-auto bg-slate-50 rounded-xl shadow-inner border border-slate-200 overflow-hidden">
+                <svg viewBox="0 0 400 400" class="w-full h-full">
+                    <!-- Semicircle line -->
+                    <line x1="40" y1="200" x2="360" y2="200" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6,6" />
+                    <!-- Circle -->
+                    <circle cx="200" cy="200" r="140" fill="none" stroke="#cbd5e1" stroke-width="4" />
+                    <!-- Angle lines -->
+                    <line x1="200" y1="200" x2="340" y2="200" stroke="#3b82f6" stroke-width="3" />
+                    <line x1="200" y1="200" x2="270" y2="78.7" stroke="#3b82f6" stroke-width="3" /> <!-- 60 deg angle -->
+                    
+                    <!-- Points -->
+                    <circle cx="200" cy="200" r="5" fill="#0f172a" /> <!-- O -->
+                    <text x="195" y="220" font-weight="bold" fill="#0f172a">O</text>
+                    <circle cx="340" cy="200" r="6" fill="#ef4444" /> <!-- A -->
+                    <text x="355" y="205" font-weight="bold" fill="#ef4444">A</text>
+                    <circle cx="270" cy="78.7" r="6" fill="#ef4444" /> <!-- B -->
+                    <text x="280" y="70" font-weight="bold" fill="#ef4444">B</text>
+                    <circle cx="60" cy="200" r="6" fill="#64748b" /> <!-- C (for Semicircle) -->
+                    <text x="40" y="195" font-weight="bold" fill="#64748b">C</text>
+
+                    <!-- Indicators -->
+                    <path d="M 230 180 Q 240 190 240 200" fill="none" stroke="#3b82f6" stroke-width="2" />
+                </svg>
+
+                <!-- Drop Zones (HTML) -->
+                <!-- Central Angle -->
+                <div class="clil-zone absolute top-[215px] left-[215px] w-[110px] h-[36px] border-2 border-dashed border-slate-400 bg-white/90 rounded flex items-center justify-center text-xs font-bold text-slate-500 cursor-pointer transition hover:bg-slate-100 shadow-sm" data-target="Central Angle">Drop Here</div>
+                <!-- Minor Arc -->
+                <div class="clil-zone absolute top-[60px] left-[300px] w-[90px] h-[36px] border-2 border-dashed border-slate-400 bg-white/90 rounded flex items-center justify-center text-xs font-bold text-slate-500 cursor-pointer transition hover:bg-slate-100 shadow-sm" data-target="Minor Arc">Drop Here</div>
+                <!-- Major Arc -->
+                <div class="clil-zone absolute bottom-[40px] left-[150px] w-[90px] h-[36px] border-2 border-dashed border-slate-400 bg-white/90 rounded flex items-center justify-center text-xs font-bold text-slate-500 cursor-pointer transition hover:bg-slate-100 shadow-sm" data-target="Major Arc">Drop Here</div>
+                <!-- Semicircle -->
+                <div class="clil-zone absolute top-[90px] left-[20px] w-[100px] h-[36px] border-2 border-dashed border-slate-400 bg-white/90 rounded flex items-center justify-center text-xs font-bold text-slate-500 cursor-pointer transition hover:bg-slate-100 shadow-sm" data-target="Semicircle">Drop Here</div>
+            </div>
+            
+            <div class="text-center mt-6">
+                <button onclick="resetCLIL()" class="text-sm font-semibold text-rose-500 hover:text-rose-700 transition">↺ Reset Activity</button>
+            </div>
+        </div>
+
+        <!-- TAB 9: THE ARCHITECT'S BLUEPRINT -->
+        <div id="tab9" class="tab-content bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <div class="relative w-full h-[600px] flex items-center justify-center">
+                <!-- Background Image from Unsplash -->
+                <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=2000&auto=format&fit=crop" alt="London Eye at Night" class="absolute inset-0 w-full h-full object-cover">
+                
+                <!-- Dark Overlay -->
+                <div class="absolute inset-0 bg-slate-900 bg-opacity-60 backdrop-blur-[2px]"></div>
+
+                <!-- Content Box -->
+                <div class="relative z-10 bg-black bg-opacity-60 p-8 md:p-10 rounded-2xl border border-slate-600 text-center max-w-2xl mx-4 shadow-2xl transform transition hover:scale-[1.01] duration-300">
+                    <h3 class="text-3xl md:text-4xl font-bold text-amber-400 mb-6 font-serif tracking-wider uppercase drop-shadow-md">The Architect's Blueprint</h3>
+                    
+                    <p class="text-lg md:text-xl text-slate-200 leading-relaxed font-light mb-8">
+                        An architect is designing a new Ferris wheel with exactly <strong class="text-white text-2xl drop-shadow-lg">18</strong> passenger cabins evenly spaced around the circular frame.
+                    </p>
+                    
+                    <div class="p-6 bg-indigo-900 bg-opacity-50 border border-indigo-400 rounded-xl text-indigo-100 text-left shadow-inner">
+                        <p class="mb-4 text-lg font-semibold flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+                            Homework Task:
+                        </p>
+                        <ul class="list-disc ml-6 space-y-3 font-medium">
+                            <li>Calculate the measure of the <strong>central angle</strong> between any two adjacent cabins.</li>
+                            <li>Determine the measure of the <strong>minor arc</strong> connecting them.</li>
+                            <li>Write a short engineering report in your notebook detailing your mathematical reasoning.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- MAIN SCRIPT -->
@@ -747,15 +921,24 @@
                 btn.classList.add('text-gray-500', 'border-transparent');
             });
 
-            document.getElementById(tabId).classList.add('active');
+            const targetTab = document.getElementById(tabId);
+            if (targetTab) {
+                targetTab.classList.add('active');
+            }
+
             const activeBtn = document.getElementById('btn-' + tabId);
-            activeBtn.classList.remove('text-gray-500', 'border-transparent');
-            activeBtn.classList.add('text-blue-600', 'border-blue-600');
+            if (activeBtn) {
+                activeBtn.classList.remove('text-gray-500', 'border-transparent');
+                activeBtn.classList.add('text-blue-600', 'border-blue-600');
+            }
             
             if (window.MathJax) MathJax.typesetPromise();
             if (tabId === 'tab2') initChordSimulation();
             if (tabId === 'tab4') initBentoGame();
             if (tabId === 'tab5') initRadarScanner();
+            if (tabId === 'tab6') initArcSplitter();
+            if (tabId === 'tab7') initProtractor();
+            if (tabId === 'tab8') initCLILMatch();
         }
 
         // ==========================================
@@ -1170,13 +1353,11 @@
                 const coords = getClientCoords(e);
                 const rect = draggedItem.getBoundingClientRect();
                 
-                // Determine layout positioning based on robust offsetParent rect
                 const parentRect = draggedItem.offsetParent.getBoundingClientRect();
                 
                 offsetX = coords.x - rect.left;
                 offsetY = coords.y - rect.top;
                 
-                // Lock element exactly under the mouse avoiding any jumps!
                 draggedItem.style.left = (rect.left - parentRect.left) + 'px';
                 draggedItem.style.top = (rect.top - parentRect.top) + 'px';
                 draggedItem.style.marginLeft = '0';
@@ -1189,7 +1370,7 @@
 
             function handleMove(e) {
                 if (!draggedItem) return;
-                e.preventDefault(); // prevent scrolling
+                e.preventDefault(); 
                 
                 const coords = getClientCoords(e);
                 const parentRect = draggedItem.offsetParent.getBoundingClientRect();
@@ -1199,7 +1380,7 @@
                 
                 draggedItem.style.left = newLeft + 'px';
                 draggedItem.style.top = newTop + 'px';
-                draggedItem.style.transform = 'rotate(0deg)'; // reset rotation while dragging
+                draggedItem.style.transform = 'rotate(0deg)'; 
             }
 
             function handleEnd(e) {
@@ -1218,46 +1399,40 @@
                 
                 const dist = Math.hypot(bentoCX - itemCX, bentoCY - itemCY);
 
-                if (dist < 100) { // Dropped near Bento
-                    // Calculate center position
+                if (dist < 100) { 
                     const targetLeft = (bentoCX - parentRect.left) - itemRect.width / 2;
                     const targetTop = (bentoCY - parentRect.top) - itemRect.height / 2;
 
                     draggedItem.style.left = targetLeft + 'px';
                     
                     if (itemData.type === 'roll') {
-                        // Offset Y to act as a chord (not diameter)
                         draggedItem.style.top = (targetTop - 60) + 'px'; 
                         itemData.inBox = true;
                     } 
                     else if (itemData.type === 'skewer') {
                         draggedItem.style.top = targetTop + 'px';
-                        draggedItem.style.transform = 'rotate(15deg)'; // slight angle looks nice
+                        draggedItem.style.transform = 'rotate(15deg)'; 
                         itemData.inBox = true;
                     }
                     else if (itemData.type === 'fish') {
-                        draggedItem.style.top = (targetTop + 30) + 'px'; // Offset so it doesn't overlap skewer
+                        draggedItem.style.top = (targetTop + 30) + 'px'; 
                         
                         if (itemData.length <= 14) {
-                            // Success after user chopped it correctly
                             draggedItem.style.transform = 'rotate(-10deg)';
                             itemData.inBox = true;
                         } else {
-                            // Error!
                             itemData.inBox = false;
                             lid.classList.remove('hidden');
                             lid.classList.add('bento-lid-bounce');
                             showFeedback('CANNOT CLOSE LID! The fish is too long. We need to trim it!', 'error');
                             trimUI.classList.remove('hidden');
-                            // Ensure chop input is empty so they can try again if they fail twice
                             document.getElementById('trim-input').value = '';
                             draggedItem.style.zIndex = '10';
                             draggedItem = null;
-                            return; // Stop here, wait for trim
+                            return; 
                         }
                     }
 
-                    // Check if ALL items are in the box
                     let allInBox = items.every(i => i.inBox);
 
                     if (allInBox) {
@@ -1265,7 +1440,6 @@
                         lid.classList.add('bento-lid-closed');
                         showFeedback('PROBLEM SOLVED! All items fit perfectly! 🎉', 'success');
                     } else {
-                        // Not all in, just provide specific feedback
                         if (itemData.type === 'roll') {
                             showFeedback('FITS EASILY!', 'success');
                         } else if (itemData.type === 'skewer') {
@@ -1276,12 +1450,11 @@
                     }
 
                 } else {
-                    // Snap back to origin
                     draggedItem.style.left = itemData.origLeft;
                     draggedItem.style.top = itemData.origTop;
                     draggedItem.style.marginLeft = -(draggedItem.offsetWidth/2) + 'px';
                     trimUI.classList.add('hidden');
-                    itemData.inBox = false; // Reset box state
+                    itemData.inBox = false; 
                 }
                 
                 draggedItem.style.zIndex = '10';
@@ -1296,32 +1469,27 @@
             document.addEventListener('touchmove', handleMove, {passive: false});
             document.addEventListener('touchend', handleEnd);
 
-            // Chop Logic
             chopBtn.addEventListener('click', () => {
                 const trimVal = parseFloat(document.getElementById('trim-input').value) || 0;
                 
                 if (trimVal > 0) {
                     const fishItemDOM = document.getElementById('food-fish-wrapper');
                     const fishRect = fishItemDOM.getBoundingClientRect();
-                    const containerRect = kitchenArea.getBoundingClientRect(); // kitchen-area is the offsetParent of the knife
+                    const containerRect = kitchenArea.getBoundingClientRect();
                     
-                    // Show knife hitting the right end of the fish
                     chopKnife.style.left = (fishRect.right - containerRect.left - 50) + 'px';
                     chopKnife.style.top = (fishRect.top - containerRect.top - 50) + 'px';
                     chopKnife.classList.remove('hidden');
                     chopKnife.classList.add('animate-chop');
 
                     setTimeout(() => {
-                        // Math: Update new length
                         let fishData = items.find(i => i.id === 'food-fish-wrapper');
                         fishData.length -= trimVal;
-                        if(fishData.length < 1) fishData.length = 1; // Safety boundary
+                        if(fishData.length < 1) fishData.length = 1; 
                         
-                        // Cut the visual fish!
                         fishItemDOM.style.width = (fishData.length * 20) + 'px';
                         document.getElementById('fish-label').innerText = 'Fried Fish (' + fishData.length + ' cm)';
                         
-                        // Hide UI elements
                         trimUI.classList.add('hidden');
                         chopKnife.classList.add('hidden');
                         chopKnife.classList.remove('animate-chop');
@@ -1329,7 +1497,6 @@
                         lid.classList.remove('bento-lid-bounce');
                         hideFeedback();
                         
-                        // Snap back to board to force student to drag again
                         fishItemDOM.style.transition = 'all 0.5s ease-out';
                         fishItemDOM.style.left = fishData.origLeft;
                         fishItemDOM.style.top = fishData.origTop;
@@ -1337,10 +1504,10 @@
                         fishItemDOM.style.marginLeft = -(fishData.length * 20 / 2) + 'px';
                         
                         setTimeout(() => {
-                            fishItemDOM.style.transition = 'width 0.4s ease-out'; // reset transition to only width for future cuts
+                            fishItemDOM.style.transition = 'width 0.4s ease-out'; 
                         }, 500);
 
-                    }, 400); // sync with knife hit timeframe
+                    }, 400);
 
                 } else {
                     alert("Please enter a valid amount to trim!");
@@ -1520,12 +1687,379 @@
         }
 
         // ==========================================
+        // TAB 6: ARC SPLITTER
+        // ==========================================
+        let isArcSplitterInitialized = false;
+        function initArcSplitter() {
+            if (isArcSplitterInitialized) return;
+            isArcSplitterInitialized = true;
+
+            const canvas = document.getElementById('arcSplitterCanvas');
+            const ctx = canvas.getContext('2d');
+            let cx = 200, cy = 200, R = 130;
+            let angleA = 0; // 0 radians (right)
+            let angleB = -Math.PI / 3; // -60 deg
+            let draggingPoint = null;
+
+            function drawArcSplitter() {
+                ctx.clearRect(0, 0, 400, 400);
+
+                let start = Math.min(angleA, angleB);
+                let end = Math.max(angleA, angleB);
+                let diffRaw = end - start;
+                
+                // Normalise diff
+                let diff = diffRaw;
+                if (diff > Math.PI) diff = 2 * Math.PI - diff;
+
+                let isSemicircle = Math.abs(diff - Math.PI) < 0.05;
+
+                // Draw Base Circle Lightly
+                ctx.beginPath();
+                ctx.arc(cx, cy, R, 0, 2 * Math.PI);
+                ctx.strokeStyle = '#e2e8f0';
+                ctx.lineWidth = 4;
+                ctx.stroke();
+
+                if (isSemicircle) {
+                    // Semicircle (Purple)
+                    ctx.beginPath(); ctx.arc(cx, cy, R, start, end);
+                    ctx.strokeStyle = '#a855f7'; ctx.lineWidth = 8; ctx.stroke();
+                    ctx.beginPath(); ctx.arc(cx, cy, R, end, start + 2 * Math.PI);
+                    ctx.strokeStyle = '#d8b4fe'; ctx.lineWidth = 8; ctx.stroke(); // lighter purple for other half
+                    
+                    // Fill angle
+                    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, R, start, end); ctx.closePath();
+                    ctx.fillStyle = 'rgba(168, 85, 247, 0.1)'; ctx.fill();
+                    
+                    // Label
+                    drawLabel('Semicircle', start + Math.PI/2, '#a855f7');
+                } else {
+                    let minorStart, minorEnd, majorStart, majorEnd;
+                    if (diffRaw <= Math.PI) {
+                        minorStart = start; minorEnd = end;
+                        majorStart = end; majorEnd = start + 2 * Math.PI;
+                    } else {
+                        minorStart = end; minorEnd = start + 2 * Math.PI;
+                        majorStart = start; majorEnd = end;
+                    }
+
+                    // Minor Arc (Green)
+                    ctx.beginPath(); ctx.arc(cx, cy, R, minorStart, minorEnd);
+                    ctx.strokeStyle = '#10b981'; ctx.lineWidth = 8; ctx.stroke();
+                    
+                    // Major Arc (Orange)
+                    ctx.beginPath(); ctx.arc(cx, cy, R, majorStart, majorEnd);
+                    ctx.strokeStyle = '#f97316'; ctx.lineWidth = 8; ctx.stroke();
+
+                    // Fill Angle
+                    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, R, minorStart, minorEnd); ctx.closePath();
+                    ctx.fillStyle = 'rgba(16, 185, 129, 0.1)'; ctx.fill();
+
+                    // Labels
+                    drawLabel('Minor Arc', minorStart + (minorEnd - minorStart) / 2, '#10b981');
+                    drawLabel('Major Arc', majorStart + (majorEnd - majorStart) / 2, '#f97316');
+                }
+
+                // Draw Angle Lines
+                let ax = cx + R * Math.cos(angleA), ay = cy + R * Math.sin(angleA);
+                let bx = cx + R * Math.cos(angleB), by = cy + R * Math.sin(angleB);
+                
+                ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(ax, ay);
+                ctx.moveTo(cx, cy); ctx.lineTo(bx, by);
+                ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 3; ctx.stroke();
+
+                // Draw Points O, A, B
+                ctx.fillStyle = '#0f172a';
+                ctx.beginPath(); ctx.arc(cx, cy, 5, 0, Math.PI * 2); ctx.fill();
+                ctx.font = 'bold 16px sans-serif'; ctx.fillText('O', cx - 20, cy + 20);
+
+                ctx.fillStyle = '#3b82f6';
+                ctx.beginPath(); ctx.arc(ax, ay, 10, 0, Math.PI * 2); ctx.fill();
+                ctx.beginPath(); ctx.arc(bx, by, 10, 0, Math.PI * 2); ctx.fill();
+                
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 12px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+                ctx.fillText('A', ax, ay); ctx.fillText('B', bx, by);
+            }
+
+            function drawLabel(text, angle, color) {
+                let tx = cx + (R + 30) * Math.cos(angle);
+                let ty = cy + (R + 30) * Math.sin(angle);
+                ctx.fillStyle = color;
+                ctx.font = 'bold 14px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(text, tx, ty);
+            }
+
+            function getMousePos(e) {
+                const rect = canvas.getBoundingClientRect();
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                return {
+                    x: (clientX - rect.left) * (canvas.width / rect.width),
+                    y: (clientY - rect.top) * (canvas.height / rect.height)
+                };
+            }
+
+            function handleStart(e) {
+                let pos = getMousePos(e);
+                let ax = cx + R * Math.cos(angleA), ay = cy + R * Math.sin(angleA);
+                let bx = cx + R * Math.cos(angleB), by = cy + R * Math.sin(angleB);
+                
+                if (Math.hypot(pos.x - ax, pos.y - ay) < 30) draggingPoint = 'A';
+                else if (Math.hypot(pos.x - bx, pos.y - by) < 30) draggingPoint = 'B';
+                
+                if (draggingPoint && e.cancelable) e.preventDefault();
+            }
+
+            function handleMove(e) {
+                if (!draggingPoint) return;
+                if (e.cancelable) e.preventDefault();
+                let pos = getMousePos(e);
+                let ang = Math.atan2(pos.y - cy, pos.x - cx);
+                if (draggingPoint === 'A') angleA = ang;
+                if (draggingPoint === 'B') angleB = ang;
+                drawArcSplitter();
+            }
+
+            function handleEnd() { draggingPoint = null; }
+
+            canvas.addEventListener('mousedown', handleStart);
+            document.addEventListener('mousemove', handleMove);
+            document.addEventListener('mouseup', handleEnd);
+            canvas.addEventListener('touchstart', handleStart, {passive: false});
+            document.addEventListener('touchmove', handleMove, {passive: false});
+            document.addEventListener('touchend', handleEnd);
+
+            drawArcSplitter();
+        }
+
+        // ==========================================
+        // TAB 7: DYNAMIC PROTRACTOR
+        // ==========================================
+        let isProtractorInit = false;
+        function initProtractor() {
+            if (isProtractorInit) return;
+            isProtractorInit = true;
+
+            const canvas = document.getElementById('protractorCanvas');
+            const ctx = canvas.getContext('2d');
+            let cx = 180, cy = 180, R = 120;
+            let angleA = 0; // 0 = right
+            let angleB = -Math.PI / 2; // -90 deg
+            let draggingPoint = null;
+
+            function drawProtractor() {
+                ctx.clearRect(0, 0, 360, 360);
+
+                // Draw Protractor Overlay
+                for (let i = 0; i < 360; i += 5) {
+                    let r1 = i % 10 === 0 ? R - 15 : R - 5;
+                    let px1 = cx + r1 * Math.cos(i * Math.PI / 180);
+                    let py1 = cy + r1 * Math.sin(i * Math.PI / 180);
+                    let px2 = cx + R * Math.cos(i * Math.PI / 180);
+                    let py2 = cy + R * Math.sin(i * Math.PI / 180);
+                    
+                    ctx.beginPath(); ctx.moveTo(px1, py1); ctx.lineTo(px2, py2);
+                    ctx.strokeStyle = i % 10 === 0 ? 'rgba(0,0,0,0.5)' : 'rgba(0,0,0,0.2)';
+                    ctx.lineWidth = i % 10 === 0 ? 2 : 1;
+                    ctx.stroke();
+
+                    // Numbers every 30 deg
+                    if (i % 30 === 0) {
+                        let nx = cx + (R - 25) * Math.cos(i * Math.PI / 180);
+                        let ny = cy + (R - 25) * Math.sin(i * Math.PI / 180);
+                        ctx.fillStyle = 'rgba(0,0,0,0.6)';
+                        ctx.font = '10px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+                        // Adjust text for unit circle (0 is East, increasing counter-clockwise to match math)
+                        let displayAngle = (360 - i) % 360; 
+                        ctx.fillText(displayAngle + '°', nx, ny);
+                    }
+                }
+
+                // Outer Ring
+                ctx.beginPath(); ctx.arc(cx, cy, R, 0, 2 * Math.PI);
+                ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 2; ctx.stroke();
+
+                // Calculate angles
+                let aDeg = (Math.atan2(-Math.sin(angleA), Math.cos(angleA)) * 180 / Math.PI + 360) % 360;
+                let bDeg = (Math.atan2(-Math.sin(angleB), Math.cos(angleB)) * 180 / Math.PI + 360) % 360;
+                let diffDeg = Math.abs(aDeg - bDeg);
+                if (diffDeg > 180) diffDeg = 360 - diffDeg;
+                let centralAngle = Math.round(diffDeg);
+
+                // Update UI Panel
+                document.getElementById('pt-angle').innerText = centralAngle + '°';
+                document.getElementById('pt-minor').innerText = centralAngle + '°';
+                document.getElementById('pt-sub').innerText = centralAngle + '°';
+                document.getElementById('pt-major').innerText = (360 - centralAngle) + '°';
+
+                // Draw Angles
+                let start = Math.min(angleA, angleB);
+                let end = Math.max(angleA, angleB);
+                let diffRaw = end - start;
+                
+                let minorStart, minorEnd;
+                if (diffRaw <= Math.PI) {
+                    minorStart = start; minorEnd = end;
+                } else {
+                    minorStart = end; minorEnd = start + 2 * Math.PI;
+                }
+
+                ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, R, minorStart, minorEnd); ctx.closePath();
+                ctx.fillStyle = 'rgba(6, 182, 212, 0.2)'; ctx.fill();
+
+                // Lines
+                let ax = cx + R * Math.cos(angleA), ay = cy + R * Math.sin(angleA);
+                let bx = cx + R * Math.cos(angleB), by = cy + R * Math.sin(angleB);
+                
+                ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(ax, ay);
+                ctx.moveTo(cx, cy); ctx.lineTo(bx, by);
+                ctx.strokeStyle = '#06b6d4'; ctx.lineWidth = 3; ctx.stroke();
+
+                // Points
+                ctx.fillStyle = '#0f172a';
+                ctx.beginPath(); ctx.arc(cx, cy, 4, 0, Math.PI * 2); ctx.fill();
+                
+                ctx.fillStyle = '#06b6d4';
+                ctx.beginPath(); ctx.arc(ax, ay, 10, 0, Math.PI * 2); ctx.fill();
+                ctx.beginPath(); ctx.arc(bx, by, 10, 0, Math.PI * 2); ctx.fill();
+                
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 12px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+                ctx.fillText('A', ax, ay); ctx.fillText('B', bx, by);
+            }
+
+            function getMousePos(e) {
+                const rect = canvas.getBoundingClientRect();
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                return {
+                    x: (clientX - rect.left) * (canvas.width / rect.width),
+                    y: (clientY - rect.top) * (canvas.height / rect.height)
+                };
+            }
+
+            function handleStart(e) {
+                let pos = getMousePos(e);
+                let ax = cx + R * Math.cos(angleA), ay = cy + R * Math.sin(angleA);
+                let bx = cx + R * Math.cos(angleB), by = cy + R * Math.sin(angleB);
+                
+                if (Math.hypot(pos.x - ax, pos.y - ay) < 30) draggingPoint = 'A';
+                else if (Math.hypot(pos.x - bx, pos.y - by) < 30) draggingPoint = 'B';
+                
+                if (draggingPoint && e.cancelable) e.preventDefault();
+            }
+
+            function handleMove(e) {
+                if (!draggingPoint) return;
+                if (e.cancelable) e.preventDefault();
+                let pos = getMousePos(e);
+                let ang = Math.atan2(pos.y - cy, pos.x - cx);
+                if (draggingPoint === 'A') angleA = ang;
+                if (draggingPoint === 'B') angleB = ang;
+                drawProtractor();
+            }
+
+            function handleEnd() { draggingPoint = null; }
+
+            canvas.addEventListener('mousedown', handleStart);
+            document.addEventListener('mousemove', handleMove);
+            document.addEventListener('mouseup', handleEnd);
+            canvas.addEventListener('touchstart', handleStart, {passive: false});
+            document.addEventListener('touchmove', handleMove, {passive: false});
+            document.addEventListener('touchend', handleEnd);
+
+            drawProtractor();
+        }
+
+        // ==========================================
+        // TAB 8: CLIL QUICK-MATCH
+        // ==========================================
+        function initCLILMatch() {
+            let selectedWord = null;
+            let selectedCard = null;
+            const cards = document.querySelectorAll('.clil-card');
+            const zones = document.querySelectorAll('.clil-zone');
+
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    if (card.classList.contains('opacity-50')) return; // Already placed
+                    
+                    // Reset all borders
+                    cards.forEach(c => { if(!c.classList.contains('opacity-50')) c.classList.replace('ring-4', 'border-2'); c.classList.remove('ring-blue-300', 'bg-blue-50'); });
+                    
+                    // Highlight selected
+                    card.classList.replace('border-2', 'ring-4');
+                    card.classList.add('ring-blue-300', 'bg-blue-50');
+                    selectedCard = card;
+                    selectedWord = card.dataset.word;
+                });
+            });
+
+            zones.forEach(zone => {
+                zone.addEventListener('click', () => {
+                    if (!selectedWord) return; // No word selected
+
+                    if (zone.dataset.target === selectedWord) {
+                        // Success Match!
+                        zone.innerText = selectedWord;
+                        zone.classList.remove('border-dashed', 'border-slate-400', 'text-slate-500', 'hover:bg-slate-100');
+                        zone.classList.add('border-solid', 'border-green-500', 'bg-green-100', 'text-green-800', 'shadow-md');
+                        
+                        // Disable card
+                        selectedCard.classList.replace('ring-4', 'border-2');
+                        selectedCard.classList.remove('ring-blue-300', 'bg-blue-50', 'hover:border-blue-500', 'hover:bg-blue-50');
+                        selectedCard.classList.add('opacity-50', 'cursor-not-allowed', 'bg-slate-100');
+                        
+                        selectedWord = null;
+                        selectedCard = null;
+
+                        // Play Speech
+                        if ('speechSynthesis' in window) {
+                            const utterance = new SpeechSynthesisUtterance(zone.dataset.target);
+                            utterance.lang = 'en-GB';
+                            window.speechSynthesis.speak(utterance);
+                        }
+                    } else {
+                        // Wrong Match
+                        let originalText = zone.innerText;
+                        zone.classList.add('bg-red-100', 'border-red-500', 'text-red-600');
+                        zone.innerText = 'Try Again!';
+                        setTimeout(() => {
+                            zone.classList.remove('bg-red-100', 'border-red-500', 'text-red-600');
+                            zone.innerText = originalText;
+                        }, 1000);
+                    }
+                });
+            });
+        }
+
+        window.resetCLIL = function() {
+            document.querySelectorAll('.clil-card').forEach(card => {
+                card.className = "clil-card px-6 py-3 bg-white border-2 border-slate-300 rounded-xl font-bold shadow-sm transition hover:border-blue-500 hover:bg-blue-50 focus:outline-none";
+            });
+            document.querySelectorAll('.clil-zone').forEach(zone => {
+                zone.className = "clil-zone absolute w-fit px-3 py-1 border-2 border-dashed border-slate-400 bg-white/90 rounded flex items-center justify-center text-xs font-bold text-slate-500 cursor-pointer transition hover:bg-slate-100 shadow-sm";
+                zone.innerText = "Drop Here";
+                // Restore correct positioning based on target
+                let t = zone.dataset.target;
+                if(t==='Central Angle') zone.classList.add('top-[215px]', 'left-[215px]');
+                if(t==='Minor Arc') zone.classList.add('top-[60px]', 'left-[300px]');
+                if(t==='Major Arc') zone.classList.add('bottom-[40px]', 'left-[150px]');
+                if(t==='Semicircle') zone.classList.add('top-[90px]', 'left-[20px]');
+            });
+        }
+
+        // ==========================================
         // UNLOCK SHORTCUTS
         // ==========================================
         function unlockTheorem() {
             const lockScreen = document.getElementById('theorem-lock-screen');
             const theoremContent = document.getElementById('theorem-content');
-            if(lockScreen.classList.contains('hidden')) return; // Already unlocked
+            if(!lockScreen || lockScreen.classList.contains('hidden')) return; // Already unlocked
             lockScreen.style.opacity = '0'; lockScreen.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 lockScreen.classList.add('hidden'); theoremContent.classList.remove('hidden');
@@ -1538,7 +2072,7 @@
         function unlockPractice() {
             const lockScreen = document.getElementById('practice-lock-screen');
             const solutionContent = document.getElementById('practice-solution');
-            if(lockScreen.classList.contains('hidden')) return; // Already unlocked
+            if(!lockScreen || lockScreen.classList.contains('hidden')) return; // Already unlocked
             lockScreen.style.opacity = '0'; lockScreen.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 lockScreen.classList.add('hidden'); solutionContent.classList.remove('hidden');
