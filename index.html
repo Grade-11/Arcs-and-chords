@@ -488,7 +488,8 @@
                 </p>
                 <div class="mt-6 mb-2 flex justify-center">
                     <div class="bg-white px-8 py-4 rounded-xl shadow-sm border border-blue-100">
-                        <span class="font-bold text-2xl md:text-3xl text-indigo-700">$$BC < AB + AC < 2BC$$</span>
+                        <!-- FIX: escaped the less-than signs to avoid HTML parsing errors -->
+                        <span class="font-bold text-2xl md:text-3xl text-indigo-700">$$BC &lt; AB + AC &lt; 2BC$$</span>
                     </div>
                 </div>
             </div>
@@ -540,21 +541,21 @@
                     <div class="w-full md:w-2/3 space-y-4 text-gray-700">
                         <h4 class="font-bold text-gray-800 text-lg border-b pb-2">Step-by-step Proof:</h4>
                         <div class="space-y-3">
-                            <p><strong>1. Prove $BC < AB + AC$:</strong></p>
+                            <p><strong>1. Prove $BC &lt; AB + AC$:</strong></p>
                             <ul class="list-disc ml-5 space-y-1">
                                 <li>Consider $\triangle ABC$. Since $A$ is a point on the circle distinct from $B$ and $C$, they form a valid triangle.</li>
                                 <li>According to the <strong>Triangle Inequality Theorem</strong>, the sum of any two sides is always greater than the third side.</li>
-                                <li>Therefore, $AB + AC > BC$ (which means $BC < AB + AC$).</li>
+                                <li>Therefore, $AB + AC &gt; BC$ (which means $BC &lt; AB + AC$).</li>
                             </ul>
-                            <p class="mt-4"><strong>2. Prove $AB + AC < 2BC$:</strong></p>
+                            <p class="mt-4"><strong>2. Prove $AB + AC &lt; 2BC$:</strong></p>
                             <ul class="list-disc ml-5 space-y-1">
                                 <li>The diameter $BC$ is the <strong>longest chord</strong> in the circle.</li>
                                 <li>Since $A$ is distinct from $B$ and $C$, chords $AB$ and $AC$ are not diameters.</li>
-                                <li>Thus, $AB < BC$ and $AC < BC$.</li>
-                                <li>Adding these inequalities together: $AB + AC < BC + BC = 2BC$.</li>
+                                <li>Thus, $AB &lt; BC$ and $AC &lt; BC$.</li>
+                                <li>Adding these inequalities together: $AB + AC &lt; BC + BC = 2BC$.</li>
                             </ul>
                             <div class="mt-4 p-3 bg-indigo-50 border-l-4 border-indigo-500 rounded font-semibold text-indigo-800">
-                                Conclusion: Combining both parts, we get $BC < AB + AC < 2BC$.
+                                Conclusion: Combining both parts, we get $BC &lt; AB + AC &lt; 2BC$.
                             </div>
                         </div>
                     </div>
@@ -752,7 +753,7 @@
                 The Arc Splitter
             </h2>
             <p class="text-gray-700 mb-6">
-                Kéo thả các điểm <strong class="text-blue-600">A</strong> và <strong class="text-blue-600">B</strong> trên đường tròn để thay đổi góc ở tâm $\angle AOB$. Hãy quan sát sự thay đổi màu sắc và tên gọi của các cung tròn nhé!
+                Drag and drop points <strong class="text-blue-600">A</strong> and <strong class="text-blue-600">B</strong> on the circle to change the central angle $\angle AOB$. Observe the changes in color and the names of the arcs!
             </p>
 
             <div class="flex flex-col items-center mb-8">
@@ -761,9 +762,59 @@
                 </div>
                 
                 <div class="mt-6 flex flex-wrap justify-center gap-6">
-                    <div class="flex items-center"><span class="w-4 h-4 bg-emerald-500 rounded-full mr-2"></span> Minor Arc (Cung nhỏ)</div>
-                    <div class="flex items-center"><span class="w-4 h-4 bg-orange-500 rounded-full mr-2"></span> Major Arc (Cung lớn)</div>
-                    <div class="flex items-center"><span class="w-4 h-4 bg-purple-500 rounded-full mr-2"></span> Semicircle (Nửa đường tròn)</div>
+                    <div class="flex items-center"><span class="w-4 h-4 bg-emerald-500 rounded-full mr-2"></span> Minor Arc</div>
+                    <div class="flex items-center"><span class="w-4 h-4 bg-orange-500 rounded-full mr-2"></span> Major Arc</div>
+                    <div class="flex items-center"><span class="w-4 h-4 bg-purple-500 rounded-full mr-2"></span> Semicircle</div>
+                </div>
+            </div>
+
+            <!-- Key Vocabulary Tab 6 -->
+            <div class="mt-10 border-t border-gray-200 pt-6">
+                <h3 class="text-xl font-bold text-green-600 mb-4 flex items-center">
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                    Key Vocabulary (CLIL)
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Circle</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/ˈsɜː.kəl/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Tập hợp các điểm cách đều một điểm cho trước (gọi là tâm).</div>
+                    </div>
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Chord</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/kɔːd/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Đoạn thẳng nối hai điểm phân biệt nằm trên đường tròn.</div>
+                    </div>
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Diameter</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/daɪˈæm.ɪ.tə/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Dây cung đi qua tâm của đường tròn. Đây là dây cung lớn nhất.</div>
+                    </div>
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Central Angle</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/ˈsen.trəl ˈæŋ.ɡəl/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Góc có đỉnh trùng với tâm của đường tròn.</div>
+                    </div>
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Minor Arc</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/ˈmaɪ.nər ɑːk/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Cung có số đo nhỏ hơn 180° (nhỏ hơn nửa đường tròn).</div>
+                    </div>
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Major Arc</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/ˈmeɪ.dʒər ɑːk/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Cung có số đo lớn hơn 180° (lớn hơn nửa đường tròn).</div>
+                    </div>
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Semicircle</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/ˈsem.iˌsɜː.kəl/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Một nửa đường tròn (cung có số đo bằng 180°).</div>
+                    </div>
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Measure</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/ˈmeʒ.ər/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Số đo (của một góc hoặc cung tròn). <br><em>Example:</em> Measure of an arc</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -810,7 +861,57 @@
                     </div>
                     
                     <div class="p-4 bg-cyan-50 rounded-lg text-cyan-800 text-sm italic border border-cyan-200">
-                        * Nhận xét: Số đo của cung nhỏ luôn bằng số đo của góc ở tâm chắn cung đó!
+                        * Observation: The measure of a minor arc is always equal to the measure of its corresponding central angle!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Vocabulary Tab 7 -->
+            <div class="mt-10 border-t border-gray-200 pt-6">
+                <h3 class="text-xl font-bold text-green-600 mb-4 flex items-center">
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                    Key Vocabulary (CLIL)
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Circle</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/ˈsɜː.kəl/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Tập hợp các điểm cách đều một điểm cho trước (gọi là tâm).</div>
+                    </div>
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Chord</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/kɔːd/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Đoạn thẳng nối hai điểm phân biệt nằm trên đường tròn.</div>
+                    </div>
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Diameter</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/daɪˈæm.ɪ.tə/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Dây cung đi qua tâm của đường tròn. Đây là dây cung lớn nhất.</div>
+                    </div>
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Central Angle</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/ˈsen.trəl ˈæŋ.ɡəl/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Góc có đỉnh trùng với tâm của đường tròn.</div>
+                    </div>
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Minor Arc</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/ˈmaɪ.nər ɑːk/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Cung có số đo nhỏ hơn 180° (nhỏ hơn nửa đường tròn).</div>
+                    </div>
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Major Arc</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/ˈmeɪ.dʒər ɑːk/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Cung có số đo lớn hơn 180° (lớn hơn nửa đường tròn).</div>
+                    </div>
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Semicircle</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/ˈsem.iˌsɜː.kəl/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Một nửa đường tròn (cung có số đo bằng 180°).</div>
+                    </div>
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Measure</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/ˈmeʒ.ər/</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Số đo (của một góc hoặc cung tròn). <br><em>Example:</em> Measure of an arc</div>
                     </div>
                 </div>
             </div>
@@ -823,7 +924,7 @@
                 CLIL Quick-Match
             </h2>
             <p class="text-gray-700 mb-8 text-center">
-                Hãy click chọn một thẻ từ vựng bên dưới, sau đó click vào ô trống tương ứng trên hình vẽ. <br>Hệ thống sẽ phát âm từ vựng đó bằng giọng chuẩn Anh để giúp bạn luyện nghe!
+                Click to select a vocabulary card below, then click on the corresponding empty box on the diagram. <br>The system will pronounce the vocabulary word in a standard British accent to help you practice listening!
             </p>
 
             <!-- Draggable/Clickable Cards -->
@@ -960,6 +1061,7 @@
 
         function initDrawingCanvas() {
             const canvas = document.getElementById('drawingCanvas');
+            if (!canvas) return;
             const ctx = canvas.getContext('2d');
             const center = {x: 100, y: 100};
             const radius = 80;
@@ -1058,7 +1160,7 @@
 
         // ARCHERY GAME
         const archeryCanvas = document.getElementById('archeryCanvas');
-        const archeryCtx = archeryCanvas.getContext('2d');
+        const archeryCtx = archeryCanvas ? archeryCanvas.getContext('2d') : null;
         let gameScore = 0, arrowsLeft = 5, isDraggingBow = false, isFlying = false;
         const bow = { x: 150, y: 200, pullX: 150, pullY: 200 };
         let arrow = { x: 150, y: 200, vx: 0, vy: 0, angle: 0 };
@@ -1066,6 +1168,7 @@
         let hitMsg = { text: '', alpha: 0, x: 0, y: 0, color: '#eab308' };
 
         function drawTarget() {
+            if(!archeryCtx) return;
             archeryCtx.save();
             archeryCtx.translate(target.x, target.y);
             archeryCtx.fillStyle = '#8B4513'; archeryCtx.fillRect(-5, 60, 10, 140);
@@ -1080,6 +1183,7 @@
         }
 
         function drawBow() {
+            if(!archeryCtx) return;
             archeryCtx.save();
             archeryCtx.strokeStyle = '#b45309'; archeryCtx.lineWidth = 6; archeryCtx.lineCap = 'round';
             archeryCtx.beginPath(); archeryCtx.moveTo(bow.x, bow.y - 80);
@@ -1091,6 +1195,7 @@
         }
 
         function drawArrow() {
+            if(!archeryCtx) return;
             if (arrowsLeft <= 0 && !isFlying) return;
             archeryCtx.save();
             archeryCtx.translate(arrow.x, arrow.y); archeryCtx.rotate(arrow.angle);
@@ -1162,6 +1267,7 @@
         }
 
         function gameLoop() {
+            if(!archeryCtx) return;
             archeryCtx.clearRect(0, 0, archeryCanvas.width, archeryCanvas.height);
             drawTarget();
             if (isFlying) {
@@ -1197,13 +1303,15 @@
             requestAnimationFrame(gameLoop);
         }
         
-        archeryCanvas.addEventListener('mousedown', handleStartArchery);
-        archeryCanvas.addEventListener('mousemove', handleMoveArchery);
-        window.addEventListener('mouseup', handleEndArchery);
-        archeryCanvas.addEventListener('touchstart', handleStartArchery, {passive: false});
-        archeryCanvas.addEventListener('touchmove', handleMoveArchery, {passive: false});
-        window.addEventListener('touchend', handleEndArchery);
-        gameLoop();
+        if (archeryCanvas) {
+            archeryCanvas.addEventListener('mousedown', handleStartArchery);
+            archeryCanvas.addEventListener('mousemove', handleMoveArchery);
+            window.addEventListener('mouseup', handleEndArchery);
+            archeryCanvas.addEventListener('touchstart', handleStartArchery, {passive: false});
+            archeryCanvas.addEventListener('touchmove', handleMoveArchery, {passive: false});
+            window.addEventListener('touchend', handleEndArchery);
+            gameLoop();
+        }
 
         // ==========================================
         // TAB 2: DYNAMIC CHORD SIMULATION
@@ -1215,6 +1323,7 @@
             isSimCanvasInitialized = true;
 
             const canvas = document.getElementById('chordSimCanvas');
+            if(!canvas) return;
             const ctx = canvas.getContext('2d');
             const distDisplay = document.getElementById('sim-distance');
             const lenDisplay = document.getElementById('sim-length');
@@ -1307,6 +1416,8 @@
             isBentoGameInitialized = true;
 
             const kitchenArea = document.getElementById('kitchen-area');
+            if(!kitchenArea) return;
+
             const bentoBox = document.getElementById('bento-box');
             const lid = document.getElementById('bento-lid');
             const feedback = document.getElementById('bento-feedback');
@@ -1526,6 +1637,7 @@
             isRadarInitialized = true;
 
             const canvas = document.getElementById('radarCanvas');
+            if(!canvas) return;
             const ctx = canvas.getContext('2d');
             const feedback = document.getElementById('radar-feedback');
 
@@ -1695,6 +1807,7 @@
             isArcSplitterInitialized = true;
 
             const canvas = document.getElementById('arcSplitterCanvas');
+            if(!canvas) return;
             const ctx = canvas.getContext('2d');
             let cx = 200, cy = 200, R = 130;
             let angleA = 0; // 0 radians (right)
@@ -1845,6 +1958,7 @@
             isProtractorInit = true;
 
             const canvas = document.getElementById('protractorCanvas');
+            if(!canvas) return;
             const ctx = canvas.getContext('2d');
             let cx = 180, cy = 180, R = 120;
             let angleA = 0; // 0 = right
