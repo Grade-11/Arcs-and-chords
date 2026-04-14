@@ -416,7 +416,6 @@
                 <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 20px 20px;"></div>
                 <div class="relative z-10 flex flex-col items-center justify-center py-4">
                     <button id="btn-unlock-theorem" class="mb-4 p-4 bg-slate-700 rounded-full cursor-pointer relative overflow-hidden group select-none" style="touch-action: none;">
-                        <div class="hold-progress absolute bottom-0 left-0 right-0 bg-amber-500 h-0 transition-all ease-linear" style="opacity: 0.5;"></div>
                         <svg class="w-10 h-10 text-amber-400 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                     </button>
                     <h4 class="text-xl font-bold mb-2">The Theorem is Locked</h4>
@@ -1577,7 +1576,7 @@
             }, 500);
         }
 
-        // Long Press Logic (5 seconds)
+        // Long Press Logic (5 seconds) for Task 2
         function setupLongPressUnlock(btnId, unlockFn) {
             const btn = document.getElementById(btnId);
             if (!btn) return;
@@ -1586,7 +1585,7 @@
             const progressDiv = btn.querySelector('.hold-progress');
 
             const startHold = (e) => {
-                if(e.cancelable) e.preventDefault();
+                if(e.cancelable && e.type !== 'mousedown') e.preventDefault();
                 if (progressDiv) {
                     progressDiv.style.transitionDuration = holdDuration + 'ms';
                     progressDiv.style.height = '100%';
@@ -1605,19 +1604,40 @@
                 }
             };
 
-            // Mouse events
             btn.addEventListener('mousedown', startHold);
             btn.addEventListener('mouseup', cancelHold);
             btn.addEventListener('mouseleave', cancelHold);
-            // Touch events
             btn.addEventListener('touchstart', startHold, {passive: false});
             btn.addEventListener('touchend', cancelHold);
             btn.addEventListener('touchcancel', cancelHold);
         }
 
-        // Initialize Long Press Buttons
-        setupLongPressUnlock('btn-unlock-task2', unlockTask2);
-        setupLongPressUnlock('btn-unlock-theorem', unlockTheorem);
+        // Multi-click Logic (e.g., 5 rapid clicks) for Theorem
+        function setupMultiClickUnlock(btnId, unlockFn, requiredClicks = 5, timeWindow = 2000) {
+            const btn = document.getElementById(btnId);
+            if (!btn) return;
+            let clickCount = 0;
+            let timer;
+
+            btn.addEventListener('click', (e) => {
+                clickCount++;
+                if (clickCount === 1) {
+                    timer = setTimeout(() => {
+                        clickCount = 0; // Reset if time runs out
+                    }, timeWindow);
+                }
+                
+                if (clickCount >= requiredClicks) {
+                    clearTimeout(timer);
+                    clickCount = 0;
+                    unlockFn();
+                }
+            });
+        }
+
+        // Initialize Unlocks
+        setupLongPressUnlock('btn-unlock-task2', unlockTask2); // Task 2: 5s hold
+        setupMultiClickUnlock('btn-unlock-theorem', unlockTheorem, 5, 2000); // Theorem: 5 rapid clicks within 2 seconds
 
         // Keyboard Shortcut Listeners
         document.addEventListener('keydown', function(e) {
