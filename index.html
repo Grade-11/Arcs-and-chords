@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Circles: Chords, Arcs, and Central Angles</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Add MathJax to display standard LaTeX math formulas -->
     <script>
       MathJax = {
         tex: {
@@ -16,7 +14,6 @@
       };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-    
     <style>
         .tab-content {
             display: none;
@@ -40,7 +37,6 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
-        /* Bento Minigame Styles */
         .kitchen-bg {
             background-color: #d4a373;
             background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 2px, transparent 2px, transparent 10px);
@@ -77,12 +73,26 @@
         .food-item:active {
             cursor: grabbing;
         }
+
+        .worksheet-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+        .worksheet-scroll::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 8px;
+        }
+        .worksheet-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 8px;
+        }
+        .worksheet-scroll::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
     </style>
 </head>
-
 <body class="bg-gray-50 text-gray-800 font-sans antialiased">
 
-    <div class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
+    <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
         <!-- Header -->
         <header class="text-center mb-8">
             <h1 class="text-3xl sm:text-4xl font-bold text-blue-700 mb-2">Circles and Their Elements</h1>
@@ -695,68 +705,146 @@
         </div>
 
         <!-- TAB 5: RADAR SCANNER (Central Angles & Arcs) -->
-        <div id="tab5" class="tab-content bg-white rounded-xl shadow-sm p-6 sm:p-8 border border-gray-100">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-                <span class="bg-emerald-100 text-emerald-700 p-2 rounded-lg mr-3">📡</span>
-                Radar Scanner
-            </h2>
-            <p class="text-gray-700 mb-8">
-                Alert! An unidentified anomaly has been detected on the perimeter. Drag the scanning ray to match the red flashing alarm zone to lock onto the target.
-            </p>
-
-            <div class="flex flex-col md:flex-row gap-8 items-center mb-8">
-                <!-- Radar Canvas -->
-                <div class="w-full md:w-1/2 flex justify-center">
-                    <div class="relative w-[320px] h-[320px] rounded-full bg-slate-900 border-8 border-slate-800 shadow-2xl overflow-hidden shadow-emerald-900/50">
-                        <canvas id="radarCanvas" width="400" height="400" class="w-full h-full cursor-crosshair touch-none"></canvas>
-                        <!-- Success Feedback -->
-                        <div id="radar-feedback" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-emerald-400 font-mono font-bold text-xl text-center hidden pointer-events-none drop-shadow-[0_0_8px_rgba(52,211,153,0.8)]">
-                            TARGET<br>LOCKED
-                        </div>
+        <div id="tab5" class="tab-content bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <!-- 60/40 Split Layout -->
+            <div class="flex flex-col lg:flex-row h-[850px] lg:h-[650px]">
+                
+                <!-- LEFT PANEL: Radar Workspace (60%) -->
+                <div class="w-full lg:w-3/5 bg-slate-900 relative p-4 flex flex-col items-center justify-center shadow-inner h-[350px] lg:h-full touch-none select-none">
+                    <h2 class="absolute top-4 left-4 text-emerald-400 font-mono text-xl md:text-2xl font-bold flex items-center z-10 drop-shadow-md">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                        RADAR WORKSPACE
+                    </h2>
+                    <p class="absolute bottom-4 left-0 w-full text-center text-slate-400 font-mono text-sm pointer-events-none z-10">Drag the scanning beam counter-clockwise</p>
+                    
+                    <div class="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px]">
+                        <canvas id="radarCanvas" width="500" height="500" class="w-full h-full cursor-crosshair rounded-full border border-slate-700 shadow-[0_0_30px_rgba(16,185,129,0.15)]"></canvas>
                     </div>
                 </div>
 
-                <!-- Discussion / Warm-up Ideas -->
-                <div class="w-full md:w-1/2 space-y-6">
-                    <div class="bg-emerald-50 rounded-xl p-6 border-l-4 border-emerald-500 shadow-sm">
-                        <h3 class="text-xl font-bold text-emerald-800 mb-4 flex items-center">
-                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            Think About It...
-                        </h3>
-                        <div class="text-gray-700 space-y-4 text-lg">
-                            <ul class="list-disc ml-5 space-y-2 font-medium">
-                                <li>Where is the <strong>vertex</strong> of the angle you just made with the radar scanner?</li>
-                                <li>What shape does the highlighted <strong>target zone</strong> on the edge have?</li>
-                            </ul>
-                            <div class="mt-6 p-4 bg-white rounded-lg border border-emerald-200 shadow-sm italic text-emerald-800">
-                                "The angle at the centre and the curve it creates on the edge are fundamental geometric pairs. Today, we will give them their proper mathematical names."
+                <!-- RIGHT PANEL: Digital Worksheet (40%) -->
+                <div class="w-full lg:w-2/5 bg-white flex flex-col border-t lg:border-t-0 lg:border-l border-gray-200 h-[500px] lg:h-full">
+                    <div class="bg-indigo-50 border-b border-indigo-100 p-4 shrink-0">
+                        <h2 class="text-xl font-bold text-indigo-800 flex items-center">
+                            <span class="bg-indigo-200 text-indigo-700 p-1.5 rounded-lg mr-2">📋</span>
+                            Digital Worksheet
+                        </h2>
+                    </div>
+                    
+                    <!-- Form Container with custom scroll -->
+                    <div class="flex-1 overflow-y-auto p-5 md:p-6 worksheet-scroll bg-gray-50 relative">
+                        <!-- Success Overlay (Hidden initially) -->
+                        <div id="worksheet-success" class="hidden absolute inset-0 bg-white/90 backdrop-blur-sm z-20 flex flex-col items-center justify-center p-6 text-center transition-all duration-300">
+                            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-4 shadow-inner">
+                                <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                             </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Submitted Successfully!</h3>
+                            <p class="text-gray-600 mb-6">Your teacher will receive your answers. Great job!</p>
+                            <button type="button" onclick="document.getElementById('worksheet-success').classList.add('hidden')" class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium transition">Review My Answers</button>
                         </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Key Vocabulary Tab 5 -->
-            <div class="mt-8 border-t border-gray-200 pt-6">
-                <h3 class="text-xl font-bold text-green-600 mb-4 flex items-center">
-                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
-                    Key Vocabulary (CLIL)
-                </h3>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
-                        <div class="text-lg font-bold text-green-800">Circle</div>
-                        <div class="text-sm text-gray-500 font-mono mb-1">/ˈsɜː.kəl/</div>
-                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Tập hợp các điểm cách đều một điểm cho trước (gọi là tâm).</div>
-                    </div>
-                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
-                        <div class="text-lg font-bold text-green-800">Chord</div>
-                        <div class="text-sm text-gray-500 font-mono mb-1">/kɔːd/</div>
-                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Đoạn thẳng nối hai điểm phân biệt nằm trên đường tròn.</div>
-                    </div>
-                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
-                        <div class="text-lg font-bold text-green-800">Diameter</div>
-                        <div class="text-sm text-gray-500 font-mono mb-1">/daɪˈæm.ɪ.tə/</div>
-                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> Dây cung đi qua tâm của đường tròn. Đây là dây cung lớn nhất.</div>
+                        <!-- Form mapped with names for Google Apps Script -->
+                        <form id="radar-worksheet" class="gscript-form space-y-6" onsubmit="submitRadarWorksheet(event)">
+                            
+                            <!-- Student Info -->
+                            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+                                <p class="font-medium text-gray-800 mb-2">
+                                    Student Name / ID <span class="text-red-500">*</span>
+                                </p>
+                                <input type="text" name="student_name" required class="w-full border border-gray-300 rounded-lg p-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-gray-700" placeholder="Enter your full name...">
+                            </div>
+
+                            <!-- Question 1 -->
+                            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+                                <p class="font-medium text-gray-800 mb-3">
+                                    <span class="bg-indigo-100 text-indigo-800 rounded px-2 py-0.5 text-sm mr-1">Q1</span>
+                                    Drag the scanning beam to form an angle of about $60^\circ$. Which terms appear on the radar screen? (Select all that apply)
+                                </p>
+                                <div class="space-y-2 ml-1">
+                                    <label class="flex items-center cursor-pointer group">
+                                        <input type="checkbox" name="q1_central_angle" value="yes" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 cursor-pointer">
+                                        <span class="ml-3 text-gray-700 group-hover:text-indigo-600 transition">Central angle</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer group">
+                                        <input type="checkbox" name="q1_semicircle" value="yes" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 cursor-pointer">
+                                        <span class="ml-3 text-gray-700 group-hover:text-indigo-600 transition">Semicircle</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer group">
+                                        <input type="checkbox" name="q1_minor_arc" value="yes" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 cursor-pointer">
+                                        <span class="ml-3 text-gray-700 group-hover:text-indigo-600 transition">Minor arc</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer group">
+                                        <input type="checkbox" name="q1_major_arc" value="yes" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 cursor-pointer">
+                                        <span class="ml-3 text-gray-700 group-hover:text-indigo-600 transition">Major arc</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Question 2 -->
+                            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+                                <p class="font-medium text-gray-800 mb-3 leading-relaxed">
+                                    <span class="bg-indigo-100 text-indigo-800 rounded px-2 py-0.5 text-sm mr-1">Q2</span>
+                                    Observe the green highlighted area. The central angle intercepts a portion of the circle's curve. That portion of the curve is called a 
+                                    <input type="text" name="q2_answer" required class="mx-2 w-32 border-b-2 border-gray-300 focus:border-indigo-500 outline-none px-1 text-center text-indigo-700 font-semibold bg-transparent" placeholder="type word...">.
+                                </p>
+                            </div>
+
+                            <!-- Question 3 -->
+                            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 space-y-4">
+                                <p class="font-medium text-gray-800 mb-2">
+                                    <span class="bg-emerald-100 text-emerald-800 rounded px-2 py-0.5 text-sm mr-1">Q3</span>
+                                    Change the measure of the central angle and note the conditions for the appearance of each type of arc:
+                                </p>
+                                
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-emerald-50 rounded-lg border border-emerald-100">
+                                    <span class="font-semibold text-emerald-800 mb-2 sm:mb-0">Minor Arc appears when the central angle is:</span>
+                                    <select name="q3_minor" required class="border border-emerald-300 rounded p-1.5 text-gray-700 focus:ring-emerald-500 focus:border-emerald-500 outline-none shadow-sm cursor-pointer">
+                                        <option value="">-- Select measure --</option>
+                                        <option value="<180">&lt; 180&deg;</option>
+                                        <option value="=180">= 180&deg;</option>
+                                        <option value=">180">&gt; 180&deg;</option>
+                                    </select>
+                                </div>
+
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                                    <span class="font-semibold text-yellow-800 mb-2 sm:mb-0">Semicircle appears when the central angle is:</span>
+                                    <select name="q3_semi" required class="border border-yellow-300 rounded p-1.5 text-gray-700 focus:ring-yellow-500 focus:border-yellow-500 outline-none shadow-sm cursor-pointer">
+                                        <option value="">-- Select measure --</option>
+                                        <option value="<180">&lt; 180&deg;</option>
+                                        <option value="=180">= 180&deg;</option>
+                                        <option value=">180">&gt; 180&deg;</option>
+                                    </select>
+                                </div>
+
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-red-50 rounded-lg border border-red-100">
+                                    <span class="font-semibold text-red-800 mb-2 sm:mb-0">Major Arc is the remaining part of the curve, which is:</span>
+                                    <select name="q3_major" required class="border border-red-300 rounded p-1.5 text-gray-700 focus:ring-red-500 focus:border-red-500 outline-none shadow-sm cursor-pointer">
+                                        <option value="">-- Select condition --</option>
+                                        <option value="larger_than_half">Larger than a semicircle</option>
+                                        <option value="smaller_than_half">Smaller than a semicircle</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Question 4 -->
+                            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+                                <p class="font-medium text-gray-800 mb-3">
+                                    <span class="bg-amber-100 text-amber-800 rounded px-2 py-0.5 text-sm mr-1">Q4</span>
+                                    Based on your interaction with the model, briefly explain the difference between a "Minor arc" and a "Major arc".
+                                </p>
+                                <textarea name="q4_explanation" rows="4" required class="w-full border border-gray-300 rounded-lg p-3 text-gray-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none shadow-inner resize-none" placeholder="Type your answer here..."></textarea>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="pt-4 pb-8">
+                                <button type="submit" class="w-full py-4 px-6 bg-indigo-600 hover:bg-indigo-700 text-white text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 flex justify-center items-center">
+                                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                                    Submit Answers
+                                </button>
+                                <p class="text-xs text-center text-gray-400 mt-3">Data will be securely sent to your teacher's system.</p>
+                            </div>
+
+                        </form>
                     </div>
                 </div>
             </div>
@@ -1421,16 +1509,15 @@
                     }, 400); // sync with knife hit timeframe
 
                 } else {
-                    showFeedback("Please enter a valid amount to trim!", 'error');
+                    showFeedback("Please enter a valid amount to trim!", "error");
                 }
             });
         }
 
         // ==========================================
-        // TAB 5: RADAR SCANNER
+        // TAB 5: RADAR SCANNER & WORKSHEET (COUNTER-CLOCKWISE)
         // ==========================================
         let isRadarInitialized = false;
-        let radarAnimId;
 
         function initRadarScanner() {
             if (isRadarInitialized) return;
@@ -1438,149 +1525,271 @@
 
             const canvas = document.getElementById('radarCanvas');
             const ctx = canvas.getContext('2d');
-            const feedback = document.getElementById('radar-feedback');
-
-            let cx = 200, cy = 200, R = 140;
-            let targetAngle = 72; // degrees
-            let currentAngle = 15; // degrees
+            
+            // Adjust canvas dimensions accurately for crisp rendering
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = 500; 
+            canvas.height = 500;
+            
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+            const R = 180; // Main circle radius
+            
+            let currentAngle = 45; // Start at 45 degrees
             let isDragging = false;
-            let isLocked = false;
 
-            function getAngle(x, y) {
+            // Mathematical angles: 0 is Right (3 o'clock). 
+            // Inverted Y axis logic applies to create a counter-clockwise drag.
+
+            function getAngle(clientX, clientY) {
+                const canvasRect = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / canvasRect.width;
+                const scaleY = canvas.height / canvasRect.height;
+                
+                const x = (clientX - canvasRect.left) * scaleX;
+                const y = (clientY - canvasRect.top) * scaleY;
+                
                 let dx = x - cx;
                 let dy = y - cy;
-                let ang = Math.atan2(dy, dx) * 180 / Math.PI;
-                if (ang < 0) ang += 360;
+                
+                // Use -dy to invert canvas Y-axis, creating Counter-Clockwise angle mapping
+                let ang = Math.atan2(-dy, dx) * 180 / Math.PI;
+                if (ang < 0) ang += 360; // Normalize to [0, 360)
+                
+                // Add Snapping for crisp values at quadrants
+                if (Math.abs(ang - 180) < 6) ang = 180;
+                if (ang < 6 || ang > 354) ang = 0;
+                if (Math.abs(ang - 90) < 4) ang = 90;
+                if (Math.abs(ang - 270) < 4) ang = 270;
+
                 return ang;
             }
 
             function drawRadar() {
-                ctx.clearRect(0, 0, 400, 400);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                // Background Grid
-                ctx.strokeStyle = 'rgba(16, 185, 129, 0.2)';
+                // 1. Draw Background Grid & Faded circles
+                ctx.strokeStyle = 'rgba(148, 163, 184, 0.15)'; // Slate 400 with opacity
                 ctx.lineWidth = 1;
                 ctx.beginPath();
                 ctx.arc(cx, cy, R * 0.33, 0, Math.PI * 2);
                 ctx.arc(cx, cy, R * 0.66, 0, Math.PI * 2);
+                ctx.stroke();
+
+                // Crosshairs
+                ctx.beginPath();
+                ctx.moveTo(cx - R - 20, cy); ctx.lineTo(cx + R + 20, cy);
+                ctx.moveTo(cx, cy - R - 20); ctx.lineTo(cx, cy + R + 20);
+                ctx.stroke();
+
+                // Base Circle outline
+                ctx.strokeStyle = 'rgba(148, 163, 184, 0.4)';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
                 ctx.arc(cx, cy, R, 0, Math.PI * 2);
                 ctx.stroke();
 
-                ctx.beginPath();
-                ctx.moveTo(cx - R, cy); ctx.lineTo(cx + R, cy);
-                ctx.moveTo(cx, cy - R); ctx.lineTo(cx, cy + R);
-                ctx.stroke();
+                // 2. Determine State based on Angle
+                let A = Math.round(currentAngle);
+                if(A === 360) A = 0;
 
-                // Target Arc (Flashing Red)
-                if (!isLocked) {
-                    let flash = Math.sin(Date.now() / 150) * 0.5 + 0.5; // 0 to 1
-                    ctx.strokeStyle = `rgba(239, 68, 68, ${0.4 + flash * 0.6})`;
-                    ctx.lineWidth = 8;
-                    ctx.setLineDash([10, 10]);
-                    ctx.beginPath();
-                    ctx.arc(cx, cy, R, 0, targetAngle * Math.PI / 180);
-                    ctx.stroke();
-                    ctx.setLineDash([]);
+                let fillColor = '';
+                let arc1Color = '', arc2Color = '';
+                let label1 = '', label2 = '';
+
+                if (A === 180) {
+                    // Semicircle State
+                    fillColor = 'rgba(234, 179, 8, 0.2)'; // Yellow
+                    arc1Color = '#eab308'; // Top half
+                    arc2Color = '#eab308'; // Bottom half
+                    label1 = 'Semicircle';
+                    label2 = 'Semicircle';
+                } else if (A > 0 && A < 180) {
+                    // State 1: Swept is Minor (Top quadrants)
+                    fillColor = 'rgba(16, 185, 129, 0.2)'; // Green
+                    arc1Color = '#10b981'; // Swept arc (Green)
+                    arc2Color = '#ef4444'; // Remaining arc (Red)
+                    label1 = 'Minor Arc';
+                    label2 = 'Major Arc';
+                } else if (A > 180 && A < 360) {
+                    // State 3: Swept is Major (Bottom quadrants)
+                    fillColor = 'rgba(239, 68, 68, 0.15)'; // Red
+                    arc1Color = '#ef4444'; // Swept arc (Red)
+                    arc2Color = '#10b981'; // Remaining arc (Green)
+                    label1 = 'Major Arc';
+                    label2 = 'Minor Arc';
+                } else if (A === 0) {
+                    // Flat line, no angle
+                    arc2Color = '#10b981'; // Full circle
+                    label2 = 'Full Circle';
                 }
 
-                // Radar Sweep Area
-                ctx.fillStyle = isLocked ? 'rgba(52, 211, 153, 0.5)' : 'rgba(52, 211, 153, 0.2)';
-                ctx.beginPath();
-                ctx.moveTo(cx, cy);
-                ctx.arc(cx, cy, R, 0, currentAngle * Math.PI / 180);
-                ctx.closePath();
-                ctx.fill();
+                // Note: Since we are visualizing Counter-Clockwise, we map Math angles back to Canvas drawing coordinates using (-A)
+                
+                // 3. Draw Swept Area Fill (Counter-Clockwise)
+                if (A !== 0) {
+                    ctx.fillStyle = fillColor;
+                    ctx.beginPath();
+                    ctx.moveTo(cx, cy);
+                    // Draw from 0 to -A (which visually traces CCW on screen)
+                    ctx.arc(cx, cy, R, 0, -A * Math.PI / 180, true);
+                    ctx.closePath();
+                    ctx.fill();
+                }
 
-                // Perimeter Highlight
-                ctx.strokeStyle = isLocked ? '#34d399' : '#10b981';
-                ctx.lineWidth = 6;
-                ctx.beginPath();
-                ctx.arc(cx, cy, R, 0, currentAngle * Math.PI / 180);
-                ctx.stroke();
+                // 4. Draw Thick Arc Lines
+                if (A !== 0) {
+                    // Arc 1 (Swept Arc CCW)
+                    ctx.strokeStyle = arc1Color;
+                    ctx.lineWidth = 6;
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, R, 0, -A * Math.PI / 180, true);
+                    ctx.stroke();
 
-                // Fixed Base Ray
-                ctx.strokeStyle = '#34d399';
-                ctx.lineWidth = 3;
+                    // Arc 2 (Remaining Arc CW)
+                    ctx.strokeStyle = arc2Color;
+                    ctx.lineWidth = 4;
+                    ctx.setLineDash([8, 8]); // Dashed line for remaining
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, R, -A * Math.PI / 180, 0, false);
+                    ctx.stroke();
+                    ctx.setLineDash([]); // Reset
+                } else {
+                    // Draw full circle dashed if A=0
+                    ctx.strokeStyle = arc2Color;
+                    ctx.lineWidth = 4;
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, R, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+
+                // Helper to draw text along arc mapping Math angle back to Canvas visual angle
+                function drawArcLabel(text, mathAngleDegrees, color, offsetRadius = 30) {
+                    if(!text) return;
+                    // Invert angle back to Canvas drawing space
+                    const canvasAngleRad = -mathAngleDegrees * Math.PI / 180;
+                    const tx = cx + (R + offsetRadius) * Math.cos(canvasAngleRad);
+                    const ty = cy + (R + offsetRadius) * Math.sin(canvasAngleRad);
+                    
+                    ctx.fillStyle = color;
+                    ctx.font = 'bold 16px sans-serif';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    
+                    ctx.shadowColor = '#0f172a';
+                    ctx.shadowBlur = 4;
+                    ctx.fillText(text, tx, ty);
+                    ctx.shadowBlur = 0; // Reset
+                }
+
+                // 5. Draw Text Labels for Arcs using Math logical angles
+                if (A === 180) {
+                    drawArcLabel(label1, 90, arc1Color); // Top half in math -> Canvas top
+                    drawArcLabel(label2, 270, arc2Color); // Bottom half in math -> Canvas bottom
+                } else if (A > 0 && A < 360) {
+                    drawArcLabel(label1, A / 2, arc1Color); // Midpoint of swept
+                    drawArcLabel(label2, A + (360 - A) / 2, arc2Color); // Midpoint of remaining
+                }
+
+                // 6. Draw Radii (Rays)
+                // Base Ray (0 degrees)
+                ctx.strokeStyle = '#94a3b8';
+                ctx.lineWidth = 4;
                 ctx.beginPath();
                 ctx.moveTo(cx, cy);
                 ctx.lineTo(cx + R, cy);
                 ctx.stroke();
 
-                // Scanning Ray
-                let scanX = cx + R * Math.cos(currentAngle * Math.PI / 180);
-                let scanY = cy + R * Math.sin(currentAngle * Math.PI / 180);
+                // Moving Ray (Mapped to Canvas inverted Y)
+                let scanX = cx + R * Math.cos(-A * Math.PI / 180);
+                let scanY = cy + R * Math.sin(-A * Math.PI / 180);
+                
+                ctx.strokeStyle = '#38bdf8'; // Light blue
+                ctx.lineWidth = 4;
                 ctx.beginPath();
                 ctx.moveTo(cx, cy);
                 ctx.lineTo(scanX, scanY);
                 ctx.stroke();
 
-                // Handle
-                ctx.fillStyle = isLocked ? '#10b981' : '#fff';
-                ctx.beginPath();
-                ctx.arc(scanX, scanY, 8, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.strokeStyle = '#047857';
-                ctx.lineWidth = 2;
-                ctx.stroke();
+                // 7. Draw Central Angle Indicator & Label
+                if (A !== 0) {
+                    const innerR = 40;
+                    ctx.strokeStyle = '#f8fafc';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, innerR, 0, -A * Math.PI / 180, true);
+                    ctx.stroke();
 
-                // Center Point
+                    // Central Angle Text (Mapped)
+                    const textAngleCanvasRad = -(A / 2) * Math.PI / 180;
+                    const textX = cx + (innerR + 25) * Math.cos(textAngleCanvasRad);
+                    const textY = cy + (innerR + 25) * Math.sin(textAngleCanvasRad);
+                    
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                    const textWidth = ctx.measureText(`Central Angle: ${A}°`).width + 20;
+                    ctx.beginPath();
+                    ctx.roundRect(textX - textWidth/2, textY - 12, textWidth, 24, 12);
+                    ctx.fill();
+
+                    ctx.fillStyle = '#0f172a';
+                    ctx.font = 'bold 14px monospace';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(`Central Angle: ${A}°`, textX, textY);
+                }
+
+                // 8. Draw Handle (Interactive Dot)
+                ctx.fillStyle = '#38bdf8';
+                ctx.beginPath();
+                ctx.arc(scanX, scanY, 12, 0, Math.PI * 2);
+                ctx.fill();
                 ctx.fillStyle = '#fff';
                 ctx.beginPath();
-                ctx.arc(cx, cy, 4, 0, Math.PI * 2);
+                ctx.arc(scanX, scanY, 6, 0, Math.PI * 2);
                 ctx.fill();
 
-                radarAnimId = requestAnimationFrame(drawRadar);
-            }
+                // Center Point
+                ctx.fillStyle = '#e2e8f0';
+                ctx.beginPath();
+                ctx.arc(cx, cy, 6, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = '#fff';
+                ctx.font = 'bold 14px sans-serif';
+                ctx.textAlign = 'right';
+                ctx.fillText('Center', cx - 12, cy + 4);
 
-            function getMousePos(e) {
-                const rect = canvas.getBoundingClientRect();
-                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-                return {
-                    x: (clientX - rect.left) * (canvas.width / rect.width),
-                    y: (clientY - rect.top) * (canvas.height / rect.height)
-                };
+                requestAnimationFrame(drawRadar);
             }
 
             function handleStart(e) {
-                if (isLocked) return;
-                const pos = getMousePos(e);
-                let scanX = cx + R * Math.cos(currentAngle * Math.PI / 180);
-                let scanY = cy + R * Math.sin(currentAngle * Math.PI / 180);
-                if (Math.hypot(pos.x - scanX, pos.y - scanY) < 30 || Math.hypot(pos.x - cx, pos.y - cy) < R) {
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                
+                const canvasRect = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / canvasRect.width;
+                const scaleY = canvas.height / canvasRect.height;
+                const x = (clientX - canvasRect.left) * scaleX;
+                const y = (clientY - canvasRect.top) * scaleY;
+                
+                // Check hit against Canvas coordinates (using mapped -currentAngle)
+                let scanX = cx + R * Math.cos(-currentAngle * Math.PI / 180);
+                let scanY = cy + R * Math.sin(-currentAngle * Math.PI / 180);
+                
+                // Generous hit box for dragging
+                if (Math.hypot(x - scanX, y - scanY) < 50 || Math.hypot(x - cx, y - cy) < R + 20) {
                     isDragging = true;
                     if(e.cancelable) e.preventDefault();
                 }
             }
 
             function handleMove(e) {
-                if (!isDragging || isLocked) return;
+                if (!isDragging) return;
                 if(e.cancelable) e.preventDefault();
-                const pos = getMousePos(e);
-                currentAngle = getAngle(pos.x, pos.y);
                 
-                // Check win condition
-                if (Math.abs(currentAngle - targetAngle) < 3) {
-                    currentAngle = targetAngle;
-                    isLocked = true;
-                    isDragging = false;
-                    feedback.classList.remove('hidden');
-                    
-                    // Play sound (optional)
-                    const AudioContext = window.AudioContext || window.webkitAudioContext;
-                    if(AudioContext) {
-                        const ctx = new AudioContext();
-                        const osc = ctx.createOscillator();
-                        const gain = ctx.createGain();
-                        osc.type = 'sine';
-                        osc.frequency.setValueAtTime(800, ctx.currentTime);
-                        osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.2);
-                        gain.gain.setValueAtTime(0.1, ctx.currentTime);
-                        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
-                        osc.connect(gain); gain.connect(ctx.destination);
-                        osc.start(); osc.stop(ctx.currentTime + 0.2);
-                    }
-                }
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                
+                currentAngle = getAngle(clientX, clientY);
             }
 
             function handleEnd() {
@@ -1589,13 +1798,58 @@
 
             canvas.addEventListener('mousedown', handleStart);
             document.addEventListener('mousemove', handleMove);
-            document.addEventListener('mouseup', handleEnd);
+            window.addEventListener('mouseup', handleEnd); 
+            
             canvas.addEventListener('touchstart', handleStart, {passive: false});
             document.addEventListener('touchmove', handleMove, {passive: false});
-            document.addEventListener('touchend', handleEnd);
+            window.addEventListener('touchend', handleEnd);
 
             drawRadar();
         }
+
+        // Worksheet Form Submission Handler for Google Apps Script
+        window.submitRadarWorksheet = function(e) {
+            e.preventDefault(); 
+            
+            const form = document.getElementById('radar-worksheet');
+            const submitBtn = form.querySelector('button[type="submit"]');
+            
+            // Basic validation check
+            if(form.checkValidity()) {
+                
+                // Show a loading state on the button
+                const originalBtnContent = submitBtn.innerHTML;
+                submitBtn.innerHTML = `<svg class="animate-spin h-6 w-6 mr-3 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Submitting...`;
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
+
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbwFYN0WeZN18thNNtEduIUC16OTwNNVj5I5rdspauklcLmsp8jldyshYkWegnAG_H1CaA/exec';
+                const formData = new FormData(form);
+                
+                fetch(scriptURL, { method: 'POST', body: formData })
+                  .then(response => {
+                    // On Success: Show overlay
+                    document.getElementById('worksheet-success').classList.remove('hidden');
+                    
+                    // Reset button and form
+                    submitBtn.innerHTML = originalBtnContent;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
+                    form.reset();
+                  })
+                  .catch(error => {
+                    console.error('Error!', error.message);
+                    submitBtn.innerHTML = '❌ Submission Failed. Try again.';
+                    
+                    // Revert button after 3 seconds
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalBtnContent;
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
+                    }, 3000);
+                  });
+            }
+        };
 
         // ==========================================
         // UNLOCK SHORTCUTS
