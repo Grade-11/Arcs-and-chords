@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Circles: Chords, Arcs, and Central Angles</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- Add MathJax to display standard LaTeX math formulas -->
     <script>
       MathJax = {
@@ -15,6 +16,7 @@
       };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    
     <style>
         .tab-content {
             display: none;
@@ -77,6 +79,7 @@
         }
     </style>
 </head>
+
 <body class="bg-gray-50 text-gray-800 font-sans antialiased">
 
     <div class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
@@ -116,7 +119,7 @@
             <!-- Game Container -->
             <div class="relative w-full max-w-3xl mx-auto mb-8 bg-sky-50 rounded-xl overflow-hidden border-2 border-sky-200 shadow-inner" style="touch-action: none;">
                 <div class="absolute top-4 left-4 font-bold text-xl text-sky-800 z-10">Score: <span id="game-score">0</span></div>
-                <div class="absolute top-4 right-4 text-sm font-medium text-sky-700 z-10">Arrows: <span id="game-arrows">5</span></div>
+                <div class="absolute top-4 right-4 text-sm font-medium text-sky-700 z-10">Arrows: <span id="game-arrows">6</span></div>
                 <canvas id="archeryCanvas" width="800" height="400" class="w-full h-auto cursor-crosshair"></canvas>
                 <!-- Game Over Overlay -->
                 <div id="game-over" class="hidden absolute inset-0 bg-black bg-opacity-60 flex-col items-center justify-center z-20">
@@ -126,8 +129,19 @@
                 </div>
             </div>
 
+            <!-- Vocabulary Review Container (Hidden initially) -->
+            <div id="vocab-review-container" class="mb-8 hidden">
+                <h3 class="text-xl font-bold text-blue-800 mb-4 flex items-center border-b-2 border-blue-100 pb-2">
+                    <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+                    Vocabulary Review
+                </h3>
+                <div id="vocab-cards-wrapper" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Vocabulary cards will be injected here dynamically -->
+                </div>
+            </div>
+
             <!-- Transition 1 -->
-            <div id="transition-1" class="text-center mt-6 mb-8">
+            <div id="transition-1" class="text-center mt-6 mb-8 hidden">
                 <p class="text-lg text-gray-700 mb-4">Great shooting! 🎯 Did you know the bow and arrow have a fascinating connection to Geometry?</p>
                 <button onclick="revealHistory()" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-bold shadow-md transition transform hover:scale-105 flex items-center justify-center mx-auto">
                     Discover History
@@ -888,14 +902,56 @@
             }
         }
 
-        // ARCHERY GAME
+        // ARCHERY GAME VARIABLES
         const archeryCanvas = document.getElementById('archeryCanvas');
         const archeryCtx = archeryCanvas.getContext('2d');
-        let gameScore = 0, arrowsLeft = 5, isDraggingBow = false, isFlying = false;
+        let gameScore = 0, arrowsLeft = 6, isDraggingBow = false, isFlying = false;
         const bow = { x: 150, y: 200, pullX: 150, pullY: 200 };
         let arrow = { x: 150, y: 200, vx: 0, vy: 0, angle: 0 };
         const target = { x: 700, y: 200 };
         let hitMsg = { text: '', alpha: 0, x: 0, y: 0, color: '#eab308' };
+        
+        // Vocabulary Data for Review
+        const reviewVocabList = [
+            { term: "Line segment", phonetic: "/laɪn ˈseɡ.mənt/", def: "Một phần của đường thẳng bị giới hạn bởi hai điểm mút." },
+            { term: "Point", phonetic: "/pɔɪnt/", def: "Một vị trí chính xác trong không gian, không có kích thước." },
+            { term: "Circle", phonetic: "/ˈsɜː.kəl/", def: "Tập hợp các điểm cách đều một điểm cho trước (gọi là tâm)." },
+            { term: "Center", phonetic: "/ˈsen.tər/", def: "Điểm nằm chính giữa một hình, cách đều các điểm trên đường bao quanh." },
+            { term: "Intersect", phonetic: "/ˌɪn.təˈsekt/", def: "Cắt nhau, có chung một hoặc nhiều điểm." },
+            { term: "Distance", phonetic: "/ˈdɪs.təns/", def: "Độ dài đoạn thẳng nối hai điểm." }
+        ];
+        let arrowsShotCount = 0;
+
+        function showVocabCard() {
+            if (arrowsShotCount > 0 && arrowsShotCount <= reviewVocabList.length) {
+                const container = document.getElementById('vocab-review-container');
+                const wrapper = document.getElementById('vocab-cards-wrapper');
+                container.classList.remove('hidden');
+
+                const vocab = reviewVocabList[arrowsShotCount - 1];
+                const cardHTML = `
+                    <div class="vocab-card bg-blue-50 p-4 rounded-xl border border-blue-100 fade-in-section">
+                        <div class="text-lg font-bold text-blue-800">${vocab.term}</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">${vocab.phonetic}</div>
+                        <div class="text-gray-700 text-sm"><strong>Definition:</strong> ${vocab.def}</div>
+                    </div>
+                `;
+                wrapper.insertAdjacentHTML('beforeend', cardHTML);
+            }
+        }
+
+        function checkGameEnd() {
+            if (arrowsLeft <= 0) {
+                document.getElementById('final-score').innerText = gameScore;
+                document.getElementById('game-over').classList.remove('hidden');
+                document.getElementById('game-over').classList.add('flex');
+                
+                // Show transition button after all arrows are shot
+                setTimeout(() => {
+                    document.getElementById('transition-1').classList.remove('hidden');
+                }, 1500);
+            }
+        }
 
         function drawTarget() {
             archeryCtx.save();
@@ -974,6 +1030,7 @@
             const pullDist = Math.hypot(dx, dy);
             if (pullDist > 20) {
                 isFlying = true; arrow.vx = dx * 0.7; arrow.vy = dy * 0.7;
+                arrowsShotCount++;
             } else resetArrow();
         }
 
@@ -985,11 +1042,15 @@
         }
 
         window.resetGame = function() {
-            gameScore = 0; arrowsLeft = 5;
+            gameScore = 0; arrowsLeft = 6; arrowsShotCount = 0;
             document.getElementById('game-score').innerText = gameScore;
             document.getElementById('game-arrows').innerText = arrowsLeft;
             document.getElementById('game-over').classList.add('hidden');
             document.getElementById('game-over').classList.remove('flex');
+            document.getElementById('vocab-review-container').classList.add('hidden');
+            document.getElementById('vocab-cards-wrapper').innerHTML = '';
+            document.getElementById('transition-1').classList.add('hidden');
+            document.getElementById('history-section').classList.add('hidden');
             resetArrow();
         }
 
@@ -1012,12 +1073,14 @@
                         hitMsg = { text: '+' + pts, alpha: 1, x: target.x - 30, y: arrow.y - 30, color: hitMsg.color };
                     } else hitMsg = { text: 'Missed!', alpha: 1, x: target.x - 30, y: arrow.y - 30, color: '#ef4444' };
                     arrowsLeft--; document.getElementById('game-arrows').innerText = arrowsLeft;
-                    setTimeout(() => { resetArrow(); if (arrowsLeft <= 0) document.getElementById('final-score').innerText = gameScore, document.getElementById('game-over').classList.remove('hidden'), document.getElementById('game-over').classList.add('flex'); }, 1000);
+                    showVocabCard();
+                    setTimeout(() => { resetArrow(); checkGameEnd(); }, 1000);
                 }
                 if (arrow.y > archeryCanvas.height || arrow.x > archeryCanvas.width) {
                     isFlying = false; hitMsg = { text: 'Missed!', alpha: 1, x: arrow.x > archeryCanvas.width ? archeryCanvas.width - 60 : arrow.x, y: arrow.y > archeryCanvas.height ? archeryCanvas.height - 40 : arrow.y, color: '#ef4444' };
                     arrowsLeft--; document.getElementById('game-arrows').innerText = arrowsLeft;
-                    setTimeout(() => { resetArrow(); if (arrowsLeft <= 0) document.getElementById('final-score').innerText = gameScore, document.getElementById('game-over').classList.remove('hidden'), document.getElementById('game-over').classList.add('flex'); }, 1000);
+                    showVocabCard();
+                    setTimeout(() => { resetArrow(); checkGameEnd(); }, 1000);
                 }
             }
             drawBow(); drawArrow();
@@ -1358,7 +1421,7 @@
                     }, 400); // sync with knife hit timeframe
 
                 } else {
-                    alert("Please enter a valid amount to trim!");
+                    showFeedback("Please enter a valid amount to trim!", 'error');
                 }
             });
         }
