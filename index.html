@@ -998,138 +998,104 @@
                 <span class="bg-sky-100 text-sky-700 p-2 rounded-lg mr-3">🎡</span>
                 London Eye Challenge — Home Assignment
             </h2>
-            <p class="text-gray-600 mb-6">Apply your knowledge of arc measurement to a real-world engineering scenario. Complete your <strong>Engineering Report</strong> at home and submit it here.</p>
+            <p class="text-gray-600 mb-6">Apply your knowledge of arc measurement to a real-world engineering scenario.</p>
 
             <div class="flex flex-col lg:flex-row gap-8 items-start">
                 <!-- Left: Ferris Wheel + Brief -->
                 <div class="w-full lg:w-1/2 space-y-6">
-                    <div class="bg-sky-50 rounded-2xl p-4 border-2 border-sky-200 flex flex-col items-center">
+                    <div class="bg-sky-50 rounded-2xl p-4 border-2 border-sky-200 flex flex-col items-center relative shadow-inner">
                         <p class="text-sm font-bold text-sky-700 uppercase tracking-wider mb-3">🏙️ The London Eye — Design Model</p>
-                        <canvas id="ferrisCanvas" width="320" height="320" class="rounded-xl shadow-sm"></canvas>
-                        <p class="text-xs text-sky-600 mt-2 text-center">Cabins A and B (highlighted in yellow) are two adjacent cabins. The gold arc and angle between them are what you need to calculate.</p>
+                        <canvas id="ferrisCanvas" width="340" height="340" class="rounded-xl shadow-sm bg-white"></canvas>
+                        <p class="text-xs text-sky-700 mt-4 text-center px-4 font-medium">Observe the positions of Alice (Cabin 1) and Bob (Cabin 6). The exit platform is located at the very bottom.</p>
                     </div>
+                </div>
 
-                    <div class="bg-gradient-to-br from-sky-50 to-indigo-50 rounded-xl p-5 border-2 border-sky-200 shadow-sm">
-                        <h3 class="text-lg font-bold text-sky-900 mb-3 flex items-center">
-                            <svg class="w-5 h-5 mr-2 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                            Engineering Brief
+                <!-- Right: Tasks and Notebook -->
+                <div class="w-full lg:w-1/2 space-y-6">
+                    <div class="bg-gradient-to-br from-sky-50 to-indigo-50 rounded-xl p-6 border-2 border-sky-200 shadow-sm">
+                        <h3 class="text-xl font-bold text-sky-900 mb-4 flex items-center border-b border-sky-200 pb-3">
+                            <svg class="w-6 h-6 mr-2 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            Engineering Scenario
                         </h3>
-                        <p class="text-gray-800 text-sm leading-relaxed">
-                            An architect is designing a new Ferris wheel with exactly <strong class="text-sky-700">18 passenger cabins</strong> evenly spaced around the circle.
-                        </p>
-                        <div class="mt-4 bg-white rounded-lg p-4 border border-sky-100">
-                            <p class="font-bold text-gray-800 mb-2 text-sm">Your Engineering Report must include:</p>
-                            <ol class="list-decimal ml-5 text-sm text-gray-700 space-y-1">
-                                <li>The <strong>central angle</strong> between any two adjacent cabins (with working).</li>
-                                <li>The <strong>measure of the minor arc</strong> between adjacent cabins (with arc notation).</li>
-                                <li>A brief justification in English using target vocabulary.</li>
+                        <div class="text-gray-800 text-base leading-relaxed space-y-3 mb-6">
+                            <p>A Ferris wheel has exactly <strong>18 passenger cabins</strong> evenly spaced.</p>
+                            <p>The wheel rotates continuously <strong>clockwise</strong> at a constant speed of <strong>$10^\circ$ per minute</strong>.</p>
+                            <p>Cabin 1 is currently at the very top, and the exit platform is at the very bottom. <strong>Alice</strong> is in Cabin 1 and <strong>Bob</strong> is in Cabin 6.</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-5 border border-sky-100 shadow-md mb-6">
+                            <h4 class="font-bold text-indigo-800 mb-4 text-lg">Your Tasks:</h4>
+                            <ol class="list-decimal ml-5 text-gray-800 space-y-4 font-medium text-base">
+                                <li class="pl-2">Calculate the measure of the <strong>minor arc</strong> and the <strong>major arc</strong> between Alice and Bob.</li>
+                                <li class="pl-2">Based on the arc measure, <strong>how many minutes</strong> will it take for Bob to travel to the exit platform? Write a short step-by-step engineering report.</li>
                             </ol>
                         </div>
-                        <div class="mt-3 bg-amber-50 rounded-lg p-3 border border-amber-200 text-xs text-amber-800">
-                            <strong>📒 Notebook task:</strong> Draw a circle, mark 2 adjacent cabins as points A and B, label central angle ∠AOB and arc AB. Include this diagram in your written report.
-                        </div>
-                    </div>
 
-                    <!-- Key Vocabulary -->
-                    <div class="mt-4 border-t border-gray-200 pt-4">
-                        <h3 class="text-base font-bold text-green-600 mb-3 flex items-center">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
-                            Key Vocabulary (CLIL)
-                        </h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <div class="vocab-card bg-green-50 p-3 rounded-xl border border-green-100">
-                                <div class="font-bold text-green-800">Central Angle</div>
-                                <div class="text-xs text-gray-500 font-mono mb-1">/ˈsen.trəl ˈæŋ.ɡəl/</div>
-                                <div class="text-gray-700 text-xs">Góc có đỉnh tại tâm đường tròn.</div>
-                            </div>
-                            <div class="vocab-card bg-green-50 p-3 rounded-xl border border-green-100">
-                                <div class="font-bold text-green-800">Arc</div>
-                                <div class="text-xs text-gray-500 font-mono mb-1">/ɑːk/</div>
-                                <div class="text-gray-700 text-xs">Phần đường cong của đường tròn bị cắt bởi hai điểm.</div>
-                            </div>
-                            <div class="vocab-card bg-green-50 p-3 rounded-xl border border-green-100">
-                                <div class="font-bold text-green-800">Evenly Spaced</div>
-                                <div class="text-xs text-gray-500 font-mono mb-1">/ˈiː.vən.li speɪst/</div>
-                                <div class="text-gray-700 text-xs">Cách đều nhau (phân bố đều).</div>
-                            </div>
-                            <div class="vocab-card bg-green-50 p-3 rounded-xl border border-green-100">
-                                <div class="font-bold text-green-800">Adjacent</div>
-                                <div class="text-xs text-gray-500 font-mono mb-1">/əˈdʒeɪ.sənt/</div>
-                                <div class="text-gray-700 text-xs">Liền kề, kế cận nhau.</div>
+                        <div class="bg-amber-50 rounded-xl p-5 border border-amber-200 flex items-start shadow-sm transform transition hover:-translate-y-1">
+                            <span class="text-3xl mr-4 drop-shadow-sm">📒</span>
+                            <div>
+                                <p class="font-bold text-amber-900 mb-1 text-lg">Notebook Assignment</p>
+                                <p class="text-sm text-amber-800 leading-relaxed font-medium">
+                                    Please write your calculations and the final engineering report in your notebook. Make sure to draw a sketch of the Ferris wheel, label the central angles, and use proper arc notation!
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Right: Report Form -->
-                <div class="w-full lg:w-1/2">
-                    <div class="bg-white rounded-xl shadow-md border-2 border-slate-200 overflow-hidden relative">
-                        <!-- Success Overlay -->
-                        <div id="london-eye-success" class="hidden absolute inset-0 bg-white/95 backdrop-blur-sm z-20 flex flex-col items-center justify-center p-6 text-center">
-                            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-4 shadow-inner">
-                                <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
-                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Report Submitted!</h3>
-                            <p class="text-gray-600 mb-6">Great work, Engineer! 🎡 Your teacher will review your report.</p>
-                            <button onclick="document.getElementById('london-eye-success').classList.add('hidden')" class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium">Review My Answers</button>
-                        </div>
-
-                        <div class="bg-slate-800 text-white p-4 flex items-center">
-                            <svg class="w-6 h-6 mr-2 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-                            <h3 class="text-xl font-bold">Engineering Report</h3>
-                        </div>
-
-                        <form id="london-eye-form" class="p-5 space-y-5" onsubmit="submitLondonEye(event)">
-                            <!-- Student Info -->
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Student Name / ID <span class="text-red-500">*</span></label>
-                                <input type="text" name="le_student_name" required class="w-full border border-gray-300 rounded-lg p-2 text-gray-700 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none" placeholder="Your full name...">
-                            </div>
-
-                            <!-- Step-by-step Calc -->
-                            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
-                                <p class="font-semibold text-gray-800 mb-3 text-sm">Step-by-step Calculation:</p>
-                                <div class="space-y-3 text-sm text-gray-700">
-                                    <div class="flex items-center gap-2 flex-wrap">
-                                        <span>Total rotation of the wheel =</span>
-                                        <input type="text" name="le_total" class="w-16 border-b-2 border-gray-400 outline-none text-center font-bold text-indigo-700 bg-transparent" placeholder="?">
-                                        <span>°</span>
-                                    </div>
-                                    <div class="flex items-center gap-2 flex-wrap">
-                                        <span>Number of cabins =</span>
-                                        <input type="text" name="le_cabins" class="w-12 border-b-2 border-gray-400 outline-none text-center font-bold text-indigo-700 bg-transparent" placeholder="?">
-                                    </div>
-                                    <div class="flex items-center gap-2 flex-wrap">
-                                        <span>Central angle =</span>
-                                        <input type="text" name="le_total2" class="w-16 border-b-2 border-gray-400 outline-none text-center font-bold text-indigo-700 bg-transparent" placeholder="?">
-                                        <span>° ÷</span>
-                                        <input type="text" name="le_cabins2" class="w-12 border-b-2 border-gray-400 outline-none text-center font-bold text-indigo-700 bg-transparent" placeholder="?">
-                                        <span>=</span>
-                                        <input type="text" name="le_angle" class="w-16 border-b-2 border-gray-400 outline-none text-center font-bold text-emerald-700 bg-transparent" placeholder="?">
-                                        <span>°</span>
-                                    </div>
-                                    <div class="flex items-center gap-2 flex-wrap">
-                                        <span>Measure of arc AB (minor) =</span>
-                                        <input type="text" name="le_arc" class="w-16 border-b-2 border-gray-400 outline-none text-center font-bold text-emerald-700 bg-transparent" placeholder="?">
-                                        <span>°</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Written Report -->
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Engineering Report <span class="text-red-500">*</span></label>
-                                <p class="text-xs text-gray-500 mb-2">Write in English using correct arc notation and target vocabulary (central angle, minor arc, evenly spaced, adjacent).</p>
-                                <textarea name="le_report" rows="6" required class="w-full border border-gray-300 rounded-lg p-3 text-gray-700 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none resize-none" placeholder='Example: Since the 18 cabins are evenly spaced around the circle, the central angle ∠AOB between any two adjacent cabins equals 360° ÷ 18 = 20°. Therefore, the measure of minor arc AB is 20°. Using arc notation: m(arc AB) = 20°.'></textarea>
-                            </div>
-
-                            <!-- Submit -->
-                            <button type="submit" class="w-full py-4 px-6 bg-sky-600 hover:bg-sky-700 text-white text-lg font-bold rounded-xl shadow-lg transition transform hover:-translate-y-0.5 flex justify-center items-center">
-                                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                                Submit Engineering Report
-                            </button>
-                            <p class="text-xs text-center text-gray-400">Your report will be securely sent to your teacher's system.</p>
-                        </form>
+            <!-- Key Vocabulary Tab 7 -->
+            <div class="mt-10 border-t border-gray-200 pt-6">
+                <h3 class="text-xl font-bold text-green-600 mb-4 flex items-center">
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                    Key Vocabulary (CLIL)
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Circle -->
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Circle</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/ˈsɜː.kəl/</div>
+                        <div class="text-gray-700 text-sm">Đường tròn. Tập hợp các điểm cách đều một điểm cho trước (gọi là tâm).</div>
+                    </div>
+                    <!-- Radius -->
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Radius</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/ˈreɪ.di.əs/</div>
+                        <div class="text-gray-700 text-sm">Bán kính. Khoảng cách từ tâm đến một điểm bất kỳ trên đường tròn.</div>
+                    </div>
+                    <!-- Chord -->
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Chord</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/kɔːd/</div>
+                        <div class="text-gray-700 text-sm">Dây cung. Đoạn thẳng nối hai điểm phân biệt nằm trên đường tròn.</div>
+                    </div>
+                    <!-- Diameter -->
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Diameter</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/daɪˈæm.ɪ.tə/</div>
+                        <div class="text-gray-700 text-sm">Đường kính. Dây cung lớn nhất đi qua tâm của đường tròn (gấp đôi bán kính).</div>
+                    </div>
+                    <!-- Arc -->
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100 lg:col-span-2">
+                        <div class="text-lg font-bold text-green-800">Arc</div>
+                        <div class="text-sm text-gray-500 font-mono mb-2">/ɑːk/</div>
+                        <div class="text-gray-700 text-sm mb-3">Cung. Phần đường cong của đường tròn bị cắt bởi hai điểm.</div>
+                        <ul class="text-sm text-gray-800 bg-white/70 p-3 rounded-lg border border-green-200 list-disc list-inside space-y-1">
+                            <li><strong>Minor arc</strong> <span class="font-mono text-gray-500 text-xs ml-1">/ˌmaɪ.nər ˈɑːk/</span> : Cung nhỏ (nhỏ hơn nửa đường tròn)</li>
+                            <li><strong>Major arc</strong> <span class="font-mono text-gray-500 text-xs ml-1">/ˌmeɪ.dʒər ˈɑːk/</span> : Cung lớn (lớn hơn nửa đường tròn)</li>
+                        </ul>
+                    </div>
+                    <!-- Evenly Spaced -->
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Evenly Spaced</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/ˈiː.vən.li speɪst/</div>
+                        <div class="text-gray-700 text-sm">Cách đều nhau (khoảng cách phân bố đều đặn).</div>
+                    </div>
+                    <!-- Adjacent -->
+                    <div class="vocab-card bg-green-50 p-4 rounded-xl border border-green-100">
+                        <div class="text-lg font-bold text-green-800">Adjacent</div>
+                        <div class="text-sm text-gray-500 font-mono mb-1">/əˈdʒeɪ.sənt/</div>
+                        <div class="text-gray-700 text-sm">Liền kề, kế cận nhau (ví dụ: hai cabin ở sát cạnh nhau).</div>
                     </div>
                 </div>
             </div>
@@ -2334,78 +2300,103 @@
             const canvas = document.getElementById('ferrisCanvas');
             const ctx = canvas.getContext('2d');
             const cx = canvas.width / 2;
-            const cy = canvas.height / 2 - 10;
-            const R = 100;
+            const cy = canvas.height / 2 - 20;
+            const R = 110;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+            // Exit Platform
+            ctx.fillStyle = '#cbd5e1';
+            ctx.fillRect(cx - 50, cy + R + 15, 100, 10);
+            ctx.fillStyle = '#94a3b8';
+            ctx.fillRect(cx - 60, cy + R + 25, 120, 15);
+            ctx.fillStyle = '#0f172a';
+            ctx.font = 'bold 11px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('EXIT PLATFORM', cx, cy + R + 55);
+
             // Ferris wheel stands
-            ctx.strokeStyle = '#94a3b8';
+            ctx.strokeStyle = '#cbd5e1';
             ctx.lineWidth = 6;
-            ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx - 40, cy + 140); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + 40, cy + 140); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx - 40, cy + R + 15); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + 40, cy + R + 15); ctx.stroke();
             ctx.fillStyle = '#475569';
             ctx.beginPath(); ctx.arc(cx, cy, 10, 0, 2*Math.PI); ctx.fill();
 
             // Wheel rim
             ctx.lineWidth = 2;
+            ctx.strokeStyle = '#94a3b8';
             ctx.beginPath(); ctx.arc(cx, cy, R, 0, 2*Math.PI); ctx.stroke();
             
+            const numCabins = 18;
+            const step = 2 * Math.PI / numCabins;
+            const offset = -Math.PI / 2; // Start at top (Cabin 1)
+
             // Spokes
             ctx.lineWidth = 1;
-            for(let i=0; i<18; i++) {
-                let a = i * (2 * Math.PI / 18);
+            ctx.strokeStyle = '#cbd5e1';
+            for(let i=0; i<numCabins; i++) {
+                let a = offset + i * step;
                 ctx.beginPath(); 
                 ctx.moveTo(cx, cy);
                 ctx.lineTo(cx + R * Math.cos(a), cy + R * Math.sin(a));
                 ctx.stroke();
             }
 
-            // Highlight adjacent cabins A and B (indices 14 and 15 for top right visibility)
-            const a0 = 14 * (2 * Math.PI / 18);
-            const a1 = 15 * (2 * Math.PI / 18);
+            // Alice is Cabin 1 (i=0), Bob is Cabin 6 (i=5).
+            const aAlice = offset + 0 * step;
+            const aBob = offset + 5 * step;
 
-            // Highlight Arc
+            // Highlight Minor Arc
             ctx.strokeStyle = '#eab308';
             ctx.lineWidth = 5;
             ctx.beginPath();
-            ctx.arc(cx, cy, R, a0, a1);
+            ctx.arc(cx, cy, R, aAlice, aBob);
             ctx.stroke();
 
-            // Highlight Angle
-            ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + R * Math.cos(a0), cy + R * Math.sin(a0)); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + R * Math.cos(a1), cy + R * Math.sin(a1)); ctx.stroke();
-            ctx.beginPath(); ctx.arc(cx, cy, 25, a0, a1); ctx.stroke();
+            // Highlight Central Angle
+            ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + R * Math.cos(aAlice), cy + R * Math.sin(aAlice)); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + R * Math.cos(aBob), cy + R * Math.sin(aBob)); ctx.stroke();
+            ctx.beginPath(); ctx.arc(cx, cy, 25, aAlice, aBob); ctx.stroke();
 
             // Cabins
-            for(let i=0; i<18; i++) {
-                let a = i * (2 * Math.PI / 18);
+            for(let i=0; i<numCabins; i++) {
+                let a = offset + i * step;
                 let px = cx + R * Math.cos(a);
                 let py = cy + R * Math.sin(a);
                 
-                ctx.fillStyle = (i === 14 || i === 15) ? '#facc15' : '#ffffff';
+                let isAlice = (i === 0);
+                let isBob = (i === 5);
+                let isExit = (i === 9); // Cabin 10 (bottom)
+
+                ctx.fillStyle = (isAlice || isBob) ? '#facc15' : (isExit ? '#4ade80' : '#ffffff');
                 ctx.strokeStyle = '#475569';
                 ctx.lineWidth = 2;
                 ctx.beginPath(); 
-                ctx.arc(px, py, 8, 0, 2 * Math.PI); 
+                ctx.arc(px, py, 10, 0, 2 * Math.PI); 
                 ctx.fill(); 
                 ctx.stroke();
                 
-                if(i === 14) { 
-                    ctx.fillStyle = '#0f172a'; ctx.font = 'bold 12px sans-serif'; 
-                    ctx.fillText('A', px + 12, py + 5); 
+                // Cabin Numbers
+                ctx.fillStyle = '#0f172a'; 
+                ctx.font = 'bold 10px sans-serif'; 
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(i + 1, px, py);
+                
+                if(isAlice) { 
+                    ctx.fillStyle = '#b45309'; ctx.font = 'bold 12px sans-serif'; 
+                    ctx.fillText('Alice', px, py - 18); 
                 }
-                if(i === 15) { 
-                    ctx.fillStyle = '#0f172a'; ctx.font = 'bold 12px sans-serif'; 
-                    ctx.fillText('B', px + 12, py + 5); 
+                if(isBob) { 
+                    ctx.fillStyle = '#b45309'; ctx.font = 'bold 12px sans-serif'; 
+                    ctx.fillText('Bob', px + 22, py); 
+                }
+                if(isExit) {
+                    ctx.fillStyle = '#166534'; ctx.font = 'bold 10px sans-serif'; 
+                    ctx.fillText('Exit', px + 22, py + 10); 
                 }
             }
-        }
-
-        window.submitLondonEye = function(e) {
-            e.preventDefault();
-            // Just displaying the success message locally for simulation
-            document.getElementById('london-eye-success').classList.remove('hidden');
         }
 
         // ==========================================
