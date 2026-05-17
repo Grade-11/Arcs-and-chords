@@ -102,28 +102,25 @@
         <!-- Tab Navigation -->
         <div class="flex border-b border-gray-200 mb-6 overflow-x-auto">
             <button onclick="openTab('tab1')" id="btn-tab1" class="tab-btn px-5 py-3 text-blue-600 border-b-2 border-blue-600 font-medium whitespace-nowrap focus:outline-none">
-                1. Warm-up
+                1. Warm-up (1st period)
             </button>
             <button onclick="openTab('tab2')" id="btn-tab2" class="tab-btn px-5 py-3 text-gray-500 hover:text-blue-500 border-b-2 border-transparent font-medium whitespace-nowrap focus:outline-none">
-                2. Investigation
+                2. Investigation (1st period)
             </button>
             <button onclick="openTab('tab3')" id="btn-tab3" class="tab-btn px-5 py-3 text-gray-500 hover:text-blue-500 border-b-2 border-transparent font-medium whitespace-nowrap focus:outline-none">
-                3. Practice
+                3. Practice (1st period)
             </button>
             <button onclick="openTab('tab4')" id="btn-tab4" class="tab-btn px-5 py-3 text-gray-500 hover:text-blue-500 border-b-2 border-transparent font-medium whitespace-nowrap focus:outline-none">
-                4. My Bento Box
+                4. My Bento Box (1st period)
             </button>
             <button onclick="openTab('tab5')" id="btn-tab5" class="tab-btn px-5 py-3 text-gray-500 hover:text-blue-500 border-b-2 border-transparent font-medium whitespace-nowrap focus:outline-none">
-                5. Radar Scanner
+                5. Radar Scanner (2nd period)
             </button>
             <button onclick="openTab('tab6')" id="btn-tab6" class="tab-btn px-5 py-3 text-gray-500 hover:text-blue-500 border-b-2 border-transparent font-medium whitespace-nowrap focus:outline-none">
-                6. Geometry Wheel
+                6. Arc Protractor (2nd period)
             </button>
             <button onclick="openTab('tab7')" id="btn-tab7" class="tab-btn px-5 py-3 text-gray-500 hover:text-blue-500 border-b-2 border-transparent font-medium whitespace-nowrap focus:outline-none">
-                7. Arc Protractor
-            </button>
-            <button onclick="openTab('tab8')" id="btn-tab8" class="tab-btn px-5 py-3 text-gray-500 hover:text-blue-500 border-b-2 border-transparent font-medium whitespace-nowrap focus:outline-none">
-                8. London Eye
+                7. London Eye (2nd period)
             </button>
         </div>
 
@@ -859,94 +856,8 @@
             </div>
         </div>
 
-        <!-- TAB 6: GEOMETRY WHEEL (Period 2 – In-class Warm-up) -->
-        <div id="tab6" class="tab-content bg-white rounded-xl shadow-sm p-6 sm:p-8 border border-gray-100">
-            <h2 class="text-2xl font-bold text-gray-800 mb-2 flex items-center">
-                <span class="bg-yellow-100 text-yellow-700 p-2 rounded-lg mr-3">🎡</span>
-                Geometry Wheel — Warm-up (Period 2)
-            </h2>
-            <p class="text-gray-600 mb-6">Teacher spins the wheel! When it stops, quickly identify the highlighted element of the circle. Shout your answer in English!</p>
-
-            <div class="flex flex-col lg:flex-row gap-8 items-start">
-                <!-- Spinning Wheel -->
-                <div class="flex flex-col items-center flex-shrink-0">
-                    <div class="relative">
-                        <canvas id="spinWheel" width="260" height="260" class="rounded-full shadow-2xl border-4 border-slate-200"></canvas>
-                        <!-- Pointer arrow at top -->
-                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-0 h-0"
-                             style="border-left:12px solid transparent;border-right:12px solid transparent;border-bottom:24px solid #ef4444;"></div>
-                    </div>
-                    <button id="btn-spin-wheel" onclick="triggerSpin()" class="mt-6 px-8 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold rounded-full shadow-lg transition transform hover:scale-105 text-lg">
-                        🎰 SPIN!
-                    </button>
-                    <div class="mt-4 text-center space-y-1">
-                        <p class="text-sm text-gray-500">Round: <span id="wheel-round" class="font-bold text-gray-700">0</span> / 5</p>
-                        <p class="text-sm text-gray-500">Class Score: <span id="wheel-score" class="font-bold text-green-600">0</span></p>
-                    </div>
-                </div>
-
-                <!-- Scenario + Answers -->
-                <div class="flex-1 space-y-5">
-                    <div class="bg-slate-50 rounded-2xl p-4 border-2 border-slate-200 flex flex-col items-center">
-                        <p class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">Identify the highlighted element:</p>
-                        <canvas id="scenarioCanvas" width="260" height="260"></canvas>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-3" id="answer-btn-grid">
-                        <button onclick="answerWheel('Central Angle')" class="wheel-ans-btn py-4 bg-blue-100 hover:bg-blue-200 text-blue-800 font-bold rounded-xl border-2 border-blue-200 transition transform hover:scale-105">
-                            Central Angle
-                        </button>
-                        <button onclick="answerWheel('Minor Arc')" class="wheel-ans-btn py-4 bg-green-100 hover:bg-green-200 text-green-800 font-bold rounded-xl border-2 border-green-200 transition transform hover:scale-105">
-                            Minor Arc
-                        </button>
-                        <button onclick="answerWheel('Major Arc')" class="wheel-ans-btn py-4 bg-red-100 hover:bg-red-200 text-red-800 font-bold rounded-xl border-2 border-red-200 transition transform hover:scale-105">
-                            Major Arc
-                        </button>
-                        <button onclick="answerWheel('Semicircle')" class="wheel-ans-btn py-4 bg-yellow-100 hover:bg-yellow-200 text-yellow-800 font-bold rounded-xl border-2 border-yellow-200 transition transform hover:scale-105">
-                            Semicircle
-                        </button>
-                    </div>
-
-                    <div id="wheel-feedback" class="hidden text-center p-4 rounded-xl font-bold text-lg border-2"></div>
-
-                    <div class="text-center">
-                        <button id="btn-next-wheel" onclick="nextWheelRound()" class="hidden px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-full shadow-md transition transform hover:scale-105">
-                            Next Round →
-                        </button>
-                    </div>
-
-                    <!-- Pronunciation guide -->
-                    <div class="grid grid-cols-2 gap-2 text-xs mt-2">
-                        <div class="bg-blue-50 p-2 rounded border border-blue-100 text-center">
-                            <span class="font-bold text-blue-800">Central Angle</span><br>
-                            <span class="text-gray-500 font-mono">/ˈsen.trəl ˈæŋ.ɡəl/</span>
-                        </div>
-                        <div class="bg-green-50 p-2 rounded border border-green-100 text-center">
-                            <span class="font-bold text-green-800">Minor Arc</span><br>
-                            <span class="text-gray-500 font-mono">/ˈmaɪ.nər ɑːk/</span>
-                        </div>
-                        <div class="bg-red-50 p-2 rounded border border-red-100 text-center">
-                            <span class="font-bold text-red-800">Major Arc</span><br>
-                            <span class="text-gray-500 font-mono">/ˈmeɪ.dʒər ɑːk/</span>
-                        </div>
-                        <div class="bg-yellow-50 p-2 rounded border border-yellow-100 text-center">
-                            <span class="font-bold text-yellow-800">Semicircle</span><br>
-                            <span class="text-gray-500 font-mono">/ˈsem.iˌsɜː.kəl/</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-8 text-center border-t border-gray-200 pt-8">
-                <button onclick="openTab('tab7')" class="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-full font-bold shadow-lg transition transform hover:scale-105 flex items-center justify-center mx-auto text-lg">
-                    Next: Arc Protractor
-                    <svg class="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
-                </button>
-            </div>
-        </div>
-
-        <!-- TAB 7: ARC PROTRACTOR (Period 2 – Activity 2: Measure of an Arc) -->
-        <div id="tab7" class="tab-content bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <!-- TAB 6: ARC PROTRACTOR (Period 2 – Activity 2: Measure of an Arc) -->
+        <div id="tab6" class="tab-content bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
             <div class="flex flex-col lg:flex-row" style="min-height:680px;">
 
                 <!-- LEFT: Interactive Protractor -->
@@ -1071,7 +982,7 @@
 
                         <!-- Navigation -->
                         <div class="pt-2 pb-6 text-center">
-                            <button onclick="openTab('tab8')" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full font-bold shadow-md transition transform hover:scale-105 flex items-center mx-auto">
+                            <button onclick="openTab('tab7')" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full font-bold shadow-md transition transform hover:scale-105 flex items-center mx-auto">
                                 Next: London Eye Challenge
                                 <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
                             </button>
@@ -1081,8 +992,8 @@
             </div>
         </div>
 
-        <!-- TAB 8: LONDON EYE CHALLENGE (Period 2 – Home Assignment) -->
-        <div id="tab8" class="tab-content bg-white rounded-xl shadow-sm p-6 sm:p-8 border border-gray-100">
+        <!-- TAB 7: LONDON EYE CHALLENGE (Period 2 – Home Assignment) -->
+        <div id="tab7" class="tab-content bg-white rounded-xl shadow-sm p-6 sm:p-8 border border-gray-100">
             <h2 class="text-2xl font-bold text-gray-800 mb-2 flex items-center">
                 <span class="bg-sky-100 text-sky-700 p-2 rounded-lg mr-3">🎡</span>
                 London Eye Challenge — Home Assignment
@@ -1247,9 +1158,8 @@
             if (tabId === 'tab2') initChordSimulation();
             if (tabId === 'tab4') initBentoGame();
             if (tabId === 'tab5') initRadarScanner();
-            if (tabId === 'tab6') initWheelGame();
-            if (tabId === 'tab7') initProtractor();
-            if (tabId === 'tab8') initLondonEye();
+            if (tabId === 'tab6') initProtractor();
+            if (tabId === 'tab7') initLondonEye();
         }
 
         // ==========================================
@@ -2229,226 +2139,7 @@
         };
 
         // ==========================================
-        // TAB 6: GEOMETRY WHEEL SCRIPT
-        // ==========================================
-        let wheelInit = false;
-        let wheelAngle = 0;
-        let isSpinning = false;
-        let currentScenarioType = '';
-        let wheelRound = 0;
-        let wheelScore = 0;
-        const scenarios = ['Central Angle', 'Minor Arc', 'Major Arc', 'Semicircle'];
-
-        function initWheelGame() {
-            if(wheelInit) return;
-            wheelInit = true;
-            drawWheel(0);
-            drawScenario('none');
-        }
-
-        function drawWheel(rotation) {
-            const canvas = document.getElementById('spinWheel');
-            if(!canvas) return;
-            const ctx = canvas.getContext('2d');
-            const cx = canvas.width / 2;
-            const cy = canvas.height / 2;
-            const R = cx - 10;
-            const segments = scenarios.length;
-            const arc = (2 * Math.PI) / segments;
-            const colors = ['#3b82f6', '#10b981', '#ef4444', '#eab308'];
-
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.save();
-            ctx.translate(cx, cy);
-            ctx.rotate(rotation);
-
-            for(let i=0; i<segments; i++) {
-                ctx.beginPath();
-                ctx.fillStyle = colors[i];
-                ctx.moveTo(0,0);
-                ctx.arc(0, 0, R, i*arc, (i+1)*arc);
-                ctx.fill();
-                ctx.lineWidth = 2;
-                ctx.strokeStyle = '#fff';
-                ctx.stroke();
-
-                ctx.save();
-                ctx.rotate(i*arc + arc/2);
-                ctx.fillStyle = '#fff';
-                ctx.font = 'bold 15px sans-serif';
-                ctx.textAlign = 'right';
-                ctx.fillText(scenarios[i], R - 15, 5);
-                ctx.restore();
-            }
-            
-            // Draw center dot
-            ctx.beginPath();
-            ctx.fillStyle = '#1e293b';
-            ctx.arc(0, 0, 10, 0, 2*Math.PI);
-            ctx.fill();
-            
-            ctx.restore();
-        }
-
-        window.triggerSpin = function() {
-            if(isSpinning || wheelRound >= 5) return;
-            isSpinning = true;
-            document.getElementById('wheel-feedback').classList.add('hidden');
-            document.getElementById('btn-next-wheel').classList.add('hidden');
-            drawScenario('none'); // Clear previous scenario
-
-            const spinDuration = 3000; // 3 seconds spin
-            const targetRotation = wheelAngle + (Math.PI * 10) + Math.random() * Math.PI * 2; // ~5 full spins + random offset
-
-            const start = performance.now();
-            
-            function animate(time) {
-                let p = (time - start) / spinDuration;
-                if(p > 1) p = 1;
-                // Ease-out cubic formula
-                const easeOut = 1 - Math.pow(1 - p, 3);
-                wheelAngle = targetRotation * easeOut;
-                drawWheel(wheelAngle);
-
-                if(p < 1) {
-                    requestAnimationFrame(animate);
-                } else {
-                    isSpinning = false;
-                    // Pick a random scenario when stopped (to ensure fair randomness independent of exact angle match)
-                    currentScenarioType = scenarios[Math.floor(Math.random() * scenarios.length)];
-                    drawScenario(currentScenarioType);
-                }
-            }
-            requestAnimationFrame(animate);
-        }
-
-        function drawScenario(type) {
-            const canvas = document.getElementById('scenarioCanvas');
-            if(!canvas) return;
-            const ctx = canvas.getContext('2d');
-            const cx = canvas.width / 2;
-            const cy = canvas.height / 2;
-            const R = 90;
-
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Base Circle
-            ctx.strokeStyle = '#cbd5e1';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            ctx.arc(cx, cy, R, 0, 2*Math.PI);
-            ctx.stroke();
-            
-            // Center Point O
-            ctx.fillStyle = '#0f172a';
-            ctx.beginPath();
-            ctx.arc(cx, cy, 4, 0, 2*Math.PI);
-            ctx.fill();
-            ctx.font = '14px sans-serif';
-            ctx.fillText('O', cx - 15, cy - 5);
-
-            if(type === 'none') return;
-
-            const ang1 = -Math.PI/6; // 315 deg (top right)
-            const ang2 = Math.PI/2.5; // bottom right
-
-            const x1 = cx + R * Math.cos(ang1);
-            const y1 = cy + R * Math.sin(ang1);
-            const x2 = cx + R * Math.cos(ang2);
-            const y2 = cy + R * Math.sin(ang2);
-
-            ctx.lineWidth = 6;
-            ctx.lineCap = 'round';
-
-            if(type === 'Central Angle') {
-                // Highlight rays
-                ctx.strokeStyle = '#3b82f6';
-                ctx.beginPath();
-                ctx.moveTo(x1, y1);
-                ctx.lineTo(cx, cy);
-                ctx.lineTo(x2, y2);
-                ctx.stroke();
-                // Arc indicator
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                ctx.arc(cx, cy, 20, ang1, ang2);
-                ctx.stroke();
-            } else if(type === 'Minor Arc') {
-                ctx.strokeStyle = '#10b981';
-                ctx.beginPath();
-                ctx.arc(cx, cy, R, ang1, ang2);
-                ctx.stroke();
-                // Add points A and B
-                ctx.fillStyle = '#0f172a';
-                ctx.beginPath(); ctx.arc(x1, y1, 4, 0, 2*Math.PI); ctx.fill();
-                ctx.beginPath(); ctx.arc(x2, y2, 4, 0, 2*Math.PI); ctx.fill();
-                ctx.fillText('A', x1 + 10, y1);
-                ctx.fillText('B', x2 + 10, y2 + 10);
-            } else if(type === 'Major Arc') {
-                ctx.strokeStyle = '#ef4444';
-                ctx.beginPath();
-                ctx.arc(cx, cy, R, ang2, ang1);
-                ctx.stroke();
-                ctx.fillStyle = '#0f172a';
-                ctx.beginPath(); ctx.arc(x1, y1, 4, 0, 2*Math.PI); ctx.fill();
-                ctx.beginPath(); ctx.arc(x2, y2, 4, 0, 2*Math.PI); ctx.fill();
-            } else if(type === 'Semicircle') {
-                ctx.strokeStyle = '#eab308';
-                ctx.beginPath();
-                ctx.arc(cx, cy, R, 0, Math.PI); // Top half
-                ctx.stroke();
-                // Diameter
-                ctx.lineWidth = 2;
-                ctx.strokeStyle = '#94a3b8';
-                ctx.setLineDash([5,5]);
-                ctx.beginPath(); 
-                ctx.moveTo(cx - R, cy); 
-                ctx.lineTo(cx + R, cy); 
-                ctx.stroke();
-                ctx.setLineDash([]);
-                ctx.fillStyle = '#0f172a';
-                ctx.beginPath(); ctx.arc(cx - R, cy, 4, 0, 2*Math.PI); ctx.fill();
-                ctx.beginPath(); ctx.arc(cx + R, cy, 4, 0, 2*Math.PI); ctx.fill();
-            }
-        }
-
-        window.answerWheel = function(ans) {
-            if(!currentScenarioType || isSpinning || wheelRound >= 5) return;
-            const fb = document.getElementById('wheel-feedback');
-            fb.classList.remove('hidden', 'text-green-600', 'text-red-600', 'border-green-200', 'border-red-200', 'bg-green-50', 'bg-red-50');
-
-            if(ans === currentScenarioType) {
-                wheelScore += 10;
-                fb.innerHTML = '✅ Correct! It is a <strong>' + currentScenarioType + '</strong>';
-                fb.classList.add('text-green-600', 'bg-green-50', 'border-green-200');
-            } else {
-                fb.innerHTML = '❌ Incorrect! It was a <strong>' + currentScenarioType + '</strong>';
-                fb.classList.add('text-red-600', 'bg-red-50', 'border-red-200');
-            }
-            
-            document.getElementById('wheel-score').innerText = wheelScore;
-            wheelRound++;
-            document.getElementById('wheel-round').innerText = wheelRound;
-            document.getElementById('btn-next-wheel').classList.remove('hidden');
-            currentScenarioType = ''; // Disable answers until next spin
-        }
-
-        window.nextWheelRound = function() {
-            if(wheelRound >= 5) {
-                const fb = document.getElementById('wheel-feedback');
-                fb.innerHTML = `🎉 Game Over! Final Class Score: ${wheelScore} / 50`;
-                fb.classList.remove('text-red-600', 'bg-red-50', 'border-red-200', 'text-green-600', 'bg-green-50', 'border-green-200');
-                fb.classList.add('text-indigo-600', 'bg-indigo-50', 'border-indigo-200');
-                document.getElementById('btn-next-wheel').classList.add('hidden');
-            } else {
-                document.getElementById('wheel-feedback').classList.add('hidden');
-                document.getElementById('btn-next-wheel').classList.add('hidden');
-                drawScenario('none');
-            }
-        }
-
-        // ==========================================
-        // TAB 7: ARC PROTRACTOR SCRIPT
+        // TAB 6: ARC PROTRACTOR SCRIPT
         // ==========================================
         let isProtoInit = false;
         let protoAngle = 70; // initial angle
@@ -2632,7 +2323,7 @@
         }
 
         // ==========================================
-        // TAB 8: LONDON EYE SCRIPT
+        // TAB 7: LONDON EYE SCRIPT
         // ==========================================
         let isLondonInit = false;
         
